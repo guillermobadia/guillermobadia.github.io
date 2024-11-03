@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DanceMatch - Conecta con otros bailarines</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #7b2cbf;
+            --accent: #ff8fa3;
+            --dark: #1b1b1b;
+            --light: #f8f9fa;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        header {
+            background-color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .features {
+            padding: 4rem 2rem;
+            background-color: var(--light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .testimonials {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .testimonial-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            position: absolute;
+            top: -30px;
+            left: 2rem;
+        }
+
+        .testimonial-content {
+            margin-top: 2rem;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            nav a {
+                margin: 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">DanceMatch</div>
+            <nav>
+                <a href="#inicio">Inicio</a>
+                <a href="#como-funciona">Cómo Funciona</a>
+                <a href="#estilos">Estilos</a>
+                <a href="#precios">Precios</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Encuentra tu pareja de baile ideal</h1>
+        <p>Conectamos bailarines de todos los niveles y estilos. Ya sea que busques una pareja para competir, practicar o simplemente divertirte, DanceMatch es tu plataforma.</p>
+        <a href="#registro" class="cta-button">¡Comienza a bailar!</a>
+    </section>
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <img src="/api/placeholder/80/80" alt="Perfil personalizado">
+                <h3>Perfil Personalizado</h3>
+                <p>Crea tu perfil especificando tus estilos de baile favoritos, nivel de experiencia y objetivos.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/api/placeholder/80/80" alt="Matchmaking inteligente">
+                <h3>Match Inteligente</h3>
+                <p>Nuestro algoritmo encuentra las mejores parejas de baile basándose en estilo, nivel y ubicación.</p>
+            </div>
+            <div class="feature-card">
+                <img src="/api/placeholder/80/80" alt="Eventos">
+                <h3>Eventos y Clases</h3>
+                <p>Descubre eventos locales, clases y prácticas donde puedas conocer a tu match en persona.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2>Lo que dicen nuestros bailarines</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <img src="/api/placeholder/60/60" alt="Ana">
+                <div class="testimonial-content">
+                    <h4>Ana García</h4>
+                    <p>"Gracias a DanceMatch encontré una pareja perfecta para competir en salsa. ¡Ahora estamos preparándonos para nuestro primer campeonato!"</p>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <img src="/api/placeholder/60/60" alt="Carlos">
+                <div class="testimonial-content">
+                    <h4>Carlos Rodríguez</h4>
+                    <p>"Como principiante en bachata, encontrar una pareja de práctica de mi nivel fue súper fácil. La plataforma es intuitiva y la comunidad muy acogedora."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 DanceMatch - Conectando bailarines con pasión</p>
+        <div class="social-links">
+            <a href="#instagram">Instagram</a>
+            <a href="#facebook">Facebook</a>
+            <a href="#twitter">Twitter</a>
+        </div>
+    </footer>
+</body>
+</html>
