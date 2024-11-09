@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiencia Profesional | Guillermo Badia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilos base heredados del index */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --dark: #1e293b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+            --success: #22c55e;
+            --font-main: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+            padding-top: 4rem;
+        }
+
+        /* Header y navegación (heredado del index) */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Estilos específicos de la página de experiencia */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 4rem 1rem;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Timeline estilizado */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            width: calc(50% - 2rem);
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            top: 50%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -42px;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -42px;
+            transform: translateY(-50%);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .timeline-company {
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .achievement-list {
+            list-style: none;
+        }
+
+        .achievement-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .achievement-list li i {
+            color: var(--success);
+            margin-top: 0.25rem;
+        }
+
+        /* Sección de Logros Destacados */
+        .highlights {
+            background: var(--white);
+            padding: 4rem 0;
+            margin-top: 4rem;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 8px;
+            background: var(--light);
+        }
+
+        .highlight-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 2rem;
+            }
+
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+            }
+
+            .timeline-content::before {
+                left: -32px !important;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code"></i>
+                GB
+            </a>
+            <div class="nav-links">
+                <a href="experiencia.html">Experiencia</a>
+                <a href="proyectos.html">Proyectos</a>
+                <a href="habilidades.html">Habilidades</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>Experiencia Profesional</h1>
+        <p>Más de una década liderando transformaciones tecnológicas</p>
+    </div>
+
+    <div class="container">
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2020 - Presente</div>
+                    <h3 class="timeline-title">Director de Proyectos y Procesos</h3>
+                    <div class="timeline-company">Grupo G's España</div>
+                    <ul class="achievement-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Liderazgo de proyectos de transformación digital con impacto directo en la eficiencia operativa</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Implementación exitosa de sistemas de productividad que aumentaron la eficiencia en un 35%</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Gestión de equipos multidisciplinarios de más de 20 profesionales</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2017 - 2020</div>
+                    <h3 class="timeline-title">JD Edwards Application Analyst</h3>
+                    <div class="timeline-company">Grupo G's España</div>
+                    <ul class="achievement-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Optimización de procesos críticos de negocio mediante soluciones JD Edwards</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Desarrollo e implementación de integraciones que redujeron los tiempos de proceso en un 40%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2011 - 2016</div>
+                    <h3 class="timeline-title">Technical Consultant</h3>
+                    <div class="timeline-company">Qualita Solutions & Consulting</div>
+                    <ul class="achievement-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Consultoría técnica especializada para múltiples clientes de primer nivel</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Desarrollo de soluciones JD Edwards personalizadas</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Formación técnica de equipos y transferencia de conocimiento</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="highlights">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Logros Destacados</h2>
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>35%</h3>
+                    <p>Mejora en eficiencia operativa</p>
+                </div>
+                <div class="highlight-card">
+                    <i class="fas fa-users"></i>
+                    <h3>20+</h3>
+                    <p>Profesionales liderados</p>
+                </div>
+                <div class="highlight-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>50+</h3>
+                    <p>Proyectos exitosos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Guillermo Badia. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

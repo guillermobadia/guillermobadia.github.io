@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guillermo Badia - Portfolio</title>
+    <style>
+        /* Estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Navegación */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .contact-button {
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s;
+        }
+
+        .contact-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Secciones */
+        section {
+            padding: 5rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            padding-top: 8rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #2563eb;
+            border-radius: 4px;
+        }
+
+        /* Botones */
+        .button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .button-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .button-outline {
+            border: 2px solid #2563eb;
+            color: #2563eb;
+        }
+
+        .button-outline:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">GB</div>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#experiencia">Experiencia</a>
+                <a href="#habilidades">Habilidades</a>
+                <a href="#contacto" class="contact-button">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="inicio" class="hero">
+        <div>
+            <h1>Guillermo Badia</h1>
+            <h2>Director de Proyectos y Procesos</h2>
+            <p>Especializado en transformación digital y liderazgo de equipos tecnológicos.</p>
+            <div style="margin-top: 2rem;">
+                <a href="#contacto" class="button button-primary">Contactar</a>
+                <a href="#experiencia" class="button button-outline" style="margin-left: 1rem;">Ver Experiencia</a>
+            </div>
+        </div>
+        <div class="skills-grid">
+            <div class="card">
+                <h3>Gestión de Proyectos</h3>
+                <p>Transformación digital</p>
+            </div>
+            <div class="card">
+                <h3>Liderazgo</h3>
+                <p>Equipos multidisciplinarios</p>
+            </div>
+            <div class="card">
+                <h3>Desarrollo</h3>
+                <p>JD Edwards & ERPs</p>
+            </div>
+            <div class="card">
+                <h3>Innovación</h3>
+                <p>Mejora continua</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia">
+        <h2>Experiencia Profesional</h2>
+        <div class="card" style="margin-top: 2rem;">
+            <h3>Director de Proyectos y Procesos</h3>
+            <p style="color: #2563eb;">Grupo G's España</p>
+            <p>2020 - Presente</p>
+            <ul style="margin-top: 1rem;">
+                <li>• Liderazgo de proyectos de transformación digital</li>
+                <li>• Implementación de sistemas de productividad</li>
+                <li>• Gestión de equipos multidisciplinarios</li>
+            </ul>
+        </div>
+        <div class="card" style="margin-top: 1rem;">
+            <h3>Technical Consultant</h3>
+            <p style="color: #2563eb;">Qualita Solutions & Consulting</p>
+            <p>2011 - 2016</p>
+            <ul style="margin-top: 1rem;">
+                <li>• Desarrollo de soluciones JD Edwards</li>
+                <li>• Formación técnica de equipos</li>
+                <li>• Consultoría técnica especializada</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="habilidades">
+        <h2>Habilidades</h2>
+        <div class="skills-grid">
+            <div class="card">
+                <h3>Habilidades Técnicas</h3>
+                <div style="margin-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>JD Edwards</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%;"></div>
+                    </div>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Gestión de Proyectos</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Certificaciones</h3>
+                <div style="margin-top: 1rem;">
+                    <div style="margin-bottom: 1rem;">
+                        <h4>PRINCE2 Foundation</h4>
+                        <p>Gestión de Proyectos</p>
+                    </div>
+                    <div>
+                        <h4>Microsoft Dynamics Nav</h4>
+                        <p>Desarrollo y Funcional</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" style="text-align: center;">
+        <h2>Contacto</h2>
+        <p style="margin-bottom: 2rem;">¿Interesado en colaborar? ¡Hablemos!</p>
+        <div>
+            <a href="mailto:guillermo.badia@gmail.com" class="button button-primary">Email</a>
+            <a href="https://linkedin.com/in/guillermobadia" target="_blank" class="button button-outline" style="margin-left: 1rem;">LinkedIn</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Guillermo Badia. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
