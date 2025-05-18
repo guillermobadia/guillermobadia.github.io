@@ -5,80 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyectos | Guillermo Badia</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/mobile-menu.css">
+    <link rel="stylesheet" href="css/animations.css">
     <style>
-        /* Variables y reset */
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #64748b;
-            --dark: #1e293b;
-            --light: #f1f5f9;
-            --white: #ffffff;
-            --success: #22c55e;
-            --font-main: 'Segoe UI', system-ui, sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Estilos base */
-        body {
-            font-family: var(--font-main);
-            line-height: 1.6;
-            color: var(--dark);
-            background: var(--light);
-            padding-top: 4rem;
-        }
-
-        /* Header y navegación */
-        .header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Encabezado de página */
+        /* Estilos específicos de la página de proyectos */
         .page-header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
@@ -326,20 +257,8 @@
             transform: translateY(-2px);
         }
 
-        /* Footer */
-        .footer {
-            background: var(--dark);
-            color: var(--white);
-            padding: 2rem 1rem;
-            text-align: center;
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
             .page-header h1 {
                 font-size: 2rem;
             }
@@ -367,20 +286,8 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav-container">
-            <a href="index.html" class="logo">
-                <i class="fas fa-code"></i>
-                GB
-            </a>
-            <div class="nav-links">
-                <a href="experiencia.html">Experiencia</a>
-                <a href="proyectos.html">Proyectos</a>
-                <a href="habilidades.html">Habilidades</a>
-                <a href="contacto.html">Contacto</a>
-            </div>
-        </nav>
-    </header>
+    <!-- Contenedor para el header -->
+    <div id="header-container"></div>
 
     <div class="page-header">
         <h1>Proyectos Destacados</h1>
@@ -399,14 +306,9 @@
             <!-- Proyecto 1 -->
             <div class="project-card">
                 <div class="project-header">
-                            <div class="project-image-container">
-            <img src="img/GS_Espana_M.jpg" alt="Logo GsEspaña" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;">
-        </div>
-<!--                     <div class="project-image-container">
-                        <svg viewBox="0 0 100 100" width="50" height="50" fill="white">
-                            <path d="M85 45h-3.5V25c0-2.8-2.2-5-5-5H45V15c0-2.8-2.2-5-5-5H15c-2.8 0-5 2.2-5 5v30c0 2.8 2.2 5 5 5h25v5H20c-2.8 0-5 2.2-5 5v25c0 2.8 2.2 5 5 5h25c2.8 0 5-2.2 5-5V60c0-2.8-2.2-5-5-5h-5v-5h25v20c0 2.8 2.2 5 5 5h15c2.8 0 5-2.2 5-5V50c0-2.8-2.2-5-5-5zM35 45H15V15h20v30zm10 35H20V60h25v20zm35-20H65V25h15v35z"/>
-                        </svg>
-                    </div> -->
+                    <div class="project-image-container">
+                        <img src="img/GS_Espana_M.jpg" alt="Logo GsEspaña" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;">
+                    </div>
                     <div class="project-meta">
                         <span class="project-year">2020 - 2024</span>
                         <span class="project-type">Transformación Digital</span>
@@ -432,38 +334,39 @@
                     </div>
                 </div>
             </div>
-<!-- Añadir una nueva card de proyecto en proyectos.html -->
-<!-- Insertar este código después del primer proyecto en la sección projects-grid -->
-<div class="project-card">
-    <div class="project-header">
-        <div class="project-image-container">
-            <img src="img/ciberemprende-logo.png" alt="Logo CIBEREMPRENDE" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;">
-        </div>
-        <div class="project-meta">
-            <span class="project-year">Enero 2025</span>
-            <span class="project-type">Innovación en Ciberseguridad</span>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Proyecto Finalista INCIBE Emprende</h3>
-        <p class="project-description">Idea innovadora en el campo de la ciberseguridad reconocida por INCIBE (Instituto Nacional de Ciberseguridad) en el programa INCIBE Emprende, financiado por la Unión Europea.</p>
-        <div class="project-metrics">
-            <div class="metric">
-                <i class="fas fa-award"></i>
-                <span>Finalista destacado</span>
+            
+            <!-- Proyecto INCIBE -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-image-container">
+                        <img src="img/ciberemprende-logo.png" alt="Logo CIBEREMPRENDE" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;">
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-year">Enero 2025</span>
+                        <span class="project-type">Innovación en Ciberseguridad</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Proyecto Finalista INCIBE Emprende</h3>
+                    <p class="project-description">Idea innovadora en el campo de la ciberseguridad reconocida por INCIBE (Instituto Nacional de Ciberseguridad) en el programa INCIBE Emprende, financiado por la Unión Europea.</p>
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <i class="fas fa-award"></i>
+                            <span>Finalista destacado</span>
+                        </div>
+                        <div class="metric">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Ciberseguridad</span>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">INCIBE</span>
+                        <span class="tag">Innovación</span>
+                        <span class="tag">Ciberseguridad</span>
+                    </div>
+                </div>
             </div>
-            <div class="metric">
-                <i class="fas fa-shield-alt"></i>
-                <span>Ciberseguridad</span>
-            </div>
-        </div>
-        <div class="project-tags">
-            <span class="tag">INCIBE</span>
-            <span class="tag">Innovación</span>
-            <span class="tag">Ciberseguridad</span>
-        </div>
-    </div>
-</div>
+            
             <!-- Proyecto 2 -->
             <div class="project-card">
                 <div class="project-header">
@@ -476,7 +379,7 @@
                         </svg>
                     </div>
                     <div class="project-meta">
-                        <span class="span class="project-year">2014 - 2015</span>
+                        <span class="project-year">2014 - 2015</span>
                         <span class="project-type">Portal de Proveedores</span>
                     </div>
                 </div>
@@ -607,81 +510,82 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <p>&copy; 2025 Guillermo Badia. Todos los derechos reservados.</p>
-    </footer>
+    <!-- Contenedor para el footer -->
+    <div id="footer-container"></div>
 
+    <!-- Scripts -->
+    <script src="js/load-components.js"></script>
     <script>
         // Funcionalidad de filtros
-        const filterButtons = document.querySelectorAll('.filter-button');
-        
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                const filter = button.textContent.toLowerCase();
-                const projectCards = document.querySelectorAll('.project-card');
-                
-                projectCards.forEach(card => {
-                    const tags = Array.from(card.querySelectorAll('.tag'))
-                        .map(tag => tag.textContent.toLowerCase());
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-button');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
                     
-                    if (filter === 'todos los proyectos') {
-                        card.style.display = 'block';
-                        card.style.animation = 'fadeIn 0.5s ease-in';
-                    } else {
-                        if (tags.some(tag => tag.includes(filter.toLowerCase()))) {
+                    const filter = button.textContent.toLowerCase();
+                    const projectCards = document.querySelectorAll('.project-card');
+                    
+                    projectCards.forEach(card => {
+                        const tags = Array.from(card.querySelectorAll('.tag'))
+                            .map(tag => tag.textContent.toLowerCase());
+                        
+                        if (filter === 'todos los proyectos') {
                             card.style.display = 'block';
                             card.style.animation = 'fadeIn 0.5s ease-in';
                         } else {
-                            card.style.display = 'none';
-                        }
-                    }
-                });
-            });
-        });
-
-        // Animaciones de estadísticas
-        const stats = document.querySelectorAll('.stat-number');
-            const observerOptions = {
-                threshold: 0.5,
-                rootMargin: '0px'
-            };
-
-            const statsObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = entry.target;
-                        const value = target.textContent;
-                        let start = 0;
-                        const end = parseInt(value);
-                        const duration = 2000;
-                        const increment = end / (duration / 16);
-
-                        function updateNumber() {
-                            start += increment;
-                            if (start < end) {
-                                if (value.includes('+')) {
-                                    target.textContent = Math.floor(start) + '+';
-                                } else {
-                                    target.textContent = Math.floor(start);
-                                }
-                                requestAnimationFrame(updateNumber);
+                            if (tags.some(tag => tag.includes(filter.toLowerCase()))) {
+                                card.style.display = 'block';
+                                card.style.animation = 'fadeIn 0.5s ease-in';
                             } else {
-                                target.textContent = value;
+                                card.style.display = 'none';
                             }
                         }
-
-                        requestAnimationFrame(updateNumber);
-                        
-                    }
+                    });
                 });
-            }, observerOptions);
+            });
 
-            stats.forEach(stat => statsObserver.observe(stat));
+            // Animaciones de estadísticas
+            const stats = document.querySelectorAll('.stat-number');
+                const observerOptions = {
+                    threshold: 0.5,
+                    rootMargin: '0px'
+                };
 
+                const statsObserver = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const target = entry.target;
+                            const value = target.textContent;
+                            let start = 0;
+                            const end = parseInt(value);
+                            const duration = 2000;
+                            const increment = end / (duration / 16);
 
+                            function updateNumber() {
+                                start += increment;
+                                if (start < end) {
+                                    if (value.includes('+')) {
+                                        target.textContent = Math.floor(start) + '+';
+                                    } else {
+                                        target.textContent = Math.floor(start);
+                                    }
+                                    requestAnimationFrame(updateNumber);
+                                } else {
+                                    target.textContent = value;
+                                }
+                            }
+
+                            requestAnimationFrame(updateNumber);
+                            
+                        }
+                    });
+                }, observerOptions);
+
+                stats.forEach(stat => statsObserver.observe(stat));
+        });
     </script>
 </body>
 </html>
