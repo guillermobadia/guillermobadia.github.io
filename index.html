@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guillermo Badia | Director de Proyectos y Transformación Digital</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Variables y reset */
         :root {
@@ -32,7 +31,8 @@
             background: var(--light);
         }
 
-        /* Header con logo */
+        /* Header y navegación */
+        
         .header {
             background: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -81,57 +81,6 @@
 
         .nav-links a:hover {
             color: var(--primary);
-        }
-
-        /* Hero section con fondo azul */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: var(--primary);
-            color: var(--white);
-            padding: 0 2rem;
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero h2 {
-            font-size: 1.75rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 3rem;
-            opacity: 0.9;
-        }
-
-        /* Botón de conectar */
-        .connect-button {
-            display: inline-block;
-            padding: 1rem 3rem;
-            background: var(--white);
-            color: var(--primary);
-            text-decoration: none;
-            border-radius: 2rem;
-            font-weight: 600;
-            font-size: 1.25rem;
-            transition: all 0.3s;
-        }
-
-        .connect-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         /* Menú móvil */
@@ -228,76 +177,128 @@
             color: var(--primary);
         }
 
-        /* Footer con dominio y navegación */
+        /* Hero section */
+        .hero {
+            margin-top: 4rem;
+            padding: 6rem 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        /* Skills section */
+        .skills {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding: 4rem 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+<!-- Añadir esta sección después de la sección "skills" y antes de la sección "cta" en index.html -->
+<section class="recognition">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 4rem 1rem;">
+        <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: var(--dark);">Reconocimientos</h2>
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div style="margin-bottom: 2rem;">
+                <img src="img/ciberemprende-logo.png" alt="Sello INCIBE Emprende" style="max-width: 200px; height: auto;">
+            </div>
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem;">Finalista INCIBE Emprende 2025</h3>
+            <p style="max-width: 800px; margin: 0 auto;">
+                En enero de 2025, obtuve el reconocimiento como finalista en el programa INCIBE Emprende 
+                por mi proyecto innovador en el campo de la ciberseguridad. Este programa apoyado por 
+                la Unión Europea y el Plan de Recuperación, Transformación y Resiliencia reconoce 
+                las ideas más destacadas e innovadoras en el ámbito de la ciberseguridad.
+            </p>
+            <div style="margin-top: 2rem;">
+                <a href="#contacto" class="button" style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--primary); color: white; text-decoration: none; border-radius: 4px; font-weight: bold; transition: transform 0.3s;">
+                    Saber más sobre mi proyecto
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        .timeline-item {
+            position: relative;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Call to action */
+        .cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--white);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
         .footer {
             background: var(--dark);
             color: var(--white);
-            padding: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 98;
-        }
-
-        .domain {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .domain-icon {
-            font-size: 1.25rem;
-        }
-
-        .domain-text {
-            font-size: 1rem;
-        }
-
-        .footer-nav {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-nav-item {
-            color: var(--white);
-            font-size: 1.25rem;
-            text-decoration: none;
-        }
-
-        /* Barra inferior de navegación del móvil */
-        .bottom-nav {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: var(--dark);
-            padding: 0.75rem 0;
-            z-index: 98;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .bottom-nav-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .bottom-nav-item {
-            color: var(--white);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 0.75rem;
-        }
-
-        .bottom-nav-icon {
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
+            padding: 2rem 1rem;
+            text-align: center;
         }
 
         /* Media queries para responsividad */
@@ -351,13 +352,13 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header con logo -->
     <header class="header">
         <nav class="nav-container">
             <a href="index.html" class="logo">
-                <i class="fas fa-code code-icon"></i>
+                <i class="fas fa-code"></i>
                 GB
             </a>
             <div class="nav-links">
@@ -393,53 +394,52 @@
             <a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
         </div>
     </div>
-
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Guillermo Badia</h1>
             <h2>Director de Proyectos y Transformación Digital</h2>
             <p>Experto en liderazgo de equipos tecnológicos y transformación empresarial</p>
-            <a href="contacto.html" class="connect-button">Conectar</a>
+            <div style="margin-top: 2rem;">
+                <a href="contacto.html" class="button">Conectar</a>
+            </div>
         </div>
     </section>
 
-    <!-- Footer con dominio -->
-    <footer class="footer">
-        <div class="domain">
-            <i class="fas fa-lock domain-icon"></i>
-            <span class="domain-text">guillermobadia.com</span>
+    <section class="skills">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Áreas de Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fas fa-project-diagram"></i>
+                <h3>Gestión de Proyectos</h3>
+                <p>Metodologías ágiles y tradicionales</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-digital-tachograph"></i>
+                <h3>Transformación Digital</h3>
+                <p>Implementación y optimización de ERPs</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-users-cog"></i>
+                <h3>Liderazgo Técnico</h3>
+                <p>Gestión de equipos multidisciplinarios</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-code-branch"></i>
+                <h3>Desarrollo JD Edwards</h3>
+                <p>Experto en implementación y desarrollo</p>
+            </div>
         </div>
-        <div class="footer-nav">
-            <a href="#" class="footer-nav-item"><i class="fas fa-arrow-left"></i></a>
-            <a href="#" class="footer-nav-item"><i class="fas fa-arrow-right"></i></a>
-            <a href="index.html" class="footer-nav-item"><i class="fas fa-home"></i></a>
-            <a href="#" class="footer-nav-item"><i class="fas fa-infinity"></i></a>
-            <a href="#" class="footer-nav-item"><i class="fas fa-bars"></i></a>
-        </div>
-    </footer>
+    </section>
 
-    <!-- Barra de navegación inferior para móviles -->
-    <nav class="bottom-nav">
-        <div class="bottom-nav-container">
-            <a href="#" class="bottom-nav-item">
-                <i class="fas fa-arrow-left bottom-nav-icon"></i>
-            </a>
-            <a href="#" class="bottom-nav-item">
-                <i class="fas fa-arrow-right bottom-nav-icon"></i>
-            </a>
-            <a href="index.html" class="bottom-nav-item">
-                <i class="fas fa-home bottom-nav-icon"></i>
-            </a>
-            <a href="#" class="bottom-nav-item">
-                <i class="fas fa-infinity bottom-nav-icon"></i>
-            </a>
-            <a href="#" class="bottom-nav-item">
-                <i class="fas fa-bars bottom-nav-icon"></i>
-                <span>Menú</span>
-            </a>
-        </div>
-    </nav>
+    <section class="cta">
+        <h2>¿Buscando un líder tecnológico experimentado?</h2>
+        <p style="margin: 1rem 0 2rem;">Más de 10 años transformando empresas a través de la tecnología</p>
+        <a href="contacto.html" class="button">Hablemos de tu proyecto</a>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Guillermo Badia. Todos los derechos reservados.</p>
+    </footer>
 
     <!-- Script para el menú móvil -->
     <script>
