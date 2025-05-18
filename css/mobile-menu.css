@@ -1,0 +1,229 @@
+/* css/mobile-menu.css */
+
+/* Menú móvil y elementos responsivos */
+
+/* Botón de menú móvil */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s;
+    padding: 0.5rem;
+    z-index: 101;
+}
+
+.mobile-menu-btn:hover {
+    color: var(--primary);
+}
+
+/* Overlay de fondo oscuro */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    backdrop-filter: blur(3px);
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Menú lateral */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -320px; /* Inicialmente fuera de pantalla */
+    width: 80%;
+    max-width: 320px;
+    height: 100%;
+    background: var(--white);
+    z-index: 1000;
+    padding: 2rem;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+/* Cabecera del menú móvil */
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mobile-menu-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--dark);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.mobile-menu-close:hover {
+    color: var(--primary);
+}
+
+/* Enlaces del menú móvil */
+.mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.mobile-menu-links a {
+    font-size: 1.25rem;
+    color: var(--dark);
+    text-decoration: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.mobile-menu-links a i {
+    margin-right: 0.75rem;
+    width: 1.5rem;
+    text-align: center;
+    color: var(--primary);
+}
+
+.mobile-menu-links a:hover {
+    color: var(--primary);
+}
+
+/* Sección de contacto en el menú móvil */
+.mobile-menu-contact {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu-contact p {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--secondary);
+}
+
+.mobile-menu-contact-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.mobile-menu-contact-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.mobile-menu-social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+}
+
+.mobile-menu-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--light);
+    border-radius: 50%;
+    color: var(--dark);
+    transition: all 0.3s;
+}
+
+.mobile-menu-social a:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Animación del botón de menú móvil */
+.mobile-menu-btn.active {
+    color: var(--primary);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    /* Mostrar el botón del menú en móviles */
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    /* Ocultar los enlaces de navegación estándar */
+    .nav-links {
+        display: none;
+    }
+}
+
+/* Transición para el cuerpo */
+body {
+    transition: margin-right 0.3s ease;
+}
+
+body.menu-open {
+    margin-right: 320px; /* Opcional: Empuja el contenido cuando el menú está abierto */
+    overflow: hidden; /* Previene scroll cuando el menú está abierto */
+}
+
+/* Estilos para el menú deslizante con animación */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.mobile-menu-links a {
+    opacity: 0;
+    animation: slideIn 0.3s forwards;
+}
+
+.mobile-menu.active .mobile-menu-links a:nth-child(1) { animation-delay: 0.1s; }
+.mobile-menu.active .mobile-menu-links a:nth-child(2) { animation-delay: 0.15s; }
+.mobile-menu.active .mobile-menu-links a:nth-child(3) { animation-delay: 0.2s; }
+.mobile-menu.active .mobile-menu-links a:nth-child(4) { animation-delay: 0.25s; }
+.mobile-menu.active .mobile-menu-links a:nth-child(5) { animation-delay: 0.3s; }
