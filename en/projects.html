@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyectos | Guillermo Badia</title>
+    <title>Projects | Guillermo Badia</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Variables y reset */
+        /* Variables and reset */
         :root {
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
@@ -24,7 +24,7 @@
             box-sizing: border-box;
         }
 
-        /* Estilos base */
+        /* Base styles */
         body {
             font-family: var(--font-main);
             line-height: 1.6;
@@ -33,7 +33,7 @@
             padding-top: 4rem;
         }
 
-        /* Header y navegación */
+        /* Header and navigation */
         .header {
             background: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -78,7 +78,7 @@
             color: var(--primary);
         }
 
-        /* Encabezado de página */
+        /* Page header */
         .page-header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
@@ -97,14 +97,14 @@
             opacity: 0.9;
         }
 
-        /* Contenedor principal */
+        /* Main container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
         }
 
-        /* Filtros */
+        /* Filters */
         .project-filters {
             display: flex;
             justify-content: center;
@@ -135,7 +135,7 @@
             color: var(--white);
         }
 
-        /* Grid de proyectos */
+        /* Project grid */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -143,7 +143,7 @@
             margin-bottom: 4rem;
         }
 
-        /* Estilos de la card de proyecto */
+        /* Project card styles */
         .project-card {
             background: var(--white);
             border-radius: 12px;
@@ -158,7 +158,7 @@
             box-shadow: 0 8px 12px rgba(0,0,0,0.15);
         }
 
-        /* Encabezado del proyecto */
+        /* Project header */
         .project-header {
             display: flex;
             align-items: center;
@@ -210,7 +210,7 @@
             font-weight: 600;
         }
 
-        /* Contenido del proyecto */
+        /* Project content */
         .project-title {
             font-size: 1.25rem;
             color: var(--dark);
@@ -263,7 +263,7 @@
             color: var(--white);
         }
 
-        /* Sección de estadísticas */
+        /* Statistics section */
         .impact-stats {
             background: var(--white);
             padding: 6rem 0;
@@ -301,7 +301,7 @@
             font-weight: 500;
         }
 
-        /* Sección CTA */
+        /* CTA section */
         .cta-section {
             padding: 4rem 0;
             text-align: center;
@@ -374,97 +374,93 @@
                 GB
             </a>
             <div class="nav-links">
-                <a href="experiencia.html">Experiencia</a>
-                <a href="proyectos.html">Proyectos</a>
-                <a href="habilidades.html">Habilidades</a>
-                <a href="contacto.html">Contacto</a>
+                <a href="experience.html">Experience</a>
+                <a href="projects.html">Projects</a>
+                <a href="skills.html">Skills</a>
+                <a href="contact.html">Contact</a>
             </div>
         </nav>
     </header>
 
     <div class="page-header">
-        <h1>Proyectos Destacados</h1>
-        <p>Transformando negocios a través de soluciones tecnológicas innovadoras</p>
+        <h1>Featured Projects</h1>
+        <p>Transforming businesses through innovative technology solutions</p>
     </div>
 
     <div class="container">
         <div class="project-filters">
-            <button class="filter-button active">Todos los Proyectos</button>
-            <button class="filter-button">Transformación Digital</button>
+            <button class="filter-button active">All Projects</button>
+            <button class="filter-button">Digital Transformation</button>
             <button class="filter-button">JD Edwards</button>
-            <button class="filter-button">Gestión de Proyectos</button>
+            <button class="filter-button">Project Management</button>
         </div>
 
         <div class="projects-grid">
-            <!-- Proyecto 1 -->
+            <!-- Project 1 -->
             <div class="project-card">
                 <div class="project-header">
-                            <div class="project-image-container">
-            <img src="img/GS_Espana_M.jpg" alt="Logo GsEspaña" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;">
-        </div>
-<!--                     <div class="project-image-container">
-                        <svg viewBox="0 0 100 100" width="50" height="50" fill="white">
-                            <path d="M85 45h-3.5V25c0-2.8-2.2-5-5-5H45V15c0-2.8-2.2-5-5-5H15c-2.8 0-5 2.2-5 5v30c0 2.8 2.2 5 5 5h25v5H20c-2.8 0-5 2.2-5 5v25c0 2.8 2.2 5 5 5h25c2.8 0 5-2.2 5-5V60c0-2.8-2.2-5-5-5h-5v-5h25v20c0 2.8 2.2 5 5 5h15c2.8 0 5-2.2 5-5V50c0-2.8-2.2-5-5-5zM35 45H15V15h20v30zm10 35H20V60h25v20zm35-20H65V25h15v35z"/>
-                        </svg>
-                    </div> -->
+                    <div class="project-image-container">
+                        <img src="../img/GS_Espana_M.jpg" alt="Logo GsEspaña" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;">
+                    </div>
                     <div class="project-meta">
                         <span class="project-year">2020 - 2024</span>
-                        <span class="project-type">Transformación Digital</span>
+                        <span class="project-type">Digital Transformation</span>
                     </div>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">G's España - Modernización ERP</h3>
-                    <p class="project-description">Lideré la transformación digital completa, implementando soluciones ERP avanzadas y optimizando procesos críticos del negocio.</p>
+                    <h3 class="project-title">G's España - ERP Modernization</h3>
+                    <p class="project-description">Led the complete digital transformation, implementing advanced ERP solutions and optimizing critical business processes.</p>
                     <div class="project-metrics">
                         <div class="metric">
                             <i class="fas fa-chart-line"></i>
-                            <span>35% mejora eficiencia</span>
+                            <span>35% efficiency improvement</span>
                         </div>
                         <div class="metric">
                             <i class="fas fa-users"></i>
-                            <span>500+ usuarios</span>
+                            <span>500+ users</span>
                         </div>
                     </div>
                     <div class="project-tags">
                         <span class="tag">JD Edwards</span>
-                        <span class="tag">Transformación Digital</span>
-                        <span class="tag">Gestión de Procesos</span>
+                        <span class="tag">Digital Transformation</span>
+                        <span class="tag">Process Management</span>
                     </div>
                 </div>
             </div>
-<!-- Añadir una nueva card de proyecto en proyectos.html -->
-<!-- Insertar este código después del primer proyecto en la sección projects-grid -->
-<div class="project-card">
-    <div class="project-header">
-        <div class="project-image-container">
-            <img src="img/ciberemprende-logo.png" alt="Logo CIBEREMPRENDE" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;">
-        </div>
-        <div class="project-meta">
-            <span class="project-year">Enero 2025</span>
-            <span class="project-type">Innovación en Ciberseguridad</span>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Proyecto Finalista INCIBE Emprende</h3>
-        <p class="project-description">Idea innovadora en el campo de la ciberseguridad reconocida por INCIBE (Instituto Nacional de Ciberseguridad) en el programa INCIBE Emprende, financiado por la Unión Europea.</p>
-        <div class="project-metrics">
-            <div class="metric">
-                <i class="fas fa-award"></i>
-                <span>Finalista destacado</span>
+
+            <!-- Project: INCIBE Finalist -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-image-container">
+                        <img src="../img/ciberemprende-logo.png" alt="Logo CIBEREMPRENDE" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;">
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-year">January 2025</span>
+                        <span class="project-type">Cybersecurity Innovation</span>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">INCIBE Emprende Finalist Project</h3>
+                    <p class="project-description">Innovative idea in the field of cybersecurity recognized by INCIBE (National Institute of Cybersecurity) in the INCIBE Emprende program, funded by the European Union.</p>
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <i class="fas fa-award"></i>
+                            <span>Outstanding finalist</span>
+                        </div>
+                        <div class="metric">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Cybersecurity</span>
+                        </div>
+                    </div>
+                    <div class="project-tags">
+                        <span class="tag">INCIBE</span>
+                        <span class="tag">Innovation</span>
+                        <span class="tag">Cybersecurity</span>
+                    </div>
+                </div>
             </div>
-            <div class="metric">
-                <i class="fas fa-shield-alt"></i>
-                <span>Ciberseguridad</span>
-            </div>
-        </div>
-        <div class="project-tags">
-            <span class="tag">INCIBE</span>
-            <span class="tag">Innovación</span>
-            <span class="tag">Ciberseguridad</span>
-        </div>
-    </div>
-</div>
-            <!-- Proyecto 2 -->
+
+            <!-- Project 2 -->
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-image-container">
@@ -476,32 +472,32 @@
                         </svg>
                     </div>
                     <div class="project-meta">
-                        <span class="span class="project-year">2014 - 2015</span>
-                        <span class="project-type">Portal de Proveedores</span>
+                        <span class="project-year">2014 - 2015</span>
+                        <span class="project-type">Supplier Portal</span>
                     </div>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Andorra Telecom - Portal Integrado</h3>
-                    <p class="project-description">Desarrollo e implementación de un portal de proveedores completamente integrado con JD Edwards, optimizando la gestión de la cadena de suministro.</p>
+                    <h3 class="project-title">Andorra Telecom - Integrated Portal</h3>
+                    <p class="project-description">Development and implementation of a supplier portal fully integrated with JD Edwards, optimizing supply chain management.</p>
                     <div class="project-metrics">
                         <div class="metric">
                             <i class="fas fa-clock"></i>
-                            <span>40% reducción tiempos</span>
+                            <span>40% time reduction</span>
                         </div>
                         <div class="metric">
                             <i class="fas fa-building"></i>
-                            <span>100+ proveedores</span>
+                            <span>100+ suppliers</span>
                         </div>
                     </div>
                     <div class="project-tags">
                         <span class="tag">Web Services</span>
                         <span class="tag">JD Edwards</span>
-                        <span class="tag">Integración</span>
+                        <span class="tag">Integration</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Proyecto 3 -->
+            <!-- Project 3 -->
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-image-container">
@@ -512,31 +508,31 @@
                     </div>
                     <div class="project-meta">
                         <span class="project-year">2014</span>
-                        <span class="project-type">Migración y Optimización</span>
+                        <span class="project-type">Migration and Optimization</span>
                     </div>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Fujikura - Modernización de Sistemas</h3>
-                    <p class="project-description">Migración exitosa de sistemas y optimización de procesos de distribución eléctrica, implementando mejoras significativas en la eficiencia operativa.</p>
+                    <h3 class="project-title">Fujikura - Systems Modernization</h3>
+                    <p class="project-description">Successful systems migration and optimization of electrical distribution processes, implementing significant improvements in operational efficiency.</p>
                     <div class="project-metrics">
                         <div class="metric">
                             <i class="fas fa-sync"></i>
-                            <span>25% más rápido</span>
+                            <span>25% faster</span>
                         </div>
                         <div class="metric">
                             <i class="fas fa-tasks"></i>
-                            <span>15+ procesos</span>
+                            <span>15+ processes</span>
                         </div>
                     </div>
                     <div class="project-tags">
-                        <span class="tag">Migración</span>
+                        <span class="tag">Migration</span>
                         <span class="tag">JD Edwards</span>
-                        <span class="tag">Optimización</span>
+                        <span class="tag">Optimization</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Proyecto 4 -->
+            <!-- Project 4 -->
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-image-container">
@@ -549,26 +545,26 @@
                     </div>
                     <div class="project-meta">
                         <span class="project-year">2012 - 2013</span>
-                        <span class="project-type">Integración ERP</span>
+                        <span class="project-type">ERP Integration</span>
                     </div>
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Original Buff - Mejora de Procesos</h3>
-                    <p class="project-description">Implementación de mejoras en el rendimiento de aplicaciones y optimización de comunicaciones EDI para la gestión de la cadena de suministro.</p>
+                    <h3 class="project-title">Original Buff - Process Enhancement</h3>
+                    <p class="project-description">Implementation of application performance improvements and EDI communications optimization for supply chain management.</p>
                     <div class="project-metrics">
                         <div class="metric">
                             <i class="fas fa-tachometer-alt"></i>
-                            <span>30% más eficiente</span>
+                            <span>30% more efficient</span>
                         </div>
                         <div class="metric">
                             <i class="fas fa-network-wired"></i>
-                            <span>50+ integraciones</span>
+                            <span>50+ integrations</span>
                         </div>
                     </div>
                     <div class="project-tags">
                         <span class="tag">EDI</span>
-                        <span class="tag">Optimización</span>
-                        <span class="tag">Integración</span>
+                        <span class="tag">Optimization</span>
+                        <span class="tag">Integration</span>
                     </div>
                 </div>
             </div>
@@ -577,23 +573,23 @@
 
     <section class="impact-stats">
         <div class="container">
-            <h2>Impacto en Números</h2>
+            <h2>Impact in Numbers</h2>
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-number">35%</div>
-                    <p class="stat-description">Mejora en Eficiencia</p>
+                    <p class="stat-description">Efficiency Improvement</p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">20+</div>
-                    <p class="stat-description">Proyectos Exitosos</p>
+                    <p class="stat-description">Successful Projects</p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">40%</div>
-                    <p class="stat-description">Reducción de Costos</p>
+                    <p class="stat-description">Cost Reduction</p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-number">3</div>
-                    <p class="stat-description">Países Impactados</p>
+                    <p class="stat-description">Countries Impacted</p>
                 </div>
             </div>
         </div>
@@ -601,18 +597,18 @@
 
     <section class="cta-section">
         <div class="container">
-            <h2>¿Interesado en colaborar?</h2>
-            <p>Conversemos sobre cómo puedo ayudar en tu próximo proyecto</p>
-            <a href="contacto.html" class="cta-button">Contactar ahora</a>
+            <h2>Interested in collaborating?</h2>
+            <p>Let's discuss how I can help with your next project</p>
+            <a href="contact.html" class="cta-button">Contact now</a>
         </div>
     </section>
 
     <footer class="footer">
-        <p>&copy; 2025 Guillermo Badia. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Guillermo Badia. All rights reserved.</p>
     </footer>
 
     <script>
-        // Funcionalidad de filtros
+        // Filter functionality
         const filterButtons = document.querySelectorAll('.filter-button');
         
         filterButtons.forEach(button => {
@@ -627,7 +623,7 @@
                     const tags = Array.from(card.querySelectorAll('.tag'))
                         .map(tag => tag.textContent.toLowerCase());
                     
-                    if (filter === 'todos los proyectos') {
+                    if (filter === 'all projects') {
                         card.style.display = 'block';
                         card.style.animation = 'fadeIn 0.5s ease-in';
                     } else {
@@ -642,46 +638,43 @@
             });
         });
 
-        // Animaciones de estadísticas
+        // Statistics animations
         const stats = document.querySelectorAll('.stat-number');
-            const observerOptions = {
-                threshold: 0.5,
-                rootMargin: '0px'
-            };
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
 
-            const statsObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = entry.target;
-                        const value = target.textContent;
-                        let start = 0;
-                        const end = parseInt(value);
-                        const duration = 2000;
-                        const increment = end / (duration / 16);
+        const statsObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const value = target.textContent;
+                    let start = 0;
+                    const end = parseInt(value);
+                    const duration = 2000;
+                    const increment = end / (duration / 16);
 
-                        function updateNumber() {
-                            start += increment;
-                            if (start < end) {
-                                if (value.includes('+')) {
-                                    target.textContent = Math.floor(start) + '+';
-                                } else {
-                                    target.textContent = Math.floor(start);
-                                }
-                                requestAnimationFrame(updateNumber);
+                    function updateNumber() {
+                        start += increment;
+                        if (start < end) {
+                            if (value.includes('+')) {
+                                target.textContent = Math.floor(start) + '+';
                             } else {
-                                target.textContent = value;
+                                target.textContent = Math.floor(start);
                             }
+                            requestAnimationFrame(updateNumber);
+                        } else {
+                            target.textContent = value;
                         }
-
-                        requestAnimationFrame(updateNumber);
-                        
                     }
-                });
-            }, observerOptions);
 
-            stats.forEach(stat => statsObserver.observe(stat));
+                    requestAnimationFrame(updateNumber);
+                }
+            });
+        }, observerOptions);
 
-
+        stats.forEach(stat => statsObserver.observe(stat));
     </script>
 </body>
 </html>
