@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los 5 Pilares de la Transformación Digital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            max-width: 1200px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a1a2e;
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 60px;
+            font-weight: 400;
+        }
+        
+        .pillars-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .pillar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .pillar:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .pillar-number {
+            background: white;
+            color: #667eea;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .pillar-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Iconos minimalistas */
+        .icon-personas {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .icon-personas::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .icon-personas::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background: white;
+            border-radius: 20px 20px 0 0;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .icon-objetivo {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .icon-objetivo::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .icon-objetivo::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .icon-integracion {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .icon-integracion::before,
+        .icon-integracion::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 3px solid white;
+            border-radius: 4px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+        
+        .icon-integracion::before {
+            left: 12px;
+        }
+        
+        .icon-integracion::after {
+            right: 12px;
+        }
+        
+        .icon-integracion span {
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            background: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .icon-datos {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .icon-datos span {
+            position: absolute;
+            background: white;
+            bottom: 15px;
+            border-radius: 2px;
+        }
+        
+        .icon-datos span:nth-child(1) {
+            width: 8px;
+            height: 25px;
+            left: 10px;
+        }
+        
+        .icon-datos span:nth-child(2) {
+            width: 8px;
+            height: 35px;
+            left: 22px;
+            bottom: 15px;
+        }
+        
+        .icon-datos span:nth-child(3) {
+            width: 8px;
+            height: 20px;
+            right: 10px;
+        }
+        
+        .icon-seguridad {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .icon-seguridad::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 22px;
+            background: white;
+            border-radius: 4px;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .icon-seguridad::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 3px solid white;
+            border-bottom: none;
+            border-radius: 12px 12px 0 0;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .pillar-title {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .pillar-description {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .foundation {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 2px dashed #667eea;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .foundation::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+            opacity: 0.1;
+        }
+        
+        .foundation::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            top: 50%;
+            right: 50px;
+            transform: translateY(-50%);
+            opacity: 0.1;
+        }
+        
+        .foundation-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 auto 15px;
+            position: relative;
+        }
+        
+        .foundation-icon::before,
+        .foundation-icon::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+        }
+        
+        .foundation-icon::before {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        
+        .foundation-icon::after {
+            transform: translate(-50%, -50%) rotate(60deg);
+            border-style: dashed;
+        }
+        
+        .foundation-title {
+            color: #667eea;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .foundation-text {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .pillars-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Los 5 Pilares de la Transformación Digital</h1>
+        <p class="subtitle">Sector Agroalimentario</p>
+        
+        <div class="pillars-container">
+            <div class="pillar">
+                <div class="pillar-number">1</div>
+                <div class="pillar-icon">
+                    <div class="icon-personas"></div>
+                </div>
+                <h3 class="pillar-title">Personas Primero</h3>
+                <p class="pillar-description">Mapear procesos, identificar champions del cambio, involucrar mentores digitales</p>
+            </div>
+            
+            <div class="pillar">
+                <div class="pillar-number">2</div>
+                <div class="pillar-icon">
+                    <div class="icon-objetivo"></div>
+                </div>
+                <h3 class="pillar-title">Pequeños Éxitos</h3>
+                <p class="pillar-description">Implementar cambios graduales con alto impacto y baja complejidad</p>
+            </div>
+            
+            <div class="pillar">
+                <div class="pillar-number">3</div>
+                <div class="pillar-icon">
+                    <div class="icon-integracion">
+                        <span></span>
+                    </div>
+                </div>
+                <h3 class="pillar-title">Integración Total</h3>
+                <p class="pillar-description">APIs first, fuente única de verdad, información en tiempo real</p>
+            </div>
+            
+            <div class="pillar">
+                <div class="pillar-number">4</div>
+                <div class="pillar-icon">
+                    <div class="icon-datos">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <h3 class="pillar-title">Datos Accionables</h3>
+                <p class="pillar-description">Predicción de demanda, mantenimiento predictivo, optimización logística</p>
+            </div>
+            
+            <div class="pillar">
+                <div class="pillar-number">5</div>
+                <div class="pillar-icon">
+                    <div class="icon-seguridad"></div>
+                </div>
+                <h3 class="pillar-title">Ciberseguridad</h3>
+                <p class="pillar-description">Formación continua, auditorías regulares, planes de contingencia</p>
+            </div>
+        </div>
+        
+        <div class="foundation">
+            <div class="foundation-icon"></div>
+            <h3 class="foundation-title">Mejora Continua</h3>
+            <p class="foundation-text">"La transformación digital no es un proyecto con fecha de fin; es una mentalidad de mejora continua"</p>
+        </div>
+    </div>
+</body>
+</html>
