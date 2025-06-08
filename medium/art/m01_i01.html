@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia del Pequeño Éxito</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            max-width: 1200px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #1a1a2e;
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 60px;
+            font-weight: 400;
+        }
+        
+        .cycle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+            position: relative;
+            min-height: 500px;
+        }
+        
+        .cycle-center {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            z-index: 10;
+        }
+        
+        .cycle-center h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .cycle-center p {
+            font-size: 14px;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .cycle-step {
+            position: absolute;
+            width: 180px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .cycle-step:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .step-1 {
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .step-2 {
+            top: 50%;
+            right: -50px;
+            transform: translateY(-50%);
+        }
+        
+        .step-3 {
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .step-4 {
+            top: 50%;
+            left: -50px;
+            transform: translateY(-50%);
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .step-title {
+            color: #1a1a2e;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .step-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .arrow {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.3;
+        }
+        
+        .arrow-1 {
+            top: 100px;
+            right: 140px;
+            transform: rotate(45deg);
+        }
+        
+        .arrow-2 {
+            bottom: 100px;
+            right: 140px;
+            transform: rotate(135deg);
+        }
+        
+        .arrow-3 {
+            bottom: 100px;
+            left: 140px;
+            transform: rotate(225deg);
+        }
+        
+        .arrow-4 {
+            top: 100px;
+            left: 140px;
+            transform: rotate(315deg);
+        }
+        
+        .arrow::before {
+            content: '→';
+            font-size: 40px;
+            color: #667eea;
+        }
+        
+        .metrics-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .metric-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+        
+        .metric-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .metric-value {
+            color: #667eea;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .example-title {
+            color: #2d3436;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .example-text {
+            color: #2d3436;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .cycle-container {
+                transform: scale(0.7);
+                margin: -50px 0;
+            }
+            
+            .metrics-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Estrategia del Pequeño Éxito</h1>
+        <p class="subtitle">Transformación Digital Gradual y Efectiva</p>
+        
+        <div class="cycle-container">
+            <div class="cycle-center">
+                <h2>Ciclo de Éxito</h2>
+                <p>3 meses promedio por ciclo</p>
+            </div>
+            
+            <div class="cycle-step step-1">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Identificar</h3>
+                <p class="step-description">Proceso con alto impacto y baja complejidad</p>
+            </div>
+            
+            <div class="arrow arrow-1"></div>
+            
+            <div class="cycle-step step-2">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Implementar</h3>
+                <p class="step-description">Ejecución completa en tiempo récord</p>
+            </div>
+            
+            <div class="arrow arrow-2"></div>
+            
+            <div class="cycle-step step-3">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Medir</h3>
+                <p class="step-description">Recopilar métricas y resultados tangibles</p>
+            </div>
+            
+            <div class="arrow arrow-3"></div>
+            
+            <div class="cycle-step step-4">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Comunicar</h3>
+                <p class="step-description">Compartir éxitos para impulsar siguiente fase</p>
+            </div>
+            
+            <div class="arrow arrow-4"></div>
+        </div>
+        
+        <div class="example-box">
+            <h3 class="example-title">📋 Caso de Éxito Real</h3>
+            <p class="example-text">
+                <strong>Primera implementación:</strong> Digitalización del control de calidad en línea de producción<br>
+                <strong>Resultado:</strong> 30% reducción en tiempos de inspección + detección temprana de desviaciones<br>
+                <strong>Impacto:</strong> Convenció a los escépticos y facilitó siguientes proyectos
+            </p>
+        </div>
+        
+        <div class="metrics-container">
+            <div class="metric-card">
+                <div class="metric-icon">⏱️</div>
+                <div class="metric-value">-30%</div>
+                <div class="metric-label">Tiempo de Inspección</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-icon">📈</div>
+                <div class="metric-value">+22%</div>
+                <div class="metric-label">Productividad General</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-icon">💰</div>
+                <div class="metric-value">-18%</div>
+                <div class="metric-label">Costes Operativos</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

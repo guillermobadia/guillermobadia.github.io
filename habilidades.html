@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habilidades | Guillermo Badia</title>
+    <title>Habilidades y Competencias | Guillermo Badia</title>
+    <meta name="description" content="Expertise en liderazgo de equipos de 20+ profesionales, transformación digital, ciberseguridad y gestión de proyectos complejos. Certificaciones PRINCE2, ITIL y finalista INCIBE Emprende 2025.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Variables y reset */
@@ -16,6 +17,7 @@
             --white: #ffffff;
             --success: #22c55e;
             --warning: #eab308;
+            --error: #ef4444;
             --font-main: 'Segoe UI', system-ui, sans-serif;
             --transition: all 0.3s ease;
         }
@@ -75,14 +77,29 @@
             transition: var(--transition);
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
             color: var(--primary);
-            background: var(--light);
         }
 
-        /* Encabezado de página */
+        /* Encabezado de página mejorado */
         .page-header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
@@ -110,9 +127,9 @@
         }
 
         .page-header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 700px;
             margin: 0 auto;
             position: relative;
         }
@@ -132,77 +149,160 @@
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             color: var(--dark);
             position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary);
-            margin: 1rem auto 0;
-            border-radius: 2px;
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
         }
 
-        /* Cards base */
-        .card {
+        /* Leadership Skills Hero */
+        .leadership-hero {
             background: var(--white);
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .leadership-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .leadership-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
             transition: var(--transition);
+            position: relative;
             overflow: hidden;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        .leadership-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
         }
 
-        /* Grid de habilidades técnicas */
+        .leadership-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .leadership-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .leadership-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .leadership-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        /* Technical Skills Section */
+        .technical-skills {
+            background: var(--light);
+            padding: 4rem 0;
+        }
+
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-bottom: 4rem;
         }
 
         .skill-card {
-            padding: 2rem;
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
         .skill-header {
+            background: var(--light);
+            padding: 2rem;
             display: flex;
             align-items: center;
             gap: 1.5rem;
-            margin-bottom: 2rem;
         }
 
         .skill-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: var(--primary);
-            border-radius: 12px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .skill-info h3 {
             font-size: 1.5rem;
-            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
-        }
-
-        .skill-title {
-            font-size: 1.35rem;
-            font-weight: 600;
             color: var(--dark);
-            margin: 0;
+            margin-bottom: 0.25rem;
         }
 
-        /* Barras de progreso */
+        .skill-level {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .skill-content {
+            padding: 2rem;
+        }
+
+        .skill-description {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Progress bars mejoradas */
         .progress-container {
-            margin: 1.5rem 0;
+            margin-bottom: 1.5rem;
         }
 
         .progress-label {
@@ -210,32 +310,47 @@
             justify-content: space-between;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            color: var(--dark);
         }
 
         .progress-bar {
-            height: 8px;
+            height: 10px;
             background: var(--light);
-            border-radius: 4px;
+            border-radius: 5px;
             overflow: hidden;
+            position: relative;
         }
 
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 4px;
-            transition: width 1s ease-in-out;
+            border-radius: 5px;
+            transition: width 1.5s ease-in-out;
             width: 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Tags de habilidades */
-        .skill-tags {
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        /* Skill highlights */
+        .skill-highlights {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
         }
 
-        .tag {
+        .highlight-tag {
             background: var(--light);
             padding: 0.4rem 1rem;
             border-radius: 20px;
@@ -243,32 +358,59 @@
             color: var(--primary);
             font-weight: 500;
             transition: var(--transition);
+            border: 1px solid transparent;
         }
 
-        .tag:hover {
+        .highlight-tag:hover {
             background: var(--primary);
             color: var(--white);
             transform: translateY(-2px);
         }
 
-        /* Certificaciones */
+        /* Certifications section mejorada */
+        .certifications {
+            background: var(--white);
+            padding: 4rem 0;
+        }
+
         .cert-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
         .cert-card {
             background: var(--white);
             padding: 2rem;
-            border-radius: 1rem;
+            border-radius: 16px;
             text-align: center;
             transition: var(--transition);
+            border: 2px solid var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card.featured {
+            border-color: var(--warning);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(245, 158, 11, 0.1) 100%);
         }
 
         .cert-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .cert-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--warning);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
         .cert-icon {
@@ -282,37 +424,72 @@
             margin: 0 auto 1.5rem;
             color: var(--white);
             font-size: 2rem;
+            transition: var(--transition);
+        }
+
+        .cert-card:hover .cert-icon {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
         }
 
         .cert-title {
             font-size: 1.25rem;
             color: var(--dark);
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .cert-issuer {
             color: var(--secondary);
             font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
-        /* Habilidades blandas */
+        .cert-description {
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        /* Soft skills mejoradas */
+        .soft-skills {
+            background: var(--light);
+            padding: 4rem 0;
+        }
+
         .soft-skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
         .soft-skill-card {
             background: var(--white);
-            padding: 2rem;
-            border-radius: 1rem;
-            text-align: center;
+            padding: 2.5rem;
+            border-radius: 16px;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .soft-skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.3s;
+        }
+
+        .soft-skill-card:hover::before {
+            transform: translateX(0);
         }
 
         .soft-skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         .soft-skill-icon {
@@ -325,77 +502,127 @@
             justify-content: center;
             margin: 0 auto 1.5rem;
             color: var(--primary);
-            font-size: 1.75rem;
+            font-size: 2rem;
+            transition: var(--transition);
         }
 
-        /* Idiomas */
+        .soft-skill-card:hover .soft-skill-icon {
+            background: var(--primary);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .soft-skill-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .soft-skill-description {
+            color: var(--secondary);
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        /* Languages section */
+        .languages {
+            background: var(--white);
+            padding: 4rem 0;
+        }
+
         .lang-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .lang-card {
-            background: var(--white);
+            background: var(--light);
             padding: 2rem;
-            border-radius: 1rem;
+            border-radius: 16px;
             text-align: center;
             transition: var(--transition);
+            position: relative;
         }
 
         .lang-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .lang-flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         .lang-title {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             color: var(--dark);
             margin-bottom: 0.5rem;
         }
 
         .lang-level {
             color: var(--primary);
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 1rem;
         }
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(135deg, var(--dark) 0%, #0f172a 100%);
             color: var(--white);
-            padding: 4rem 1rem;
+            padding: 5rem 1rem;
             text-align: center;
-            margin-top: 4rem;
             position: relative;
             overflow: hidden;
         }
 
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .cta-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .cta-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
         }
 
         .cta-text {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
             opacity: 0.9;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 2.5rem;
+            padding: 1rem 3rem;
             background: var(--white);
             color: var(--primary);
             text-decoration: none;
-            border-radius: 2rem;
+            border-radius: 50px;
             font-weight: 600;
             transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
         }
 
         /* Footer */
@@ -407,7 +634,25 @@
         }
 
         /* Animaciones */
-        @keyframes slideIn {
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -416,20 +661,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .animate-slide {
-            opacity: 0;
-            animation: slideIn 0.6s ease-out forwards;
         }
 
         .animate-fade {
@@ -451,37 +682,26 @@
                 font-size: 2rem;
             }
 
-            .skills-grid,
-            .cert-grid,
-            .soft-skills-grid,
-            .lang-grid {
+            .skills-grid {
                 grid-template-columns: 1fr;
             }
 
-            .skill-card {
-                padding: 1.5rem;
+            .leadership-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .cert-icon,
-            .soft-skill-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
+            .soft-skills-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-            .page-header {
-                padding: 4rem 1rem 3rem;
+            .leadership-grid {
+                grid-template-columns: 1fr;
             }
 
-            .skill-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .skill-tags {
-                justify-content: center;
+            .cert-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -504,233 +724,439 @@
 
     <div class="page-header">
         <h1>Habilidades y Competencias</h1>
-        <p>Expertise técnico y profesional desarrollado a lo largo de mi carrera</p>
+        <p>Un perfil único que combina liderazgo estratégico, expertise técnico y visión innovadora</p>
     </div>
 
-    <main class="container">
-        <!-- Sección de Habilidades Técnicas -->
-        <section class="section">
-            <h2 class="section-title">Habilidades Técnicas</h2>
+    <!-- Leadership Skills Hero -->
+    <section class="leadership-hero">
+        <div class="leadership-content">
+            <h2 class="section-title">Liderazgo que Marca la Diferencia</h2>
+            <p class="section-subtitle">
+                Mi experiencia gestionando equipos de más de 20 profesionales me ha permitido desarrollar 
+                un estilo de liderazgo que combina visión estratégica, desarrollo de talento y resultados excepcionales.
+            </p>
+            <div class="leadership-grid">
+                <div class="leadership-card animate-fade">
+                    <i class="fas fa-users leadership-icon"></i>
+                    <span class="leadership-number">20+</span>
+                    <span class="leadership-label">Profesionales Liderados</span>
+                </div>
+                <div class="leadership-card animate-fade" style="animation-delay: 0.1s;">
+                    <i class="fas fa-graduation-cap leadership-icon"></i>
+                    <span class="leadership-number">95%</span>
+                    <span class="leadership-label">Retención de Talento</span>
+                </div>
+                <div class="leadership-card animate-fade" style="animation-delay: 0.2s;">
+                    <i class="fas fa-chart-line leadership-icon"></i>
+                    <span class="leadership-number">100%</span>
+                    <span class="leadership-label">Objetivos Alcanzados</span>
+                </div>
+                <div class="leadership-card animate-fade" style="animation-delay: 0.3s;">
+                    <i class="fas fa-trophy leadership-icon"></i>
+                    <span class="leadership-number">4.8/5</span>
+                    <span class="leadership-label">Satisfacción del Equipo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section class="section technical-skills">
+        <div class="container">
+            <h2 class="section-title">Competencias Técnicas Avanzadas</h2>
+            <p class="section-subtitle">
+                Más de 15 años perfeccionando mis habilidades técnicas y manteniéndome 
+                a la vanguardia de las tecnologías empresariales
+            </p>
             <div class="skills-grid">
-                <div class="card skill-card animate-slide" style="animation-delay: 0.1s;">
+                <div class="skill-card animate-fade">
                     <div class="skill-header">
                         <div class="skill-icon">
                             <i class="fas fa-database"></i>
                         </div>
-                        <h3 class="skill-title">JD Edwards</h3>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-label">
-                            <span>Expertise</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 95%;"></div>
+                        <div class="skill-info">
+                            <h3>JD Edwards</h3>
+                            <span class="skill-level">Nivel Experto</span>
                         </div>
                     </div>
-                    <p>Experto en implementación, desarrollo y optimización de sistemas JD Edwards. Especializado en personalización y mejora de rendimiento.</p>
-                    <div class="skill-tags">
-                        <span class="tag">EnterpriseOne</span>
-                        <span class="tag">Desarrollo</span>
-                        <span class="tag">Consultoría</span>
-                        <span class="tag">Arquitectura</span>
+                    <div class="skill-content">
+                        <p class="skill-description">
+                            Arquitecto de soluciones JD Edwards con experiencia en implementaciones complejas, 
+                            optimización de rendimiento y desarrollo de extensiones personalizadas.
+                        </p>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Expertise Técnico</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-highlights">
+                            <span class="highlight-tag">EnterpriseOne</span>
+                            <span class="highlight-tag">Arquitectura</span>
+                            <span class="highlight-tag">Optimización</span>
+                            <span class="highlight-tag">Integraciones</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card skill-card animate-slide" style="animation-delay: 0.2s;">
+                <div class="skill-card animate-fade" style="animation-delay: 0.1s;">
                     <div class="skill-header">
                         <div class="skill-icon">
                             <i class="fas fa-tasks"></i>
                         </div>
-                        <h3 class="skill-title">Gestión de Proyectos</h3>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-label">
-                            <span>Expertise</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 90%;"></div>
+                        <div class="skill-info">
+                            <h3>Gestión de Proyectos</h3>
+                            <span class="skill-level">Nivel Experto</span>
                         </div>
                     </div>
-                    <p>Dirección estratégica de proyectos tecnológicos complejos. Implementación de metodologías ágiles y tradicionales adaptadas a las necesidades del negocio.</p>
-                    <div class="skill-tags">
-                        <span class="tag">PRINCE2</span>
-                        <span class="tag">Agile</span>
-                        <span class="tag">Scrum</span>
-                        <span class="tag">Kanban</span>
+                    <div class="skill-content">
+                        <p class="skill-description">
+                            Director certificado con experiencia en gestión de proyectos multimillonarios, 
+                            equipos distribuidos y metodologías ágiles y tradicionales.
+                        </p>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Liderazgo de Proyectos</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-highlights">
+                            <span class="highlight-tag">PRINCE2</span>
+                            <span class="highlight-tag">Agile</span>
+                            <span class="highlight-tag">Gestión de Riesgos</span>
+                            <span class="highlight-tag">PMO</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card skill-card animate-slide" style="animation-delay: 0.3s;">
+                <div class="skill-card animate-fade" style="animation-delay: 0.2s;">
                     <div class="skill-header">
                         <div class="skill-icon">
-                            <i class="fas fa-code"></i>
+                            <i class="fas fa-users-cog"></i>
                         </div>
-                        <h3 class="skill-title">Desarrollo</h3>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-label">
-                            <span>Expertise</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 85%;"></div>
+                        <div class="skill-info">
+                            <h3>Liderazgo de Equipos</h3>
+                            <span class="skill-level">Nivel Experto</span>
                         </div>
                     </div>
-                    <p>Desarrollo de soluciones empresariales personalizadas, integraciones y extensiones de sistemas core para optimizar procesos de negocio.</p>
-                    <div class="skill-tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">SQL</span>
-                        <span class="tag">Web Services</span>
-                        <span class="tag">APIs</span>
+                    <div class="skill-content">
+                        <p class="skill-description">
+                            Experiencia probada liderando equipos de más de 20 profesionales, 
+                            con focus en desarrollo de talento y creación de equipos de alto rendimiento.
+                        </p>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Gestión de Personas</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-highlights">
+                            <span class="highlight-tag">Team Building</span>
+                            <span class="highlight-tag">Mentoring</span>
+                            <span class="highlight-tag">Desarrollo de Talento</span>
+                            <span class="highlight-tag">Gestión Remota</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card skill-card animate-slide" style="animation-delay: 0.4s;">
+                <div class="skill-card animate-fade" style="animation-delay: 0.3s;">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Ciberseguridad</h3>
+                            <span class="skill-level">Innovador Reconocido</span>
+                        </div>
+                    </div>
+                    <div class="skill-content">
+                        <p class="skill-description">
+                            Finalista INCIBE Emprende 2025 con soluciones innovadoras en ciberseguridad 
+                            empresarial. Expertise en gestión de riesgos y arquitecturas seguras.
+                        </p>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Innovación en Seguridad</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-highlights">
+                            <span class="highlight-tag">Risk Management</span>
+                            <span class="highlight-tag">Compliance</span>
+                            <span class="highlight-tag">Arquitectura Segura</span>
+                            <span class="highlight-tag">IA en Seguridad</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card animate-fade" style="animation-delay: 0.4s;">
                     <div class="skill-header">
                         <div class="skill-icon">
                             <i class="fas fa-digital-tachograph"></i>
                         </div>
-                        <h3 class="skill-title">Transformación Digital</h3>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-label">
-                            <span>Expertise</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 90%;"></div>
+                        <div class="skill-info">
+                            <h3>Transformación Digital</h3>
+                            <span class="skill-level">Nivel Experto</span>
                         </div>
                     </div>
-                    <p>Liderazgo en procesos de transformación digital empresarial. Implementación de estrategias de modernización de sistemas y optimización de procesos.</p>
-                    <div class="skill-tags">
-                        <span class="tag">Estrategia</span>
-                        <span class="tag">Optimización</span>
-                        <span class="tag">Innovación</span>
-                        <span class="tag">ERPs</span>
+                    <div class="skill-content">
+                        <p class="skill-description">
+                            Estratega digital con historial probado de transformaciones exitosas 
+                            que han generado mejoras del 35% en eficiencia operativa.
+                        </p>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Estrategia Digital</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-highlights">
+                            <span class="highlight-tag">Estrategia Digital</span>
+                            <span class="highlight-tag">Change Management</span>
+                            <span class="highlight-tag">Automatización</span>
+                            <span class="highlight-tag">KPIs & Analytics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card animate-fade" style="animation-delay: 0.5s;">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Arquitectura Empresarial</h3>
+                            <span class="skill-level">Nivel Avanzado</span>
+                        </div>
+                    </div>
+                    <div class="skill-content">
+                        <p class="skill-description">
+                            Diseño de arquitecturas empresariales robustas y escalables, 
+                            con expertise en integraciones complejas y optimización de sistemas.
+                        </p>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Arquitectura de Soluciones</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-highlights">
+                            <span class="highlight-tag">APIs & Web Services</span>
+                            <span class="highlight-tag">Microservicios</span>
+                            <span class="highlight-tag">Cloud Solutions</span>
+                            <span class="highlight-tag">DevOps</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Sección de Certificaciones -->
-        <section class="section">
-            <h2 class="section-title">Certificaciones</h2>
+    <!-- Certifications Section -->
+    <section class="section certifications">
+        <div class="container">
+            <h2 class="section-title">Certificaciones y Reconocimientos</h2>
+            <p class="section-subtitle">
+                Formación continua y reconocimientos que respaldan mi expertise profesional
+            </p>
             <div class="cert-grid">
-                <div class="cert-card animate-slide" style="animation-delay: 0.1s;">
-                    <div class="cert-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3 class="cert-title">PRINCE2 Foundation</h3>
-                    <p class="cert-issuer">Certificate in Project Management</p>
-                    <p>Metodología estructurada para la gestión eficaz de proyectos en cualquier entorno o industria.</p>
-                </div>
-                
-                <div class="cert-card animate-slide" style="animation-delay: 0.2s;">
-                    <div class="cert-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3 class="cert-title">Microsoft Dynamics Nav</h3>
-                    <p class="cert-issuer">Funcional y Programación</p>
-                    <p>Desarrollo avanzado y configuración funcional de soluciones Dynamics para empresas.</p>
-                </div>
-                
-                <div class="cert-card animate-slide" style="animation-delay: 0.3s;">
-                    <div class="cert-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3 class="cert-title">ITIL Foundation</h3>
-                    <p class="cert-issuer">IT Service Management</p>
-                    <p>Marco de trabajo para la gestión de servicios de TI alineados con las necesidades del negocio.</p>
-                </div>
-
-                <div class="cert-card animate-slide" style="animation-delay: 0.4s;">
+                <div class="cert-card featured animate-fade">
+                    <div class="cert-badge">Destacado</div>
                     <div class="cert-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3 class="cert-title">Finalista INCIBE Emprende</h3>
                     <p class="cert-issuer">Instituto Nacional de Ciberseguridad</p>
-                    <p>Reconocimiento a la innovación en el campo de la ciberseguridad (2025).</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sección de Habilidades Interpersonales -->
-        <section class="section">
-            <h2 class="section-title">Habilidades Interpersonales</h2>
-            <div class="soft-skills-grid">
-                <div class="soft-skill-card animate-slide" style="animation-delay: 0.1s;">
-                    <div class="soft-skill-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Liderazgo</h3>
-                    <p>Capacidad para inspirar y motivar equipos multidisciplinarios hacia objetivos comunes, fomentando el desarrollo y la colaboración.</p>
+                    <p class="cert-description">
+                        Reconocimiento a la innovación en ciberseguridad empresarial. 
+                        Programa financiado por la Unión Europea - NextGenerationEU (2025).
+                    </p>
                 </div>
                 
-                <div class="soft-skill-card animate-slide" style="animation-delay: 0.2s;">
+                <div class="cert-card animate-fade" style="animation-delay: 0.1s;">
+                    <div class="cert-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="cert-title">PRINCE2 Foundation</h3>
+                    <p class="cert-issuer">AXELOS Global Best Practice</p>
+                    <p class="cert-description">
+                        Metodología estructurada para la gestión profesional de proyectos 
+                        en cualquier entorno empresarial.
+                    </p>
+                </div>
+                
+                <div class="cert-card animate-fade" style="animation-delay: 0.2s;">
+                    <div class="cert-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="cert-title">Microsoft Dynamics Nav</h3>
+                    <p class="cert-issuer">Microsoft</p>
+                    <p class="cert-description">
+                        Certificación en desarrollo funcional y técnico de soluciones 
+                        Dynamics para empresas.
+                    </p>
+                </div>
+
+                <div class="cert-card animate-fade" style="animation-delay: 0.3s;">
+                    <div class="cert-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="cert-title">ITIL Foundation</h3>
+                    <p class="cert-issuer">IT Service Management</p>
+                    <p class="cert-description">
+                        Framework para la gestión de servicios de TI alineados 
+                        con las necesidades del negocio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soft Skills Section -->
+    <section class="section soft-skills">
+        <div class="container">
+            <h2 class="section-title">Habilidades de Liderazgo</h2>
+            <p class="section-subtitle">
+                Competencias interpersonales desarrolladas a través de años de experiencia 
+                liderando equipos diversos y proyectos complejos
+            </p>
+            <div class="soft-skills-grid">
+                <div class="soft-skill-card animate-fade">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-chess-king"></i>
+                    </div>
+                    <h3 class="soft-skill-title">Liderazgo Estratégico</h3>
+                    <p class="soft-skill-description">
+                        Capacidad probada para inspirar y guiar equipos de más de 20 profesionales 
+                        hacia objetivos ambiciosos, creando una cultura de excelencia y colaboración.
+                    </p>
+                </div>
+                
+                <div class="soft-skill-card animate-fade" style="animation-delay: 0.1s;">
                     <div class="soft-skill-icon">
                         <i class="fas fa-comments"></i>
                     </div>
-                    <h3>Comunicación</h3>
-                    <p>Comunicación clara y efectiva con stakeholders de todos los niveles, facilitando la comprensión de conceptos técnicos complejos.</p>
+                    <h3 class="soft-skill-title">Comunicación Ejecutiva</h3>
+                    <p class="soft-skill-description">
+                        Habilidad para comunicar conceptos técnicos complejos a stakeholders 
+                        de todos los niveles, facilitando la toma de decisiones estratégicas.
+                    </p>
                 </div>
                 
-                <div class="soft-skill-card animate-slide" style="animation-delay: 0.3s;">
+                <div class="soft-skill-card animate-fade" style="animation-delay: 0.2s;">
                     <div class="soft-skill-icon">
                         <i class="fas fa-lightbulb"></i>
                     </div>
-                    <h3>Resolución de Problemas</h3>
-                    <p>Enfoque analítico y creativo para abordar desafíos complejos, identificando soluciones innovadoras y eficientes.</p>
+                    <h3 class="soft-skill-title">Innovación y Visión</h3>
+                    <p class="soft-skill-description">
+                        Mentalidad innovadora reconocida a nivel nacional, con capacidad para 
+                        identificar oportunidades y transformarlas en soluciones disruptivas.
+                    </p>
                 </div>
 
-                <div class="soft-skill-card animate-slide" style="animation-delay: 0.4s;">
+                <div class="soft-skill-card animate-fade" style="animation-delay: 0.3s;">
                     <div class="soft-skill-icon">
                         <i class="fas fa-handshake"></i>
                     </div>
-                    <h3>Negociación</h3>
-                    <p>Habilidad para gestionar expectativas y alcanzar acuerdos beneficiosos con clientes, proveedores y equipos internos.</p>
+                    <h3 class="soft-skill-title">Negociación y Diplomacia</h3>
+                    <p class="soft-skill-description">
+                        Experiencia en negociaciones de alto nivel con clientes, proveedores 
+                        y equipos internos, siempre buscando acuerdos win-win.
+                    </p>
+                </div>
+
+                <div class="soft-skill-card animate-fade" style="animation-delay: 0.4s;">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="soft-skill-title">Pensamiento Estratégico</h3>
+                    <p class="soft-skill-description">
+                        Capacidad para analizar escenarios complejos, anticipar tendencias 
+                        y diseñar estrategias que generan ventajas competitivas sostenibles.
+                    </p>
+                </div>
+
+                <div class="soft-skill-card animate-fade" style="animation-delay: 0.5s;">
+                    <div class="soft-skill-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3 class="soft-skill-title">Desarrollo de Talento</h3>
+                    <p class="soft-skill-description">
+                        Pasión por el desarrollo profesional de los equipos, con un historial 
+                        de 95% de retención de talento y crecimiento profesional continuo.
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Sección de Idiomas -->
-        <section class="section">
+    <!-- Languages Section -->
+    <section class="section languages">
+        <div class="container">
             <h2 class="section-title">Idiomas</h2>
+            <p class="section-subtitle">
+                Comunicación efectiva en entornos multiculturales y proyectos internacionales
+            </p>
             <div class="lang-grid">
-                <div class="lang-card animate-fade" style="animation-delay: 0.1s;">
+                <div class="lang-card animate-fade">
+                    <div class="lang-flag">🇪🇸</div>
                     <h3 class="lang-title">Español</h3>
                     <p class="lang-level">Nativo</p>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 100%;"></div>
+                        <div class="progress-fill" data-width="100%"></div>
+                    </div>
+                </div>
+                
+                <div class="lang-card animate-fade" style="animation-delay: 0.1s;">
+                    <div class="lang-flag">🇬🇧</div>
+                    <h3 class="lang-title">Inglés</h3>
+                    <p class="lang-level">Avanzado (B2)</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-width="85%"></div>
                     </div>
                 </div>
                 
                 <div class="lang-card animate-fade" style="animation-delay: 0.2s;">
-                    <h3 class="lang-title">Inglés</h3>
-                    <p class="lang-level">Avanzado (B2)</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 85%;"></div>
-                    </div>
-                </div>
-                
-                <div class="lang-card animate-fade" style="animation-delay: 0.3s;">
+                    <div class="lang-flag">🏛️</div>
                     <h3 class="lang-title">Valenciano</h3>
                     <p class="lang-level">Avanzado (B2)</p>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 75%;"></div>
+                        <div class="progress-fill" data-width="75%"></div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Sección CTA -->
-        <section class="cta-section">
-            <h2 class="cta-title">¿Interesado en colaborar?</h2>
-            <p class="cta-text">Conversemos sobre cómo puedo aportar valor a tu proyecto con mis habilidades y experiencia</p>
-            <a href="contacto.html" class="cta-button">Contactar ahora</a>
-        </section>
-    </main>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">¿Buscas un líder con estas competencias?</h2>
+            <p class="cta-text">
+                Mi combinación única de liderazgo probado, expertise técnico e innovación reconocida 
+                puede ser exactamente lo que tu organización necesita
+            </p>
+            <a href="contacto.html" class="cta-button">Exploremos oportunidades</a>
+        </div>
+    </section>
 
     <footer class="footer">
         <p>&copy; 2025 Guillermo Badia. Todos los derechos reservados.</p>
@@ -738,50 +1164,93 @@
 
     <script>
         // Animación de las barras de progreso
-        document.addEventListener('DOMContentLoaded', () => {
-            const progressBars = document.querySelectorAll('.progress-fill');
-            
-            const animateProgressBars = () => {
-                progressBars.forEach(bar => {
-                    bar.style.width = '0';
-                    setTimeout(() => {
-                        bar.style.width = bar.getAttribute('style').split('width:')[1];
-                    }, 300);
-                });
-            };
-            
-            // Iniciar animación al cargar la página
-            animateProgressBars();
-            
-            // Observer para animaciones al hacer scroll
-            const animatedElements = document.querySelectorAll('.animate-slide, .animate-fade');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Obtener el delay de la animación
-                        const delay = entry.target.style.animationDelay;
-                        // Aplicar la clase para iniciar la animación
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.progress-fill');
+                    progressBars.forEach(bar => {
+                        const width = bar.dataset.width;
                         setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }, parseInt(delay) * 1000 || 0);
-                        
-                        // Dejar de observar el elemento
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.2
+                            bar.style.width = width;
+                        }, 300);
+                    });
+                    progressObserver.unobserve(entry.target);
+                }
             });
-            
-            animatedElements.forEach(element => {
-                // Preparar el elemento para la animación
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(20px)';
-                element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-                // Comenzar a observar el elemento
-                observer.observe(element);
+        }, observerOptions);
+
+        // Observar todas las barras de progreso
+        document.querySelectorAll('.skill-card, .lang-card').forEach(card => {
+            progressObserver.observe(card);
+        });
+
+        // Animación de números
+        const animateValue = (element, start, end, duration, isDecimal = false) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                if (isDecimal) {
+                    element.textContent = (progress * (end - start) + start).toFixed(1) + '/5';
+                } else {
+                    const value = Math.floor(progress * (end - start) + start);
+                    const text = element.dataset.suffix ? value + element.dataset.suffix : value + '+';
+                    element.textContent = text;
+                }
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Observer para números
+        const numberObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.leadership-number');
+                    numbers.forEach(number => {
+                        const text = number.textContent;
+                        if (text.includes('/5')) {
+                            animateValue(number, 0, 4.8, 2000, true);
+                        } else if (text.includes('%')) {
+                            number.dataset.suffix = '%';
+                            animateValue(number, 0, parseInt(text), 2000);
+                        } else {
+                            animateValue(number, 0, parseInt(text), 2000);
+                        }
+                    });
+                    numberObserver.unobserve(entry.target);
+                }
             });
+        }, observerOptions);
+
+        // Observar elementos con números
+        document.querySelectorAll('.leadership-grid').forEach(el => {
+            numberObserver.observe(el);
+        });
+
+        // Animación de entrada para elementos
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Preparar elementos para animación
+        document.querySelectorAll('.animate-fade').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            fadeObserver.observe(element);
         });
     </script>
 </body>
