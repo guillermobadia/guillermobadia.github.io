@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicaciones | Guillermo Badia</title>
+    <meta name="description" content="Artículos y publicaciones sobre transformación digital, ciberseguridad, liderazgo y tecnología empresarial por Guillermo Badia.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Variables y reset */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --dark: #1e293b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+            --success: #22c55e;
+            --warning: #eab308;
+            --linkedin: #0077b5;
+            --medium: #12100e;
+            --font-main: 'Segoe UI', system-ui, sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+            padding-top: 4rem;
+        }
+
+        /* Header y navegación */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Encabezado de página mejorado */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 6rem 1rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 1rem;
+        }
+
+        /* Intro section */
+        .intro-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .intro-section h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Grid de publicaciones */
+        .publications-grid {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Article card */
+        .article-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            min-height: 300px;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-image {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .article-icon {
+            font-size: 4rem;
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .article-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .article-platform {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .platform-medium {
+            background: var(--medium);
+        }
+
+        .platform-linkedin {
+            background: var(--linkedin);
+        }
+
+        .article-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            font-size: 0.875rem;
+        }
+
+        .article-title {
+            font-size: 1.75rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: var(--secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .article-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .article-tag {
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .article-link:hover {
+            gap: 1rem;
+        }
+
+        /* Stats section */
+        .stats-section {
+            background: var(--white);
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        /* CTA section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--dark) 0%, #0f172a 100%);
+            color: var(--white);
+            padding: 5rem 1rem;
+            text-align: center;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .cta-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--white);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem 1rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .article-card {
+                grid-template-columns: 1fr;
+            }
+
+            .article-image {
+                padding: 2rem;
+                min-height: 200px;
+            }
+
+            .article-title {
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code"></i>
+                GB
+            </a>
+            <div class="nav-links">
+                <a href="experiencia.html">Experiencia</a>
+                <a href="proyectos.html">Proyectos</a>
+                <a href="habilidades.html">Habilidades</a>
+                <a href="publicaciones.html">Publicaciones</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>Publicaciones</h1>
+        <p>Compartiendo conocimiento y experiencias sobre tecnología, liderazgo y transformación digital</p>
+    </div>
+
+    <div class="container">
+        <section class="intro-section animate">
+            <h2>Artículos y Reflexiones</h2>
+            <p>
+                A lo largo de mi carrera, he compartido insights y experiencias sobre los desafíos 
+                y oportunidades en la transformación digital, ciberseguridad y liderazgo tecnológico.
+            </p>
+        </section>
+
+        <div class="publications-grid">
+            <!-- Artículo 1 -->
+            <article class="article-card animate" style="animation-delay: 0.1s;">
+                <div class="article-image">
+                    <i class="fas fa-seedling article-icon"></i>
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-platform platform-medium">
+                            <i class="fab fa-medium"></i> Medium
+                        </span>
+                        <span class="article-date">
+                            <i class="far fa-calendar"></i> 2024
+                        </span>
+                    </div>
+                    <h2 class="article-title">La Transformación Digital en el Sector Agroalimentario</h2>
+                    <p class="article-excerpt">
+                        De la resistencia al cambio a la ventaja competitiva. Un análisis profundo sobre cómo 
+                        las empresas del sector agroalimentario pueden superar las barreras tradicionales y 
+                        aprovechar la tecnología para impulsar su crecimiento y sostenibilidad.
+                    </p>
+                    <div class="article-tags">
+                        <span class="article-tag">Transformación Digital</span>
+                        <span class="article-tag">Agroalimentario</span>
+                        <span class="article-tag">Innovación</span>
+                    </div>
+                    <a href="https://medium.com/@guillermo.badia/la-transformaci%C3%B3n-digital-en-el-sector-agroalimentario-de-la-resistencia-al-cambio-a-la-ventaja-eb411df0cd8b" 
+                       target="_blank" 
+                       class="article-link">
+                        Leer artículo completo <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Artículo 2 -->
+            <article class="article-card animate" style="animation-delay: 0.2s;">
+                <div class="article-image">
+                    <i class="fas fa-question-circle article-icon"></i>
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-platform platform-linkedin">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </span>
+                        <span class="article-date">
+                            <i class="far fa-calendar"></i> 2024
+                        </span>
+                    </div>
+                    <h2 class="article-title">¿Se nos escapa algo?</h2>
+                    <p class="article-excerpt">
+                        Una reflexión sobre los aspectos críticos que a menudo pasamos por alto en la gestión 
+                        de proyectos tecnológicos y cómo la atención a los detalles puede marcar la diferencia 
+                        entre el éxito y el fracaso en las iniciativas de transformación digital.
+                    </p>
+                    <div class="article-tags">
+                        <span class="article-tag">Gestión de Proyectos</span>
+                        <span class="article-tag">Liderazgo</span>
+                        <span class="article-tag">Estrategia</span>
+                    </div>
+                    <a href="https://www.linkedin.com/pulse/se-nos-escapa-algo-guillermo-badia-marti/?trackingId=mGef2d2xn1UyPQWYaRQArg%3D%3D" 
+                       target="_blank" 
+                       class="article-link">
+                        Leer artículo completo <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card animate">
+                    <i class="fas fa-pen stat-icon"></i>
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Artículos Publicados</span>
+                </div>
+                <div class="stat-card animate" style="animation-delay: 0.1s;">
+                    <i class="fas fa-eye stat-icon"></i>
+                    <span class="stat-number">1K+</span>
+                    <span class="stat-label">Lecturas</span>
+                </div>
+                <div class="stat-card animate" style="animation-delay: 0.2s;">
+                    <i class="fas fa-share-alt stat-icon"></i>
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Compartidos</span>
+                </div>
+                <div class="stat-card animate" style="animation-delay: 0.3s;">
+                    <i class="fas fa-comments stat-icon"></i>
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Interacciones</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">¿Te interesan estos temas?</h2>
+            <p class="cta-text">
+                Conectemos para intercambiar ideas y explorar oportunidades de colaboración
+            </p>
+            <a href="contacto.html" class="cta-button">Iniciemos una conversación</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="experiencia.html">Experiencia</a>
+                <a href="proyectos.html">Proyectos</a>
+                <a href="habilidades.html">Habilidades</a>
+                <a href="publicaciones.html">Publicaciones</a>
+                <a href="index.html">Inicio</a>
+            </div>
+            <p>&copy; 2025 Guillermo Badia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animaciones al hacer scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Preparar elementos para animación
+        document.querySelectorAll('.animate').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(element);
+        });
+
+        // Animación de números
+        const animateValue = (element, start, end, duration, suffix = '') => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Observer para números
+        const numberObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.stat-number');
+                    numbers.forEach(number => {
+                        const text = number.textContent;
+                        const value = parseInt(text);
+                        if (!isNaN(value)) {
+                            let suffix = '';
+                            if (text.includes('+')) suffix = '+';
+                            if (text.includes('K')) suffix = 'K+';
+                            animateValue(number, 0, value, 2000, suffix);
+                        }
+                    });
+                    numberObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observar stats
+        document.querySelectorAll('.stats-grid').forEach(el => {
+            numberObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
