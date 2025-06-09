@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publications | Guillermo Badia</title>
-    <meta name="description" content="Articles and publications about digital transformation, cybersecurity, leadership and enterprise technology by Guillermo Badia.">
+    <title>Publicaciones | Guillermo Badia</title>
+    <meta name="description" content="Artículos y publicaciones sobre transformación digital, ciberseguridad, liderazgo y tecnología empresarial por Guillermo Badia.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Variables and reset */
+        /* Variables y reset */
         :root {
             --primary: #2563eb;
             --primary-dark: #1d4ed8;
@@ -19,6 +19,7 @@
             --warning: #eab308;
             --linkedin: #0077b5;
             --medium: #12100e;
+            --youtube: #FF0000;
             --font-main: 'Segoe UI', system-ui, sans-serif;
             --transition: all 0.3s ease;
         }
@@ -37,7 +38,7 @@
             padding-top: 4rem;
         }
 
-        /* Header and navigation */
+        /* Header y navegación */
         .header {
             background: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -100,7 +101,7 @@
             color: var(--primary);
         }
 
-        /* Enhanced page header */
+        /* Encabezado de página mejorado */
         .page-header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
@@ -137,7 +138,7 @@
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
-        /* Main container */
+        /* Contenedor principal */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -164,7 +165,7 @@
             line-height: 1.8;
         }
 
-        /* Publications grid */
+        /* Grid de publicaciones */
         .publications-grid {
             display: grid;
             gap: 3rem;
@@ -246,6 +247,10 @@
 
         .platform-linkedin {
             background: var(--linkedin);
+        }
+
+        .platform-youtube {
+            background: var(--youtube);
         }
 
         .article-date {
@@ -426,7 +431,7 @@
             opacity: 1;
         }
 
-        /* Animations */
+        /* Animaciones */
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -506,32 +511,34 @@
                 GB
             </a>
             <div class="nav-links">
-                <a href="experience.html">Experience</a>
-                <a href="projects.html">Projects</a>
-                <a href="skills.html">Skills</a>
-                <a href="publications.html">Publications</a>
-                <a href="contact.html">Contact</a>
+                <a href="experiencia.html">Experiencia</a>
+                <a href="proyectos.html">Proyectos</a>
+                <a href="habilidades.html">Habilidades</a>
+                <a href="publicaciones.html">Publicaciones</a>
+                <a href="contacto.html">Contacto</a>
             </div>
         </nav>
     </header>
 
     <div class="page-header">
-        <h1>Publications</h1>
-        <p>Sharing knowledge and experiences about technology, leadership and digital transformation</p>
+        <h1>Publicaciones</h1>
+        <p>Compartiendo conocimiento y experiencias sobre tecnología, liderazgo y transformación digital</p>
     </div>
 
     <div class="container">
         <section class="intro-section animate">
-            <h2>Articles and Insights</h2>
+            <h2>Artículos y Reflexiones</h2>
             <p>
-                Throughout my career, I have shared insights and experiences about the challenges 
-                and opportunities in digital transformation, cybersecurity and technology leadership.
+                A lo largo de mi carrera, he compartido insights y experiencias sobre los desafíos 
+                y oportunidades en la transformación digital, ciberseguridad y liderazgo tecnológico.
             </p>
         </section>
 
         <div class="publications-grid">
-            <!-- Article 1 -->
-            <article class="article-card animate" style="animation-delay: 0.1s;">
+          
+
+            <!-- Artículo 1 -->
+            <article class="article-card animate" style="animation-delay: 0.2s;">
                 <div class="article-image">
                     <i class="fas fa-seedling article-icon"></i>
                 </div>
@@ -544,29 +551,60 @@
                             <i class="far fa-calendar"></i> 2025
                         </span>
                     </div>
-                    <h2 class="article-title">Digital Transformation in the Agri-Food Sector</h2>
+                    <h2 class="article-title">La Transformación Digital en el Sector Agroalimentario</h2>
                     <p class="article-excerpt">
-                        From resistance to change to competitive advantage. An in-depth analysis of how 
-                        agri-food companies can overcome traditional barriers and leverage technology 
-                        to drive their growth and sustainability.
+                        De la resistencia al cambio a la ventaja competitiva. Un análisis profundo sobre cómo 
+                        las empresas del sector agroalimentario pueden superar las barreras tradicionales y 
+                        aprovechar la tecnología para impulsar su crecimiento y sostenibilidad.
                     </p>
                     <div class="article-tags">
-                        <span class="article-tag">Digital Transformation</span>
-                        <span class="article-tag">Agri-Food</span>
-                        <span class="article-tag">Innovation</span>
+                        <span class="article-tag">Transformación Digital</span>
+                        <span class="article-tag">Agroalimentario</span>
+                        <span class="article-tag">Innovación</span>
                     </div>
-                    <a href="https://medium.com/@guillermo.badia/digital-transformation-in-the-agri-food-sector-from-resistance-to-change-to-competitive-advantage-94551b907d0a" 
+                    <a href="https://medium.com/@guillermo.badia/la-transformaci%C3%B3n-digital-en-el-sector-agroalimentario-de-la-resistencia-al-cambio-a-la-ventaja-eb411df0cd8b" 
                        target="_blank" 
                        class="article-link">
-                        Read full article <i class="fas fa-arrow-right"></i>
+                        Leer artículo completo <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </article>
-
-            <!-- Article 2 -->
-            <article class="article-card animate" style="animation-delay: 0.2s;">
+  <!-- Vídeo -->
+            <article class="article-card animate" style="animation-delay: 0.1s;">
                 <div class="article-image">
-                    <i class="fas fa-shield-alt article-icon"></i>
+                    <i class="fas fa-play-circle article-icon"></i>
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-platform platform-youtube">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </span>
+                        <span class="article-date">
+                            <i class="far fa-calendar"></i> 2024
+                        </span>
+                    </div>
+                    <h2 class="article-title">Presentación en Vídeo sobre Innovación Digital</h2>
+                    <p class="article-excerpt">
+                        Una presentación en vídeo perspicaz que explora las últimas tendencias en innovación digital, 
+                        estrategias de transformación tecnológica y su implementación práctica en 
+                        entornos empresariales modernos.
+                    </p>
+                    <div class="article-tags">
+                        <span class="article-tag">Innovación Digital</span>
+                        <span class="article-tag">Tecnología</span>
+                        <span class="article-tag">Estrategia</span>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=eXQ6bU4IdEA" 
+                       target="_blank" 
+                       class="article-link">
+                        Ver vídeo <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            <!-- Artículo 2 -->
+            <article class="article-card animate" style="animation-delay: 0.3s;">
+                <div class="article-image">
+                    <i class="fas fa-question-circle article-icon"></i>
                 </div>
                 <div class="article-content">
                     <div class="article-meta">
@@ -577,21 +615,21 @@
                             <i class="far fa-calendar"></i> 2020
                         </span>
                     </div>
-                    <h2 class="article-title">Ransomware vs Oracle JD Edwards E1</h2>
+                    <h2 class="article-title">¿Se nos escapa algo?</h2>
                     <p class="article-excerpt">
-                        An analysis of cybersecurity threats facing enterprise systems, specifically focusing 
-                        on how organizations using Oracle JD Edwards E1 can protect themselves against 
-                        ransomware attacks and implement robust security measures.
+                        Una reflexión sobre los aspectos críticos que a menudo pasamos por alto en la gestión 
+                        de proyectos tecnológicos y cómo la atención a los detalles puede marcar la diferencia 
+                        entre el éxito y el fracaso en las iniciativas de transformación digital.
                     </p>
                     <div class="article-tags">
-                        <span class="article-tag">Cybersecurity</span>
-                        <span class="article-tag">JD Edwards</span>
-                        <span class="article-tag">Risk Management</span>
+                        <span class="article-tag">Gestión de Proyectos</span>
+                        <span class="article-tag">Liderazgo</span>
+                        <span class="article-tag">Estrategia</span>
                     </div>
-                    <a href="https://www.linkedin.com/pulse/ransomware-vs-oracle-jd-edwards-e1-guillermo-badia-marti/?trackingId=F2NIThfrwOL6SI%2FKXhTOyg%3D%3D" 
+                    <a href="https://www.linkedin.com/pulse/se-nos-escapa-algo-guillermo-badia-marti/?trackingId=mGef2d2xn1UyPQWYaRQArg%3D%3D" 
                        target="_blank" 
                        class="article-link">
-                        Read full article <i class="fas fa-arrow-right"></i>
+                        Leer artículo completo <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </article>
@@ -603,23 +641,23 @@
             <div class="stats-grid">
                 <div class="stat-card animate">
                     <i class="fas fa-pen stat-icon"></i>
-                    <span class="stat-number">2</span>
-                    <span class="stat-label">Published Articles</span>
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Contenido Publicado</span>
                 </div>
                 <div class="stat-card animate" style="animation-delay: 0.1s;">
                     <i class="fas fa-eye stat-icon"></i>
-                    <span class="stat-number">1K+</span>
-                    <span class="stat-label">Reads</span>
+                    <span class="stat-number">2K+</span>
+                    <span class="stat-label">Visualizaciones</span>
                 </div>
                 <div class="stat-card animate" style="animation-delay: 0.2s;">
                     <i class="fas fa-share-alt stat-icon"></i>
-                    <span class="stat-number">100+</span>
-                    <span class="stat-label">Shares</span>
+                    <span class="stat-number">150+</span>
+                    <span class="stat-label">Compartidos</span>
                 </div>
                 <div class="stat-card animate" style="animation-delay: 0.3s;">
                     <i class="fas fa-comments stat-icon"></i>
-                    <span class="stat-number">50+</span>
-                    <span class="stat-label">Engagements</span>
+                    <span class="stat-number">75+</span>
+                    <span class="stat-label">Interacciones</span>
                 </div>
             </div>
         </div>
@@ -627,29 +665,29 @@
 
     <section class="cta-section">
         <div class="cta-content">
-            <h2 class="cta-title">Interested in these topics?</h2>
+            <h2 class="cta-title">¿Te interesan estos temas?</h2>
             <p class="cta-text">
-                Let's connect to exchange ideas and explore collaboration opportunities
+                Conectemos para intercambiar ideas y explorar oportunidades de colaboración
             </p>
-            <a href="contact.html" class="cta-button">Start a conversation</a>
+            <a href="contacto.html" class="cta-button">Iniciemos una conversación</a>
         </div>
     </section>
 
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
-                <a href="experience.html">Experience</a>
-                <a href="projects.html">Projects</a>
-                <a href="skills.html">Skills</a>
-                <a href="publications.html">Publications</a>
-                <a href="index.html">Home</a>
+                <a href="experiencia.html">Experiencia</a>
+                <a href="proyectos.html">Proyectos</a>
+                <a href="habilidades.html">Habilidades</a>
+                <a href="publicaciones.html">Publicaciones</a>
+                <a href="index.html">Inicio</a>
             </div>
-            <p>&copy; 2025 Guillermo Badia. All rights reserved.</p>
+            <p>&copy; 2025 Guillermo Badia. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <script>
-        // Scroll animations
+        // Animaciones al hacer scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -659,7 +697,7 @@
             });
         }, { threshold: 0.1 });
 
-        // Prepare elements for animation
+        // Preparar elementos para animación
         document.querySelectorAll('.animate').forEach(element => {
             element.style.opacity = '0';
             element.style.transform = 'translateY(20px)';
@@ -667,7 +705,7 @@
             observer.observe(element);
         });
 
-        // Number animation
+        // Animación de números
         const animateValue = (element, start, end, duration, suffix = '') => {
             let startTimestamp = null;
             const step = (timestamp) => {
@@ -682,7 +720,7 @@
             window.requestAnimationFrame(step);
         };
 
-        // Observer for numbers
+        // Observer para números
         const numberObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -702,7 +740,7 @@
             });
         }, { threshold: 0.5 });
 
-        // Observe stats
+        // Observar stats
         document.querySelectorAll('.stats-grid').forEach(el => {
             numberObserver.observe(el);
         });
