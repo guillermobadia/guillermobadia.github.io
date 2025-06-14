@@ -2,8 +2,55 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyectos | Guillermo Badia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Proyectos de Transformación Digital | Guillermo Badia - Director Valencia</title>
+    <meta name="description" content="Portfolio de proyectos exitosos en transformación digital, JD Edwards y ciberseguridad. +35% mejora en eficiencia. Finalista INCIBE 2025. Casos de éxito en Valencia y España.">
+    <meta name="keywords" content="proyectos transformación digital, casos éxito jd edwards, consultoría tecnológica valencia, proyectos ciberseguridad, portfolio director proyectos">
+    <meta name="author" content="Guillermo Badia">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://guillermobadia.com/proyectos">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Proyectos Exitosos | Guillermo Badia">
+    <meta property="og:description" content="Portfolio de proyectos de transformación digital con resultados excepcionales">
+    <meta property="og:url" content="https://guillermobadia.com/proyectos">
+    <meta property="og:type" content="website">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XH5XXMMBN6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XH5XXMMBN6');
+    </script>
+    
+    <!-- Schema.org markup for Projects -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "CreativeWork",
+          "position": 1,
+          "name": "Transformación Digital G's España",
+          "description": "Modernización completa del ERP con mejora del 35% en eficiencia",
+          "dateCreated": "2020"
+        },
+        {
+          "@type": "CreativeWork",
+          "position": 2,
+          "name": "Proyecto Finalista INCIBE Emprende",
+          "description": "Solución innovadora en ciberseguridad empresarial",
+          "dateCreated": "2025",
+          "award": "Finalista INCIBE Emprende 2025"
+        }
+      ]
+    }
+    </script>
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Variables y reset */
@@ -75,6 +122,100 @@
         }
 
         .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Menú móvil */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100%;
+            background: var(--white);
+            z-index: 1000;
+            padding: 2rem;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .mobile-menu-links a {
+            font-size: 1.25rem;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: color 0.3s;
+        }
+
+        .mobile-menu-links a:hover {
             color: var(--primary);
         }
 
@@ -340,6 +481,10 @@
                 display: none;
             }
 
+            .mobile-menu-btn {
+                display: block;
+            }
+
             .page-header h1 {
                 font-size: 2rem;
             }
@@ -380,8 +525,34 @@
                 <a href="publicaciones.html">Publicaciones</a>
                 <a href="contacto.html">Contacto</a>
             </div>
+            <button class="mobile-menu-btn" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
+
+    <!-- Overlay para el menú móvil -->
+    <div class="mobile-menu-overlay"></div>
+
+    <!-- Menú móvil deslizante -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="mobile-menu-logo">
+                <i class="fas fa-code"></i> GB
+            </a>
+            <button class="mobile-menu-close" aria-label="Cerrar menú">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="experiencia.html"><i class="fas fa-briefcase"></i> Experiencia</a>
+            <a href="proyectos.html"><i class="fas fa-project-diagram"></i> Proyectos</a>
+            <a href="habilidades.html"><i class="fas fa-chart-bar"></i> Habilidades</a>
+            <a href="publicaciones.html"><i class="fas fa-newspaper"></i> Publicaciones</a>
+            <a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
+        </div>
+    </div>
 
     <div class="page-header">
         <h1>Proyectos Destacados</h1>
@@ -401,7 +572,7 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-image-container">
-                        <img src="../img/GS_Espana_M.jpg" alt="Logo GsEspaña" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;">
+                        <img src="../img/GS_Espana_M.jpg" alt="Logo GsEspaña" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;" loading="lazy">
                     </div>
                     <div class="project-meta">
                         <span class="project-year">2020 - 2024</span>
@@ -410,7 +581,7 @@
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">G's España - Modernización ERP</h3>
-                    <p class="project-description">Lideré la transformación digital completa, implementando soluciones ERP avanzadas y optimizando procesos críticos del negocio.</p>
+                    <p class="project-description">Lideré la <strong>transformación digital completa</strong>, implementando soluciones ERP avanzadas y optimizando procesos críticos del negocio en Valencia.</p>
                     <div class="project-metrics">
                         <div class="metric">
                             <i class="fas fa-chart-line"></i>
@@ -433,7 +604,7 @@
             <div class="project-card">
                 <div class="project-header">
                     <div class="project-image-container">
-                        <img src="../img/ciberemprende-logo.png" alt="Logo CIBEREMPRENDE" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;">
+                        <img src="../img/ciberemprende-logo.png" alt="Logo CIBEREMPRENDE" style="width: 100%; height: 100%; object-fit: contain; background-color: white; padding: 5px;" loading="lazy">
                     </div>
                     <div class="project-meta">
                         <span class="project-year">Enero 2025</span>
@@ -442,7 +613,7 @@
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">Proyecto Finalista INCIBE Emprende</h3>
-                    <p class="project-description">Idea innovadora en el campo de la ciberseguridad reconocida por INCIBE (Instituto Nacional de Ciberseguridad) en el programa INCIBE Emprende, financiado por la Unión Europea.</p>
+                    <p class="project-description">Idea innovadora en el campo de la <strong>ciberseguridad empresarial</strong> reconocida por INCIBE (Instituto Nacional de Ciberseguridad) en el programa INCIBE Emprende, financiado por la Unión Europea.</p>
                     <div class="project-metrics">
                         <div class="metric">
                             <i class="fas fa-award"></i>
@@ -479,7 +650,7 @@
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">Andorra Telecom - Portal Integrado</h3>
-                    <p class="project-description">Desarrollo e implementación de un portal de proveedores completamente integrado con JD Edwards, optimizando la gestión de la cadena de suministro.</p>
+                    <p class="project-description">Desarrollo e implementación de un portal de proveedores completamente integrado con <strong>JD Edwards</strong>, optimizando la gestión de la cadena de suministro.</p>
                     <div class="project-metrics">
                         <div class="metric">
                             <i class="fas fa-clock"></i>
@@ -599,7 +770,7 @@
     <section class="cta-section">
         <div class="container">
             <h2>¿Interesado en colaborar?</h2>
-            <p>Conversemos sobre cómo puedo ayudar en tu próximo proyecto</p>
+            <p>Conversemos sobre cómo puedo ayudar en tu próximo proyecto de <strong>transformación digital</strong></p>
             <a href="contacto.html" class="cta-button">Contactar ahora</a>
         </div>
     </section>
@@ -609,6 +780,43 @@
     </footer>
 
     <script>
+        // Menú móvil
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            
+            function openMenu() {
+                mobileMenu.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeMenu() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', openMenu);
+            }
+            
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', closeMenu);
+            }
+            
+            if (overlay) {
+                overlay.addEventListener('click', closeMenu);
+            }
+            
+            const menuLinks = document.querySelectorAll('.mobile-menu-links a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+        });
+
         // Funcionalidad de filtros
         const filterButtons = document.querySelectorAll('.filter-button');
         

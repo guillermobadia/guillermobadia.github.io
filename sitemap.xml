@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Spanish URLs -->
+  <url>
+    <loc>https://guillermobadia.com/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://guillermobadia.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guillermobadia.com/en/"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://guillermobadia.com/experiencia</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://guillermobadia.com/experiencia"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guillermobadia.com/en/experience"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://guillermobadia.com/proyectos</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://guillermobadia.com/proyectos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guillermobadia.com/en/projects"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://guillermobadia.com/habilidades</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://guillermobadia.com/habilidades"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guillermobadia.com/en/skills"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://guillermobadia.com/publicaciones</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://guillermobadia.com/publicaciones"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guillermobadia.com/en/publications"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://guillermobadia.com/contacto</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://guillermobadia.com/contacto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guillermobadia.com/en/contact"/>
+    <lastmod>2025-01-15</lastmod>
+    <changefre
