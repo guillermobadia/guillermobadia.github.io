@@ -1,15 +1,40 @@
+# Robots.txt optimizado para guillermobadia.com
+# Generado: 2025-01-15
+
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /private/
+Disallow: /temp/
+Disallow: /backup/
+Disallow: /*.json$
+Disallow: /*?*
+Disallow: /search
+Disallow: /404.html
 
+# Optimización para motores de búsqueda principales
 User-agent: Googlebot
 Crawl-delay: 0
 Allow: /
+Allow: /es/
+Allow: /en/
+Allow: /img/
+Allow: /css/
+Allow: /js/
+Allow: /*.css
+Allow: /*.js
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.webp
+Allow: /*.svg
+Allow: /*.pdf
 
 User-agent: Bingbot
 Crawl-delay: 1
 Allow: /
+Allow: /es/
+Allow: /en/
 
 User-agent: Slurp
 Crawl-delay: 1
@@ -23,7 +48,16 @@ User-agent: Yandexbot
 Crawl-delay: 2
 Allow: /
 
-# Block bad bots
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Block bots maliciosos y scrapers
 User-agent: AhrefsBot
 Disallow: /
 
@@ -36,5 +70,283 @@ Disallow: /
 User-agent: MJ12bot
 Disallow: /
 
-# Sitemap location
+User-agent: SiteAuditBot
+Disallow: /
+
+User-agent: MauiBot
+Disallow: /
+
+User-agent: AlexaToolbar
+Disallow: /
+
+User-agent: sistrix
+Disallow: /
+
+User-agent: searchmetrics
+Disallow: /
+
+User-agent: WinWebBot
+Disallow: /
+
+User-agent: CazoodleBot
+Disallow: /
+
+User-agent: YandexImages
+Disallow: /
+
+User-agent: YandexVideo
+Disallow: /
+
+User-agent: YandexMedia
+Disallow: /
+
+User-agent: WebStripper
+Disallow: /
+
+User-agent: WebCopier
+Disallow: /
+
+User-agent: Fetch
+Disallow: /
+
+User-agent: Offline Explorer
+Disallow: /
+
+User-agent: Teleport
+Disallow: /
+
+User-agent: TeleportPro
+Disallow: /
+
+User-agent: WebZIP
+Disallow: /
+
+User-agent: Widow
+Disallow: /
+
+User-agent: NetZIP
+Disallow: /
+
+User-agent: Mister PiX
+Disallow: /
+
+User-agent: WebAuto
+Disallow: /
+
+User-agent: TheNomad
+Disallow: /
+
+User-agent: WWW-Collector-E
+Disallow: /
+
+User-agent: RMA
+Disallow: /
+
+User-agent: libWeb/clsHTTP
+Disallow: /
+
+User-agent: asterias
+Disallow: /
+
+User-agent: httplib
+Disallow: /
+
+User-agent: turingos
+Disallow: /
+
+User-agent: spanner
+Disallow: /
+
+User-agent: InfoNaviRobot
+Disallow: /
+
+User-agent: Harvest/1.5
+Disallow: /
+
+User-agent: Bullseye/1.0
+Disallow: /
+
+User-agent: Mozilla/4.0 (compatible; BullsEye; Windows 95)
+Disallow: /
+
+User-agent: Crescent Internet ToolPak HTTP OLE Control v.1.0
+Disallow: /
+
+User-agent: CherryPickerSE/1.0
+Disallow: /
+
+User-agent: CherryPickerElite/1.0
+Disallow: /
+
+User-agent: WebBandit/3.50
+Disallow: /
+
+User-agent: NICErsPRO
+Disallow: /
+
+User-agent: Microsoft URL Control - 5.01.4511
+Disallow: /
+
+User-agent: DittoSpyder
+Disallow: /
+
+User-agent: Foobot
+Disallow: /
+
+User-agent: WebmasterWorldForumBot
+Disallow: /
+
+User-agent: SpankBot
+Disallow: /
+
+User-agent: BotALot
+Disallow: /
+
+User-agent: lwp-trivial/1.34
+Disallow: /
+
+User-agent: lwp-trivial
+Disallow: /
+
+User-agent: BunnySlippers
+Disallow: /
+
+User-agent: Microsoft URL Control - 6.00.8169
+Disallow: /
+
+User-agent: URLy Warning
+Disallow: /
+
+User-agent: Wget/1.6
+Disallow: /
+
+User-agent: Wget/1.5.3
+Disallow: /
+
+User-agent: Wget
+Disallow: /
+
+User-agent: LinkWalker/2.0
+Disallow: /
+
+User-agent: cosmos
+Disallow: /
+
+User-agent: moget/2.1
+Disallow: /
+
+User-agent: hloader
+Disallow: /
+
+User-agent: humanlinks
+Disallow: /
+
+User-agent: LinkextractorPro
+Disallow: /
+
+User-agent: Offline Explorer
+Disallow: /
+
+User-agent: Mata Hari
+Disallow: /
+
+User-agent: LexiBot
+Disallow: /
+
+User-agent: Web Image Collector
+Disallow: /
+
+User-agent: The Intraformant
+Disallow: /
+
+User-agent: True_Robot/1.0
+Disallow: /
+
+User-agent: True_Robot
+Disallow: /
+
+User-agent: BlowFish/1.0
+Disallow: /
+
+User-agent: JennyBot
+Disallow: /
+
+User-agent: MIIxpc/4.2
+Disallow: /
+
+User-agent: BuiltBotTough
+Disallow: /
+
+User-agent: ProPowerBot/2.14
+Disallow: /
+
+User-agent: BackDoorBot/1.0
+Disallow: /
+
+User-agent: toCrawl/UrlDispatcher
+Disallow: /
+
+User-agent: WebEnhancer
+Disallow: /
+
+User-agent: suzuran
+Disallow: /
+
+User-agent: VoidEYE
+Disallow: /
+
+User-agent: VoidEYE/1.0
+Disallow: /
+
+User-agent: BrowseX
+Disallow: /
+
+User-agent: Raven
+Disallow: /
+
+User-agent: LinkextractorPro
+Disallow: /
+
+User-agent: linko
+Disallow: /
+
+User-agent: ExtractorPro
+Disallow: /
+
+User-agent: Navroad
+Disallow: /
+
+User-agent: planetwork
+Disallow: /
+
+User-agent: NetZIP
+Disallow: /
+
+User-agent: Ping
+Disallow: /
+
+User-agent: PlaystarBot
+Disallow: /
+
+User-agent: SpiderBot
+Disallow: /
+
+User-agent: InetURL
+Disallow: /
+
+User-agent: Oracle Ultra Search
+Disallow: /
+
+User-agent: PerMan
+Disallow: /
+
+User-agent: searchpreview
+Disallow: /
+
+# Sitemap locations
 Sitemap: https://guillermobadia.com/sitemap.xml
+Sitemap: https://guillermobadia.com/sitemap-images.xml
+Sitemap: https://guillermobadia.com/sitemap-news.xml
+
+# Host directive
+Host: guillermobadia.com
