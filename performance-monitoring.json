@@ -1,0 +1,179 @@
+{
+  "coreWebVitals": {
+    "metrics": {
+      "LCP": {
+        "threshold": 2.5,
+        "target": 1.8,
+        "weight": 0.3
+      },
+      "FID": {
+        "threshold": 100,
+        "target": 50,
+        "weight": 0.3
+      },
+      "CLS": {
+        "threshold": 0.1,
+        "target": 0.05,
+        "weight": 0.3
+      },
+      "TTFB": {
+        "threshold": 600,
+        "target": 200,
+        "weight": 0.1
+      }
+    },
+    "monitoring": {
+      "frequency": "daily",
+      "samples": 100,
+      "reporting": {
+        "email": "contacto@guillermobadia.com",
+        "slack": "https://hooks.slack.com/services/YOUR_WEBHOOK_URL",
+        "dashboard": "https://datastudio.google.com/YOUR_DASHBOARD_ID"
+      }
+    }
+  },
+  "resourceOptimization": {
+    "images": {
+      "formats": ["webp", "avif"],
+      "maxWidth": 1920,
+      "quality": 85,
+      "lazyLoading": true,
+      "responsive": true
+    },
+    "scripts": {
+      "deferNonCritical": true,
+      "asyncLoading": true,
+      "minification": true,
+      "bundleSize": {
+        "warning": 200,
+        "error": 300
+      }
+    },
+    "styles": {
+      "criticalCSS": true,
+      "minification": true,
+      "purgeUnused": true
+    },
+    "fonts": {
+      "preload": true,
+      "display": "swap",
+      "subsets": ["latin", "latin-ext"]
+    }
+  },
+  "caching": {
+    "browser": {
+      "staticAssets": 31536000,
+      "images": 31536000,
+      "fonts": 31536000,
+      "css": 2592000,
+      "js": 2592000,
+      "html": 3600
+    },
+    "CDN": {
+      "provider": "Cloudflare",
+      "edgeLocations": ["eu", "na"],
+      "cacheRules": {
+        "static": "1 year",
+        "dynamic": "1 hour",
+        "api": "5 minutes"
+      }
+    }
+  },
+  "monitoring": {
+    "uptime": {
+      "checkFrequency": "1m",
+      "regions": ["eu-west", "eu-central", "us-east"],
+      "threshold": 99.9
+    },
+    "errors": {
+      "tracking": true,
+      "reporting": {
+        "email": true,
+        "slack": true,
+        "dashboard": true
+      },
+      "thresholds": {
+        "errorRate": 0.1,
+        "responseTime": 1000
+      }
+    },
+    "analytics": {
+      "providers": [
+        {
+          "name": "Google Analytics",
+          "id": "G-XH5XXMMBN6",
+          "events": [
+            "page_view",
+            "core_web_vitals",
+            "user_timing",
+            "errors"
+          ]
+        },
+        {
+          "name": "Hotjar",
+          "id": "YOUR_HOTJAR_ID",
+          "features": [
+            "heatmaps",
+            "recordings",
+            "feedback"
+          ]
+        }
+      ]
+    }
+  },
+  "alerts": {
+    "performance": {
+      "LCP": {
+        "warning": 2.0,
+        "critical": 2.5
+      },
+      "FID": {
+        "warning": 80,
+        "critical": 100
+      },
+      "CLS": {
+        "warning": 0.08,
+        "critical": 0.1
+      }
+    },
+    "availability": {
+      "uptime": {
+        "warning": 99.5,
+        "critical": 99.0
+      },
+      "responseTime": {
+        "warning": 800,
+        "critical": 1000
+      }
+    },
+    "errors": {
+      "rate": {
+        "warning": 0.05,
+        "critical": 0.1
+      },
+      "threshold": {
+        "warning": 10,
+        "critical": 20
+      }
+    }
+  },
+  "reporting": {
+    "frequency": "weekly",
+    "metrics": [
+      "coreWebVitals",
+      "resourceUsage",
+      "errorRates",
+      "conversionRates",
+      "userEngagement"
+    ],
+    "recipients": [
+      "contacto@guillermobadia.com",
+      "technical@guillermobadia.com"
+    ],
+    "formats": [
+      "PDF",
+      "CSV",
+      "Dashboard"
+    ]
+  }
+} 

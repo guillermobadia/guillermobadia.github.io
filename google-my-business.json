@@ -1,0 +1,169 @@
+{
+  "businessName": "Guillermo Badia - Consultoría en Transformación Digital",
+  "primaryCategory": {
+    "displayName": "Consultoría en Tecnología de la Información",
+    "categoryId": "gcid:information_technology_consultant"
+  },
+  "additionalCategories": [
+    {
+      "displayName": "Consultoría en Ciberseguridad",
+      "categoryId": "gcid:cybersecurity_service"
+    },
+    {
+      "displayName": "Consultoría en Transformación Digital",
+      "categoryId": "gcid:digital_transformation_consultant"
+    }
+  ],
+  "websiteUri": "https://guillermobadia.com",
+  "primaryPhone": "+34-XXX-XXX-XXX",
+  "primaryEmail": "contacto@guillermobadia.com",
+  "address": {
+    "streetAddress": "Calle Principal, 123",
+    "locality": "Valencia",
+    "administrativeArea": "Comunidad Valenciana",
+    "postalCode": "46000",
+    "countryCode": "ES"
+  },
+  "regularHours": {
+    "periods": [
+      {
+        "openDay": "MONDAY",
+        "openTime": "09:00",
+        "closeDay": "MONDAY",
+        "closeTime": "18:00"
+      },
+      {
+        "openDay": "TUESDAY",
+        "openTime": "09:00",
+        "closeDay": "TUESDAY",
+        "closeTime": "18:00"
+      },
+      {
+        "openDay": "WEDNESDAY",
+        "openTime": "09:00",
+        "closeDay": "WEDNESDAY",
+        "closeTime": "18:00"
+      },
+      {
+        "openDay": "THURSDAY",
+        "openTime": "09:00",
+        "closeDay": "THURSDAY",
+        "closeTime": "18:00"
+      },
+      {
+        "openDay": "FRIDAY",
+        "openTime": "09:00",
+        "closeDay": "FRIDAY",
+        "closeTime": "15:00"
+      }
+    ]
+  },
+  "serviceArea": {
+    "businessType": "CUSTOMER_AND_BUSINESS_LOCATION",
+    "places": [
+      {
+        "locality": "Valencia",
+        "administrativeArea": "Comunidad Valenciana",
+        "countryCode": "ES"
+      },
+      {
+        "locality": "Madrid",
+        "administrativeArea": "Comunidad de Madrid",
+        "countryCode": "ES"
+      },
+      {
+        "locality": "Barcelona",
+        "administrativeArea": "Cataluña",
+        "countryCode": "ES"
+      }
+    ]
+  },
+  "specialHours": {
+    "specialHourPeriods": [
+      {
+        "startDate": "2024-12-24",
+        "endDate": "2024-12-24",
+        "isClosed": true,
+        "reason": "Nochebuena"
+      },
+      {
+        "startDate": "2024-12-25",
+        "endDate": "2024-12-25",
+        "isClosed": true,
+        "reason": "Navidad"
+      },
+      {
+        "startDate": "2024-12-31",
+        "endDate": "2024-12-31",
+        "isClosed": true,
+        "reason": "Nochevieja"
+      },
+      {
+        "startDate": "2025-01-01",
+        "endDate": "2025-01-01",
+        "isClosed": true,
+        "reason": "Año Nuevo"
+      }
+    ]
+  },
+  "attributes": [
+    {
+      "attributeId": "wheelchair_accessible",
+      "value": "true"
+    },
+    {
+      "attributeId": "appointment_required",
+      "value": "true"
+    },
+    {
+      "attributeId": "virtual_consultation_available",
+      "value": "true"
+    }
+  ],
+  "profile": {
+    "description": "Director de Proyectos con más de 15 años de experiencia en transformación digital, JD Edwards y ciberseguridad empresarial. Especialista en liderazgo de equipos y consultoría tecnológica.",
+    "services": [
+      {
+        "serviceType": "Consultoría en Transformación Digital",
+        "displayName": "Transformación Digital",
+        "price": {
+          "currencyCode": "EUR",
+          "priceLevel": "MODERATE"
+        }
+      },
+      {
+        "serviceType": "Consultoría JD Edwards",
+        "displayName": "JD Edwards",
+        "price": {
+          "currencyCode": "EUR",
+          "priceLevel": "MODERATE"
+        }
+      },
+      {
+        "serviceType": "Consultoría en Ciberseguridad",
+        "displayName": "Ciberseguridad Empresarial",
+        "price": {
+          "currencyCode": "EUR",
+          "priceLevel": "MODERATE"
+        }
+      }
+    ]
+  },
+  "mediaItems": [
+    {
+      "mediaFormat": "PHOTO",
+      "googleUrl": "https://guillermobadia.com/img/guillermo-badia-profile.jpg",
+      "thumbnailUrl": "https://guillermobadia.com/img/guillermo-badia-profile-thumb.jpg"
+    },
+    {
+      "mediaFormat": "LOGO",
+      "googleUrl": "https://guillermobadia.com/img/logo.png",
+      "thumbnailUrl": "https://guillermobadia.com/img/logo-thumb.png"
+    },
+    {
+      "mediaFormat": "COVER",
+      "googleUrl": "https://guillermobadia.com/img/cover.jpg",
+      "thumbnailUrl": "https://guillermobadia.com/img/cover-thumb.jpg"
+    }
+  ]
+} 

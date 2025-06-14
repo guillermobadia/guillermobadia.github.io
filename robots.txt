@@ -1,5 +1,5 @@
 # Robots.txt optimizado para guillermobadia.com
-# Generado: 2025-01-15
+# Última actualización: 2024-03-19
 
 User-agent: *
 Allow: /
@@ -11,6 +11,11 @@ Disallow: /*.json$
 Disallow: /*?*
 Disallow: /search
 Disallow: /404.html
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+Disallow: /*.xls$
+Disallow: /*.xlsx$
 
 # Optimización para motores de búsqueda principales
 User-agent: Googlebot
@@ -29,6 +34,19 @@ Allow: /*.png
 Allow: /*.webp
 Allow: /*.svg
 Allow: /*.pdf
+Allow: /sitemap.xml
+
+User-agent: Googlebot-Image
+Allow: /img/
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.webp
+Allow: /*.svg
+
+User-agent: Googlebot-News
+Allow: /blog/
+Allow: /news/
 
 User-agent: Bingbot
 Crawl-delay: 1
@@ -350,3 +368,6 @@ Sitemap: https://guillermobadia.com/sitemap-news.xml
 
 # Host directive
 Host: guillermobadia.com
+
+# Crawl-delay para todos los bots
+Crawl-delay: 1
