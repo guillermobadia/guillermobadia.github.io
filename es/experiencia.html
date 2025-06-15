@@ -491,7 +491,13 @@
         /* Responsive design */
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
+                display: none !important;
+            }
+
+            .mobile-menu-btn {
+                display: block !important;
+                position: relative;
+                z-index: 1001;
             }
 
             .page-header h1 {
@@ -533,6 +539,144 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Menú móvil */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            backdrop-filter: blur(3px);
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: var(--white);
+            z-index: 1000;
+            padding: 2rem;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            z-index: 1;
+        }
+
+        .mobile-menu-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu-close:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 1rem;
+        }
+
+        .mobile-menu-links a {
+            font-size: 1.25rem;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .mobile-menu-links a i {
+            margin-right: 0.75rem;
+            width: 1.5rem;
+            text-align: center;
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .mobile-menu-links a:hover {
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+            padding-left: 0.5rem;
+        }
+
+        .mobile-menu-links a:hover i {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            body.menu-open {
+                overflow: hidden;
+            }
+
+            .mobile-menu-btn {
+                display: block !important;
+            }
+
+            .nav-links {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -549,8 +693,34 @@
                 <a href="publicaciones.html">Publicaciones</a>
                 <a href="contacto.html">Contacto</a>
             </div>
+            <button class="mobile-menu-btn" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
+
+    <!-- Overlay para el menú móvil -->
+    <div class="mobile-menu-overlay"></div>
+
+    <!-- Menú móvil deslizante -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="mobile-menu-logo">
+                <i class="fas fa-code"></i> GB
+            </a>
+            <button class="mobile-menu-close" aria-label="Cerrar menú">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="experiencia.html"><i class="fas fa-briefcase"></i> Experiencia</a>
+            <a href="proyectos.html"><i class="fas fa-project-diagram"></i> Proyectos</a>
+            <a href="habilidades.html"><i class="fas fa-chart-bar"></i> Habilidades</a>
+            <a href="publicaciones.html"><i class="fas fa-newspaper"></i> Publicaciones</a>
+            <a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
+        </div>
+    </div>
 
     <div class="page-header">
         <h1>Trayectoria Profesional</h1>
@@ -844,6 +1014,57 @@
             if (header) {
                 header.style.transform = `translateY(${scrolled * 0.5}px)`;
             }
+        });
+
+        // Menú móvil
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenuClose = document.querySelector('.mobile-menu-close');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const body = document.body;
+            
+            function openMenu() {
+                mobileMenu.classList.add('active');
+                overlay.classList.add('active');
+                body.classList.add('menu-open');
+            }
+            
+            function closeMenu() {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openMenu();
+                });
+            }
+            
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeMenu();
+                });
+            }
+            
+            if (overlay) {
+                overlay.addEventListener('click', closeMenu);
+            }
+            
+            const menuLinks = document.querySelectorAll('.mobile-menu-links a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Cerrar menú al cambiar el tamaño de la ventana
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    closeMenu();
+                }
+            });
         });
     </script>
 </body>
