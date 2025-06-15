@@ -51,26 +51,125 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      
+      // Configuración base de GA4
       gtag('js', new Date());
       gtag('config', 'G-XH5XXMMBN6', {
+        // Configuración básica
         page_title: 'Homepage - Spanish',
         page_location: window.location.href,
+        page_path: window.location.pathname,
+        send_page_view: true,
+        
+        // Grupos de contenido
         content_group1: 'Main Site',
         content_group2: 'Spanish',
         content_group3: 'Homepage',
+        
+        // Parámetros personalizados
         custom_map: {
-          'custom_parameter_1': 'director_proyectos_valencia'
-        }
-      });
-      
-      // Enhanced ecommerce for goal tracking
-      gtag('config', 'G-XH5XXMMBN6', {
-        custom_parameter_1: 'director_proyectos_valencia',
+          'dimension1': 'user_type',
+          'dimension2': 'preferred_language',
+          'dimension3': 'content_category',
+          'metric1': 'scroll_depth',
+          'metric2': 'time_on_page'
+        },
+        
+        // Configuración de privacidad
+        cookie_flags: 'SameSite=None;Secure',
+        cookie_domain: 'guillermobadia.com',
+        cookie_expires: 28 * 24 * 60 * 60, // 28 días
+        
+        // Configuración de consentimiento
+        consent_mode: {
+          analytics_storage: 'denied',
+          ad_storage: 'denied',
+          functionality_storage: 'denied',
+          personalization_storage: 'denied',
+          security_storage: 'granted'
+        },
+        
+        // Configuración de eventos
+        event_timeout: 5000,
+        debug_mode: false,
+        
+        // Configuración de usuario
         user_properties: {
           preferred_language: 'es',
-          user_type: 'potential_client'
+          user_type: 'potential_client',
+          content_category: 'professional_services'
         }
       });
+
+      // Eventos personalizados
+      document.addEventListener('DOMContentLoaded', function() {
+        // Track scroll depth
+        let maxScroll = 0;
+        window.addEventListener('scroll', () => {
+          const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+          if (scrollPercent > maxScroll) {
+            maxScroll = scrollPercent;
+            if (maxScroll % 25 === 0) {
+              gtag('event', 'scroll_depth', {
+                'event_category': 'Engagement',
+                'event_label': 'Homepage',
+                'value': maxScroll,
+                'non_interaction': true
+              });
+            }
+          }
+        });
+
+        // Track time on page
+        let startTime = Date.now();
+        setInterval(() => {
+          const timeSpent = Math.round((Date.now() - startTime) / 1000);
+          if (timeSpent % 30 === 0) { // Cada 30 segundos
+            gtag('event', 'time_on_page', {
+              'event_category': 'Engagement',
+              'event_label': 'Homepage',
+              'value': timeSpent,
+              'non_interaction': true
+            });
+          }
+        }, 30000);
+
+        // Track outbound links
+        document.querySelectorAll('a[href^="http"]').forEach(link => {
+          link.addEventListener('click', function(e) {
+            const url = this.href;
+            if (!url.includes('guillermobadia.com')) {
+              gtag('event', 'outbound_click', {
+                'event_category': 'Engagement',
+                'event_label': url,
+                'transport_type': 'beacon'
+              });
+            }
+          });
+        });
+      });
+    </script>
+    
+    <!-- Consentimiento de cookies -->
+    <script>
+      // Función para manejar el consentimiento
+      function updateConsent(consent) {
+        gtag('consent', 'update', {
+          'analytics_storage': consent ? 'granted' : 'denied',
+          'ad_storage': consent ? 'granted' : 'denied',
+          'functionality_storage': consent ? 'granted' : 'denied',
+          'personalization_storage': consent ? 'granted' : 'denied'
+        });
+        
+        // Guardar preferencia
+        localStorage.setItem('cookie_consent', consent);
+      }
+
+      // Verificar consentimiento previo
+      const consent = localStorage.getItem('cookie_consent');
+      if (consent !== null) {
+        updateConsent(consent === 'true');
+      }
     </script>
     
     <!-- Google Search Console -->

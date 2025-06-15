@@ -16,12 +16,106 @@
     <meta property="og:url" content="https://guillermobadia.com/publicaciones">
     <meta property="og:type" content="blog">
     
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) optimizado -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XH5XXMMBN6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      
+      // Configuración base de GA4
       gtag('js', new Date());
+      gtag('config', 'G-XH5XXMMBN6', {
+        // Configuración básica
+        page_title: 'Publicaciones - Spanish',
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+        send_page_view: true,
+        
+        // Grupos de contenido
+        content_group1: 'Main Site',
+        content_group2: 'Spanish',
+        content_group3: 'Publications',
+        
+        // Parámetros personalizados
+        custom_map: {
+          'dimension1': 'user_type',
+          'dimension2': 'preferred_language',
+          'dimension3': 'content_category',
+          'metric1': 'scroll_depth',
+          'metric2': 'time_on_page',
+          'metric3': 'article_engagement'
+        },
+        
+        // Configuración de privacidad
+        cookie_flags: 'SameSite=None;Secure',
+        cookie_domain: 'guillermobadia.com',
+        cookie_expires: 28 * 24 * 60 * 60, // 28 días
+        
+        // Configuración de consentimiento
+        consent_mode: {
+          analytics_storage: 'denied',
+          ad_storage: 'denied',
+          functionality_storage: 'denied',
+          personalization_storage: 'denied',
+          security_storage: 'granted'
+        },
+        
+        // Event settings
+        event_timeout: 5000,
+        debug_mode: false,
+        
+        // User properties
+        user_properties: {
+          preferred_language: 'es',
+          user_type: 'content_consumer',
+          content_category: 'publications'
+        }
+      });
+
+      // Cookie consent
+      function updateConsent(consent) {
+        gtag('consent', 'update', {
+          'analytics_storage': consent ? 'granted' : 'denied',
+          'ad_storage': consent ? 'granted' : 'denied',
+          'functionality_storage': consent ? 'granted' : 'denied',
+          'personalization_storage': consent ? 'granted' : 'denied'
+        });
+        localStorage.setItem('cookie_consent', consent);
+      }
+
+      // Check previous consent
+      const consent = localStorage.getItem('cookie_consent');
+      if (consent !== null) {
+        updateConsent(consent === 'true');
+      }
+
+      // Eventos personalizados
+      document.addEventListener('DOMContentLoaded', function() {
+        // Track scroll depth
+        let maxScroll = 0;
+        window.addEventListener('scroll', () => {
+          const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+          if (scrollPercent > maxScroll) {
+            maxScroll = scrollPercent;
+            if (maxScroll % 25 === 0) {
+              gtag('event', 'scroll_depth', {
+                'event_category': 'Publications',
+                'event_label': 'Spanish Publications',
+                'value': maxScroll,
+                'non_interaction': true
+              });
+            }
+          }
+        });
+
+        // Track time on page
+        let startTime = Date.now();
+        setInterval(() => {
+          const timeSpent = Math.round((Date.now() - startTime) / 1000);
+          if (timeSpent % 30 === 0) { // Cada 30 segundos
+            gtag('event', 'time_on_page', {
+              'event_category': 'Publications',
+              'event_label': 'Spanish Publications',
       gtag('config', 'G-XH5XXMMBN6');
     </script>
     

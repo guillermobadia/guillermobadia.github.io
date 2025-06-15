@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin conexión - Guillermo Badia</title>
+    <meta name="description" content="Estás sin conexión. Algunas funcionalidades pueden no estar disponibles.">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --text-color: #333;
+            --background-color: #f5f6fa;
+            --error-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .offline-container {
+            max-width: 600px;
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .offline-icon {
+            font-size: 64px;
+            color: var(--error-color);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .retry-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .retry-button:hover {
+            background-color: #2980b9;
+        }
+
+        .cached-content {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .cached-content h2 {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .cached-links {
+            list-style: none;
+        }
+
+        .cached-links li {
+            margin: 10px 0;
+        }
+
+        .cached-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .cached-links a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .offline-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .offline-icon {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📡</div>
+        <h1>Estás sin conexión</h1>
+        <p>Lo sentimos, parece que has perdido la conexión a internet. Algunas funcionalidades pueden no estar disponibles en este momento.</p>
+        <p>No te preocupes, puedes seguir navegando por el contenido que ya has visitado anteriormente.</p>
+        
+        <button class="retry-button" onclick="window.location.reload()">
+            Reintentar conexión
+        </button>
+
+        <div class="cached-content">
+            <h2>Contenido disponible sin conexión</h2>
+            <ul class="cached-links">
+                <li><a href="/">Página principal</a></li>
+                <li><a href="/es/proyectos.html">Proyectos</a></li>
+                <li><a href="/es/publicaciones.html">Publicaciones</a></li>
+                <li><a href="/en/projects.html">Projects</a></li>
+                <li><a href="/en/publications.html">Publications</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Verificar periódicamente la conexión
+        function checkConnection() {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }
+
+        // Verificar cada 5 segundos
+        setInterval(checkConnection, 5000);
+
+        // Escuchar eventos de conexión
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+    </script>
+</body>
+</html> 

@@ -16,13 +16,156 @@
     <meta property="og:url" content="https://guillermobadia.com/proyectos">
     <meta property="og:type" content="website">
     
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) optimizado -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XH5XXMMBN6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      
+      // Configuración base de GA4
       gtag('js', new Date());
-      gtag('config', 'G-XH5XXMMBN6');
+      gtag('config', 'G-XH5XXMMBN6', {
+        // Configuración básica
+        page_title: 'Proyectos - Spanish',
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+        send_page_view: true,
+        
+        // Grupos de contenido
+        content_group1: 'Main Site',
+        content_group2: 'Spanish',
+        content_group3: 'Projects',
+        
+        // Parámetros personalizados
+        custom_map: {
+          'dimension1': 'user_type',
+          'dimension2': 'preferred_language',
+          'dimension3': 'content_category',
+          'metric1': 'scroll_depth',
+          'metric2': 'time_on_page',
+          'metric3': 'project_engagement'
+        },
+        
+        // Configuración de privacidad
+        cookie_flags: 'SameSite=None;Secure',
+        cookie_domain: 'guillermobadia.com',
+        cookie_expires: 28 * 24 * 60 * 60, // 28 días
+        
+        // Configuración de consentimiento
+        consent_mode: {
+          analytics_storage: 'denied',
+          ad_storage: 'denied',
+          functionality_storage: 'denied',
+          personalization_storage: 'denied',
+          security_storage: 'granted'
+        },
+        
+        // Event settings
+        event_timeout: 5000,
+        debug_mode: false,
+        
+        // User properties
+        user_properties: {
+          preferred_language: 'es',
+          user_type: 'potential_client',
+          content_category: 'projects'
+        }
+      });
+
+      // Cookie consent
+      function updateConsent(consent) {
+        gtag('consent', 'update', {
+          'analytics_storage': consent ? 'granted' : 'denied',
+          'ad_storage': consent ? 'granted' : 'denied',
+          'functionality_storage': consent ? 'granted' : 'denied',
+          'personalization_storage': consent ? 'granted' : 'denied'
+        });
+        localStorage.setItem('cookie_consent', consent);
+      }
+
+      // Check previous consent
+      const consent = localStorage.getItem('cookie_consent');
+      if (consent !== null) {
+        updateConsent(consent === 'true');
+      }
+
+      // Eventos personalizados
+      document.addEventListener('DOMContentLoaded', function() {
+        // Track scroll depth
+        let maxScroll = 0;
+        window.addEventListener('scroll', () => {
+          const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+          if (scrollPercent > maxScroll) {
+            maxScroll = scrollPercent;
+            if (maxScroll % 25 === 0) {
+              gtag('event', 'scroll_depth', {
+                'event_category': 'Projects',
+                'event_label': 'Spanish Projects',
+                'value': maxScroll,
+                'non_interaction': true
+              });
+            }
+          }
+        });
+
+        // Track time on page
+        let startTime = Date.now();
+        setInterval(() => {
+          const timeSpent = Math.round((Date.now() - startTime) / 1000);
+          if (timeSpent % 30 === 0) { // Cada 30 segundos
+            gtag('event', 'time_on_page', {
+              'event_category': 'Projects',
+              'event_label': 'Spanish Projects',
+              'value': timeSpent,
+              'non_interaction': true
+            });
+          }
+        }, 30000);
+
+        // Track project interactions
+        document.querySelectorAll('.project-card').forEach(card => {
+          // Track project view
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const projectTitle = card.querySelector('.project-title').textContent;
+                gtag('event', 'project_view', {
+                  'event_category': 'Projects',
+                  'event_label': projectTitle,
+                  'non_interaction': true
+                });
+                observer.unobserve(card);
+              }
+            });
+          }, { threshold: 0.5 });
+          
+          observer.observe(card);
+
+          // Track project clicks
+          const projectLink = card.querySelector('.project-link');
+          if (projectLink) {
+            projectLink.addEventListener('click', function(e) {
+              const projectTitle = card.querySelector('.project-title').textContent;
+              gtag('event', 'project_click', {
+                'event_category': 'Projects',
+                'event_label': projectTitle,
+                'link_url': this.href
+              });
+            });
+          }
+        });
+
+        // Track filter usage
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const filterType = this.dataset.filter;
+            gtag('event', 'project_filter', {
+              'event_category': 'Projects',
+              'event_label': filterType
+            });
+          });
+        });
+      });
     </script>
     
     <!-- Schema.org markup for Projects -->

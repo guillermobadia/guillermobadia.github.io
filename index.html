@@ -38,19 +38,121 @@
     <meta name="twitter:image" content="https://guillermobadia.com/img/guillermo-badia-twitter.jpg">
     <meta name="twitter:image:alt" content="Guillermo Badia - Director de Proyectos Valencia">
     
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) optimizado -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XH5XXMMBN6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      
+      // Configuración base de GA4
       gtag('js', new Date());
       gtag('config', 'G-XH5XXMMBN6', {
-        page_title: 'Homepage',
+        // Configuración básica
+        page_title: 'Language Redirect',
         page_location: window.location.href,
-        content_group1: 'Main Site',
+        page_path: window.location.pathname,
         send_page_view: true,
-        cookie_flags: 'SameSite=None;Secure'
+        
+        // Grupos de contenido
+        content_group1: 'Main Site',
+        content_group2: 'Language Redirect',
+        
+        // Parámetros personalizados
+        custom_map: {
+          'dimension1': 'user_type',
+          'dimension2': 'preferred_language',
+          'dimension3': 'content_category',
+          'metric1': 'redirect_time',
+          'metric2': 'language_detection_accuracy'
+        },
+        
+        // Configuración de privacidad
+        cookie_flags: 'SameSite=None;Secure',
+        cookie_domain: 'guillermobadia.com',
+        cookie_expires: 28 * 24 * 60 * 60, // 28 días
+        
+        // Configuración de consentimiento
+        consent_mode: {
+          analytics_storage: 'denied',
+          ad_storage: 'denied',
+          functionality_storage: 'denied',
+          personalization_storage: 'denied',
+          security_storage: 'granted'
+        },
+        
+        // Event settings
+        event_timeout: 5000,
+        debug_mode: false,
+        
+        // User properties
+        user_properties: {
+          user_type: 'visitor',
+          content_category: 'language_selection'
+        }
       });
+
+      // Cookie consent
+      function updateConsent(consent) {
+        gtag('consent', 'update', {
+          'analytics_storage': consent ? 'granted' : 'denied',
+          'ad_storage': consent ? 'granted' : 'denied',
+          'functionality_storage': consent ? 'granted' : 'denied',
+          'personalization_storage': consent ? 'granted' : 'denied'
+        });
+        localStorage.setItem('cookie_consent', consent);
+      }
+
+      // Check previous consent
+      const consent = localStorage.getItem('cookie_consent');
+      if (consent !== null) {
+        updateConsent(consent === 'true');
+      }
+
+      // Mejorado: Detección de idioma con Analytics
+      (function() {
+        const startTime = Date.now();
+        const userLang = navigator.language || navigator.userLanguage || 'en';
+        const lang = userLang.substring(0, 2).toLowerCase();
+        const currentPath = window.location.pathname;
+        
+        // Evitar bucles de redirección
+        if (currentPath.includes('/es/') || currentPath.includes('/en/')) {
+          return;
+        }
+        
+        // Track language detection con más detalles
+        gtag('event', 'language_detection', {
+          'event_category': 'Language',
+          'event_label': 'Redirect',
+          'detected_language': lang,
+          'user_agent_language': userLang,
+          'browser_language': navigator.language,
+          'system_language': navigator.language,
+          'redirect_time': Date.now() - startTime,
+          'language_detection_accuracy': 1.0
+        });
+        
+        // Track manual language selection
+        document.querySelectorAll('a[href^="/es/"], a[href^="/en/"]').forEach(link => {
+          link.addEventListener('click', function(e) {
+            const selectedLang = this.href.includes('/es/') ? 'es' : 'en';
+            gtag('event', 'manual_language_selection', {
+              'event_category': 'Language',
+              'event_label': 'Manual Selection',
+              'selected_language': selectedLang,
+              'detected_language': lang,
+              'selection_method': 'click'
+            });
+          });
+        });
+        
+        // Redirección con preferencia española
+        if (lang === 'es') {
+          window.location.replace('/es/index.html');
+        } else {
+          window.location.replace('/en/index.html');
+        }
+      })();
     </script>
     
     <!-- Google Search Console -->
@@ -190,33 +292,34 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png">
     
+    <!-- Precargar recursos críticos -->
+    <link rel="preload" href="/css/styles.css" as="style">
+    <link rel="preload" href="/js/main.js" as="script">
+    <link rel="preload" href="/images/logo.png" as="image">
+    <link rel="preload" href="/images/profile.jpg" as="image">
+    
+    <!-- Registrar Service Worker -->
     <script>
-        // Detección optimizada del idioma con Analytics
-        (function() {
-            const userLang = navigator.language || navigator.userLanguage || 'en';
-            const lang = userLang.substring(0, 2).toLowerCase();
-            const currentPath = window.location.pathname;
-            
-            // Evitar bucles de redirección
-            if (currentPath.includes('/es/') || currentPath.includes('/en/')) {
-                return;
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registrado:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.error('Error registrando ServiceWorker:', error);
+                    });
+            });
+        }
+
+        // Manejar actualizaciones del Service Worker
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                refreshing = true;
+                window.location.reload();
             }
-            
-            // Track language detection
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'language_detection', {
-                    'detected_language': lang,
-                    'user_agent_language': userLang
-                });
-            }
-            
-            // Redirección con preferencia española
-            if (lang === 'es') {
-                window.location.replace('/es/index.html');
-            } else {
-                window.location.replace('/en/index.html');
-            }
-        })();
+        });
     </script>
     
     <!-- Critical CSS inline para mejorar LCP -->
