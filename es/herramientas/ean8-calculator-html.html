@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Calculadora EAN-8 | Guillermo Badia - Herramientas Profesionales</title>
+    <meta name="description" content="Generador y calculadora de códigos EAN-8 profesional. Herramienta gratuita para crear códigos de barras EAN-8 válidos con dígito de control automático.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
+    <style>
+        /* Variables y reset */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --dark: #1e293b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+            --success: #22c55e;
+            --warning: #eab308;
+            --error: #ef4444;
+            --font-main: 'Segoe UI', system-ui, sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+            padding-top: 4rem;
+        }
+
+        /* Header y navegación */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Dropdown menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            padding-bottom: 20px !important;
+            margin-bottom: -20px;
+        }
+
+        .dropdown-toggle i {
+            font-size: 0.8rem;
+            margin-left: 0.25rem;
+            transition: transform 0.3s;
+        }
+
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1000;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            margin-top: -5px;
+        }
+
+        .dropdown::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: 20px;
+            z-index: 999;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-menu a {
+            color: var(--dark) !important;
+            padding: 0.75rem 1.5rem !important;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a::after {
+            display: none !important;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--light);
+            color: var(--primary) !important;
+        }
+
+        .dropdown-menu a i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+            width: 20px;
+            display: inline-block;
+        }
+
+        /* Page header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 6rem 1rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .page-header p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Tool section */
+        .tool-section {
+            background: var(--white);
+            padding: 4rem 0;
+        }
+
+        .tool-card {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tool-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mode-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .mode-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .mode-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .result-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .barcode-container {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .error {
+            color: var(--error);
+            background: rgba(239, 68, 68, 0.1);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .success {
+            color: var(--success);
+            background: rgba(34, 197, 94, 0.1);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .dropdown {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .mode-selector {
+                flex-direction: column;
+            }
+
+            .tool-card {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-code"></i>
+                GB
+            </a>
+            <div class="nav-links">
+                <a href="../experiencia.html">Experiencia</a>
+                <a href="../proyectos.html">Proyectos</a>
+                <a href="../habilidades.html">Habilidades</a>
+                <a href="../publicaciones.html">Publicaciones</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle">Utilidades <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="ean8-calculator-html.html"><i class="fas fa-barcode"></i> Generación EAN8</a>
+                        <a href="calculadora-interes-compuesto.html"><i class="fas fa-calculator"></i> Calculadora Interés Compuesto</a>
+                    </div>
+                </div>
+                <a href="../contacto.html">Contacto</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1><i class="fas fa-barcode"></i> Calculadora EAN-8</h1>
+        <p>Generador profesional de códigos de barras EAN-8 con validación automática</p>
+    </div>
+
+    <section class="tool-section">
+        <div class="container">
+            <div class="tool-card">
+                <h2 class="tool-title">
+                    <i class="fas fa-cogs"></i>
+                    Generador de Códigos EAN-8
+                </h2>
+                
+                <div class="mode-selector">
+                    <button class="mode-btn active" onclick="setMode('generate')">
+                        <i class="fas fa-plus"></i> Generar Código
+                    </button>
+                    <button class="mode-btn" onclick="setMode('validate')">
+                        <i class="fas fa-check"></i> Validar Código
+                    </button>
+                </div>
+
+                <div id="generateMode">
+                    <div class="input-group">
+                        <label for="sevenDigits">Ingrese 7 dígitos (el 8º se calculará automáticamente):</label>
+                        <input type="text" id="sevenDigits" placeholder="1234567" maxlength="7" pattern="[0-9]{7}">
+                    </div>
+                    <button class="btn" onclick="generateEAN8()">
+                        <i class="fas fa-magic"></i>
+                        Generar EAN-8
+                    </button>
+                </div>
+
+                <div id="validateMode" style="display: none;">
+                    <div class="input-group">
+                        <label for="fullEAN8">Ingrese el código EAN-8 completo (8 dígitos):</label>
+                        <input type="text" id="fullEAN8" placeholder="12345670" maxlength="8" pattern="[0-9]{8}">
+                    </div>
+                    <button class="btn" onclick="validateEAN8()">
+                        <i class="fas fa-search"></i>
+                        Validar EAN-8
+                    </button>
+                </div>
+
+                <div id="result" class="result-section" style="display: none;">
+                    <div id="resultText"></div>
+                    <div id="barcodeContainer" class="barcode-container"></div>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <h3 class="tool-title">
+                    <i class="fas fa-info-circle"></i>
+                    ¿Qué es EAN-8?
+                </h3>
+                <p>EAN-8 es un código de barras de 8 dígitos utilizado para productos pequeños donde no hay espacio suficiente para un código EAN-13 completo. Los primeros 7 dígitos identifican el producto y el último es un dígito de control calculado automáticamente.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Guillermo Badia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentMode = 'generate';
+
+        function setMode(mode) {
+            currentMode = mode;
+            
+            // Update button states
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Show/hide modes
+            document.getElementById('generateMode').style.display = mode === 'generate' ? 'block' : 'none';
+            document.getElementById('validateMode').style.display = mode === 'validate' ? 'block' : 'none';
+            
+            // Clear results
+            document.getElementById('result').style.display = 'none';
+        }
+
+        function calculateCheckDigit(sevenDigits) {
+            let sum = 0;
+            for (let i = 0; i < 7; i++) {
+                const digit = parseInt(sevenDigits[i]);
+                sum += (i % 2 === 0) ? digit * 3 : digit;
+            }
+            return (10 - (sum % 10)) % 10;
+        }
+
+        function generateEAN8() {
+            const input = document.getElementById('sevenDigits').value;
+            const resultDiv = document.getElementById('result');
+            const resultText = document.getElementById('resultText');
+            const barcodeContainer = document.getElementById('barcodeContainer');
+
+            if (!/^[0-9]{7}$/.test(input)) {
+                resultText.innerHTML = '<div class="error"><i class="fas fa-exclamation-triangle"></i> Por favor, ingrese exactamente 7 dígitos numéricos.</div>';
+                resultDiv.style.display = 'block';
+                barcodeContainer.innerHTML = '';
+                return;
+            }
+
+            const checkDigit = calculateCheckDigit(input);
+            const fullEAN8 = input + checkDigit;
+
+            resultText.innerHTML = `
+                <div class="success">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Código EAN-8 generado:</strong> ${fullEAN8}
+                    <br><small>Dígito de control: ${checkDigit}</small>
+                </div>
+            `;
+
+            // Generate barcode
+            barcodeContainer.innerHTML = '<svg id="barcode"></svg>';
+            JsBarcode("#barcode", fullEAN8, {
+                format: "EAN8",
+                width: 2,
+                height: 100,
+                displayValue: true
+            });
+
+            resultDiv.style.display = 'block';
+        }
+
+        function validateEAN8() {
+            const input = document.getElementById('fullEAN8').value;
+            const resultDiv = document.getElementById('result');
+            const resultText = document.getElementById('resultText');
+            const barcodeContainer = document.getElementById('barcodeContainer');
+
+            if (!/^[0-9]{8}$/.test(input)) {
+                resultText.innerHTML = '<div class="error"><i class="fas fa-exclamation-triangle"></i> Por favor, ingrese exactamente 8 dígitos numéricos.</div>';
+                resultDiv.style.display = 'block';
+                barcodeContainer.innerHTML = '';
+                return;
+            }
+
+            const sevenDigits = input.substring(0, 7);
+            const providedCheckDigit = parseInt(input[7]);
+            const calculatedCheckDigit = calculateCheckDigit(sevenDigits);
+
+            if (providedCheckDigit === calculatedCheckDigit) {
+                resultText.innerHTML = `
+                    <div class="success">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>Código EAN-8 válido:</strong> ${input}
+                        <br><small>Dígito de control correcto: ${calculatedCheckDigit}</small>
+                    </div>
+                `;
+
+                // Generate barcode
+                barcodeContainer.innerHTML = '<svg id="barcode"></svg>';
+                JsBarcode("#barcode", input, {
+                    format: "EAN8",
+                    width: 2,
+                    height: 100,
+                    displayValue: true
+                });
+            } else {
+                resultText.innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-times-circle"></i>
+                        <strong>Código EAN-8 inválido</strong>
+                        <br>Dígito de control esperado: ${calculatedCheckDigit}, pero se proporcionó: ${providedCheckDigit}
+                    </div>
+                `;
+                barcodeContainer.innerHTML = '';
+            }
+
+            resultDiv.style.display = 'block';
+        }
+
+        // Allow Enter key to trigger generation/validation
+        document.getElementById('sevenDigits').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') generateEAN8();
+        });
+
+        document.getElementById('fullEAN8').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') validateEAN8();
+        });
+    </script>
+</body>
+</html>

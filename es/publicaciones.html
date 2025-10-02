@@ -134,6 +134,19 @@
       "hasPart": [
         {
           "@type": "BlogPosting",
+          "headline": "Redefiniendo el futuro del trabajo y la educación",
+          "datePublished": "2025-10-01",
+          "author": {
+            "@type": "Person",
+            "name": "Guillermo Badia"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Medium"
+          }
+        },
+        {
+          "@type": "BlogPosting",
           "headline": "La Transformación Digital en el Sector Agroalimentario",
           "datePublished": "2025-01-01",
           "author": {
@@ -234,9 +247,7 @@
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
-            transition: var(--transition);
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
+            transition: color 0.3s;
             position: relative;
         }
 
@@ -257,6 +268,85 @@
 
         .nav-links a:hover {
             color: var(--primary);
+        }
+
+        /* Dropdown menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            padding-bottom: 20px !important;
+            margin-bottom: -20px;
+        }
+
+        .dropdown-toggle i {
+            font-size: 0.8rem;
+            margin-left: 0.25rem;
+            transition: transform 0.3s;
+        }
+
+        .dropdown:hover .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1000;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            margin-top: -5px;
+        }
+
+        .dropdown::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            height: 20px;
+            z-index: 999;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-menu a {
+            color: var(--dark) !important;
+            padding: 0.75rem 1.5rem !important;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a::after {
+            display: none !important;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--light);
+            color: var(--primary) !important;
+        }
+
+        .dropdown-menu a i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+            width: 20px;
+            display: inline-block;
         }
 
         /* Menú móvil */
@@ -725,6 +815,11 @@
             .nav-links {
                 display: none;
             }
+            
+            /* Ocultar dropdown en móvil ya que estará en el menú lateral */
+            .dropdown {
+                display: none;
+            }
 
             .mobile-menu-btn {
                 display: block;
@@ -771,6 +866,13 @@
                 <a href="proyectos.html">Proyectos</a>
                 <a href="habilidades.html">Habilidades</a>
                 <a href="publicaciones.html">Publicaciones</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle">Utilidades <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="herramientas/ean8-calculator-html.html"><i class="fas fa-barcode"></i> Generación EAN8</a>
+                        <a href="herramientas/calculadora-interes-compuesto.html"><i class="fas fa-calculator"></i> Calculadora Interés Compuesto</a>
+                    </div>
+                </div>
                 <a href="contacto.html">Contacto</a>
             </div>
             <button class="mobile-menu-btn" aria-label="Abrir menú">
@@ -798,6 +900,11 @@
             <a href="proyectos.html"><i class="fas fa-project-diagram"></i> Proyectos</a>
             <a href="habilidades.html"><i class="fas fa-chart-bar"></i> Habilidades</a>
             <a href="publicaciones.html"><i class="fas fa-newspaper"></i> Publicaciones</a>
+            <div class="mobile-menu-section">
+                <span class="mobile-menu-section-title"><i class="fas fa-tools"></i> Utilidades</span>
+                <a href="herramientas/ean8-calculator-html.html" class="mobile-menu-subitem"><i class="fas fa-barcode"></i> Generación EAN8</a>
+                <a href="herramientas/calculadora-interes-compuesto.html" class="mobile-menu-subitem"><i class="fas fa-calculator"></i> Calculadora Interés Compuesto</a>
+            </div>
             <a href="contacto.html"><i class="fas fa-envelope"></i> Contacto</a>
         </div>
     </div>
@@ -817,8 +924,43 @@
         </section>
 
         <div class="publications-grid">
-            <!-- Artículo 1 -->
+            <!-- Artículo 1 - Más reciente -->
             <article class="article-card animate" style="animation-delay: 0.2s;">
+                <div class="article-image">
+                    <i class="fas fa-graduation-cap article-icon"></i>
+                </div>
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="article-platform platform-medium">
+                            <i class="fab fa-medium"></i> Medium
+                        </span>
+                        <span class="article-date">
+                            <i class="far fa-calendar"></i> Octubre 2025
+                        </span>
+                    </div>
+                    <h2 class="article-title">Redefiniendo el futuro del trabajo y la educación</h2>
+                    <p class="article-excerpt">
+                        OpenAI desafía a las plataformas de formación y transforma la capacitación profesional. 
+                        Un análisis sobre cómo la iniciativa OpenAI Academy está creando un ecosistema integrado 
+                        que conecta formación, certificación y empleo de una manera revolucionaria, alcanzando 
+                        a millones de estudiantes a nivel global.
+                    </p>
+                    <div class="article-tags">
+                        <span class="article-tag">Inteligencia Artificial</span>
+                        <span class="article-tag">Educación</span>
+                        <span class="article-tag">Futuro del Trabajo</span>
+                    </div>
+                    <a href="https://medium.com/@guillermo.badia/redefiniendo-el-futuro-del-trabajo-y-la-educación-d19644725f79" 
+                       target="_blank" 
+                       rel="noopener"
+                       class="article-link">
+                        Leer artículo completo <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            
+            <!-- Artículo 2 -->
+            <article class="article-card animate" style="animation-delay: 0.25s;">
                 <div class="article-image">
                     <i class="fas fa-seedling article-icon"></i>
                 </div>
@@ -828,7 +970,7 @@
                             <i class="fab fa-medium"></i> Medium
                         </span>
                         <span class="article-date">
-                            <i class="far fa-calendar"></i> 2025
+                            <i class="far fa-calendar"></i> Octubre 2025
                         </span>
                     </div>
                     <h2 class="article-title">La Transformación Digital en el Sector Agroalimentario</h2>
@@ -852,7 +994,7 @@
             </article>
             
             <!-- Vídeo -->
-            <article class="article-card animate" style="animation-delay: 0.1s;">
+            <article class="article-card animate" style="animation-delay: 0.3s;">
                 <div class="article-image">
                     <i class="fas fa-play-circle article-icon"></i>
                 </div>
@@ -885,8 +1027,8 @@
                 </div>
             </article>
             
-            <!-- Artículo 2 -->
-            <article class="article-card animate" style="animation-delay: 0.3s;">
+            <!-- Artículo 3 -->
+            <article class="article-card animate" style="animation-delay: 0.4s;">
                 <div class="article-image">
                     <i class="fas fa-question-circle article-icon"></i>
                 </div>
@@ -926,7 +1068,7 @@
             <div class="stats-grid">
                 <div class="stat-card animate">
                     <i class="fas fa-pen stat-icon"></i>
-                    <span class="stat-number">3</span>
+                    <span class="stat-number">4</span>
                     <span class="stat-label">Contenido Publicado</span>
                 </div>
                 <div class="stat-card animate" style="animation-delay: 0.1s;">
