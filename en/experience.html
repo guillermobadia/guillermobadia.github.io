@@ -746,6 +746,33 @@
             transform: scale(1.1);
         }
 
+        /* Mobile menu sections */
+        .mobile-menu-section {
+            margin: 1rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0.5rem 0;
+        }
+
+        .mobile-menu-section-title {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            padding: 0.75rem 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-menu-subitem {
+            padding-left: 2rem !important;
+            font-size: 1rem !important;
+            color: var(--secondary) !important;
+        }
+
+        .mobile-menu-subitem:hover {
+            color: var(--primary) !important;
+        }
+
         @media (max-width: 768px) {
             body.menu-open {
                 overflow: hidden;
@@ -807,6 +834,11 @@
             <a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
             <a href="skills.html"><i class="fas fa-chart-bar"></i> Skills</a>
             <a href="publications.html"><i class="fas fa-newspaper"></i> Publications</a>
+            <div class="mobile-menu-section">
+                <span class="mobile-menu-section-title"><i class="fas fa-tools"></i> Tools</span>
+                <a href="tools/ean8-calculator.html" class="mobile-menu-subitem"><i class="fas fa-barcode"></i> EAN-8 Generator</a>
+                <a href="tools/compound-interest-calculator.html" class="mobile-menu-subitem"><i class="fas fa-calculator"></i> Compound Interest Calculator</a>
+            </div>
             <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
         </div>
     </div>
