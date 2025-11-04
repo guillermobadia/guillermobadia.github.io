@@ -23,7 +23,6 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Cache abierto');
         return cache.addAll(STATIC_RESOURCES);
       })
       .then(() => self.skipWaiting())
@@ -37,7 +36,6 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log('Eliminando cache antigua:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -111,7 +109,7 @@ async function syncAnalytics() {
       await sendAnalyticsEvent(event);
       await removeFromQueue(event);
     } catch (error) {
-      console.error('Error sincronizando analytics:', error);
+      // Error handling for analytics sync
     }
   }
 }

@@ -1,0 +1,19 @@
+# Security Policy
+# Guillermo Badia - guillermobadia.com
+
+Contact: mailto:contacto@guillermobadia.com
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: es, en
+Canonical: https://guillermobadia.com/.well-known/security.txt
+
+# Encryption
+Encryption: https://guillermobadia.com/.well-known/pgp-key.txt
+
+# Acknowledgments
+Acknowledgments: https://guillermobadia.com/security-acknowledgments
+
+# Policy
+Policy: https://guillermobadia.com/security-policy
+
+# Thank you for helping keep our services secure
+# Gracias por ayudar a mantener nuestros servicios seguros
