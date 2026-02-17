@@ -955,8 +955,160 @@
             }
         }
 
+        /* Web Services Section Styles */
+        .web-services {
+            padding: 5rem 1rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .web-services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+
+        .web-services-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .web-services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .web-services-subtitle {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .web-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.15);
+            border-color: var(--primary);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .price-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #ecfdf5;
+            color: #059669;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .web-cta-box {
+            background: var(--dark);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .web-cta-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .web-cta-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .web-cta-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
         /* Media queries for responsiveness */
         @media (max-width: 768px) {
+            .web-cta-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .web-cta-text {
+                text-align: center;
+            }
+
+            .web-services h2 {
+                font-size: 2rem;
+            }
+
             .nav-links {
                 display: none;
             }
@@ -1177,6 +1329,60 @@
         </div>
     </section>
 
+
+    <section class="web-services" id="web-services">
+        <div class="web-services-content">
+            <span class="hero-badge" style="background: rgba(37, 99, 235, 0.1); color: var(--primary); margin-bottom: 1rem;">NEW SERVICE</span>
+            <h2>Web Design & Landing Pages</h2>
+            <p class="web-services-subtitle">I create visually high-impact websites, optimized for conversion and fully adapted to mobile devices. Professional quality at the best price.</p>
+
+            <div class="web-services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>High-Converting Landing Pages</h3>
+                    <p>Design focused on results. Persuasive structures and clear calls to action to turn visitors into potential clients.</p>
+                    <span class="price-tag">High Conversion</span>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>100% Responsive</h3>
+                    <p>Your website will look perfect on any device: mobiles, tablets, and computers. Fluid and professional user experience.</p>
+                    <span class="price-tag">Mobile First</span>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Creative & Modern Design</h3>
+                    <p>Careful aesthetics aligned with your brand. Unique designs that stand out and convey professionalism at first glance.</p>
+                    <span class="price-tag">Premium Design</span>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3>Best Price Guaranteed</h3>
+                    <p>Professional solutions adapted to your budget. No hidden costs and the best quality-price ratio on the market.</p>
+                    <span class="price-tag">Competitive Price</span>
+                </div>
+            </div>
+
+            <div class="web-cta-box">
+                <div class="web-cta-text">
+                    <h3>Need a website that sells?</h3>
+                    <p>Tell me your idea and we will design the perfect strategy for your business.</p>
+                </div>
+                <a href="contact.html" class="button">Get a Free Quote</a>
+            </div>
+        </div>
+    </section>
     <section class="recognition">
         <div class="recognition-content">
             <h2>Recognition and Achievements</h2>
