@@ -346,13 +346,13 @@
             {
               label: t.capital || 'Capital',
               data: capData,
-              backgroundColor: '#1f4d3a',
+              backgroundColor: '#22c55e',
               borderWidth: 0,
             },
             {
               label: t.intereses || 'Intereses',
               data: intData,
-              backgroundColor: '#b5491f',
+              backgroundColor: '#ef4444',
               borderWidth: 0,
             },
           ],
@@ -361,8 +361,22 @@
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
-            legend: { position: 'top', labels: { font: { family: "'IBM Plex Sans', system-ui, sans-serif", size: 13 } } },
+            legend: {
+              position: 'top',
+              labels: {
+                font: { family: "'Segoe UI', system-ui, sans-serif", size: 13, weight: '500' },
+                color: '#1e293b',
+                usePointStyle: true,
+                pointStyle: 'rectRounded',
+                padding: 16,
+              },
+            },
             tooltip: {
+              backgroundColor: '#1e293b',
+              titleFont: { family: "'Segoe UI', system-ui, sans-serif", size: 13, weight: '600' },
+              bodyFont: { family: "'Segoe UI', system-ui, sans-serif", size: 13 },
+              padding: 12,
+              cornerRadius: 8,
               callbacks: {
                 label: function (ctx) {
                   return ctx.dataset.label + ': ' + eur0(ctx.parsed.y);
@@ -371,11 +385,17 @@
             },
           },
           scales: {
-            x: { stacked: true, ticks: { font: { family: "'IBM Plex Mono', ui-monospace, monospace", size: 11 } } },
+            x: {
+              stacked: true,
+              grid: { display: false },
+              ticks: { font: { family: "'Segoe UI', system-ui, sans-serif", size: 11 }, color: '#64748b' },
+            },
             y: {
               stacked: true,
+              grid: { color: 'rgba(100, 116, 139, 0.1)' },
               ticks: {
-                font: { family: "'IBM Plex Mono', ui-monospace, monospace", size: 11 },
+                font: { family: "'Segoe UI', system-ui, sans-serif", size: 11 },
+                color: '#64748b',
                 callback: function (v) { return Math.round(v / 1000) + 'k'; },
               },
             },
