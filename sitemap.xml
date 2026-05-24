@@ -140,7 +140,26 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
+  <!-- Tools -->
+  <url>
+    <loc>https://guillermobadia.com/es/herramientas/simulador-hipoteca.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://guillermobadia.com/es/herramientas/simulador-hipoteca.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guillermobadia.com/en/tools/mortgage-simulator.html"/>
+    <lastmod>2026-05-24T10:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://guillermobadia.com/en/tools/mortgage-simulator.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://guillermobadia.com/es/herramientas/simulador-hipoteca.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guillermobadia.com/en/tools/mortgage-simulator.html"/>
+    <lastmod>2026-05-24T10:00:00+02:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Blog Articles for SEO (Future content) -->
   <url>
     <loc>https://guillermobadia.com/blog/liderar-equipos-remotos-20-personas-2025</loc>
