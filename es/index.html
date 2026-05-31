@@ -1358,6 +1358,359 @@
             }
         }
 
+        /* Web Design Services Section */
+        .web-design {
+            padding: 5rem 1rem;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .web-design::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .web-design::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .web-design-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .web-design-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .web-design-label {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .web-design-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .web-design-header h2 span {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .web-design-header p {
+            color: var(--secondary);
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .web-design-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        /* Browser Mockup */
+        .browser-mockup {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            transition: transform 0.4s ease;
+        }
+
+        .browser-mockup:hover {
+            transform: translateY(-8px);
+        }
+
+        .browser-bar {
+            background: #f0f0f0;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .browser-dot.red { background: #ff5f57; }
+        .browser-dot.yellow { background: #febc2e; }
+        .browser-dot.green { background: #28c840; }
+
+        .browser-url {
+            flex: 1;
+            margin-left: 0.75rem;
+            background: var(--white);
+            border-radius: 4px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.75rem;
+            color: var(--secondary);
+        }
+
+        .browser-body {
+            padding: 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .browser-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M20 20h20v20H20zM0 0h20v20H0z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .browser-body-content {
+            position: relative;
+            text-align: center;
+            color: var(--white);
+            padding: 2rem;
+        }
+
+        .browser-body-content .mockup-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .browser-body-content .mockup-subtitle {
+            font-size: 0.85rem;
+            opacity: 0.85;
+            margin-bottom: 1.25rem;
+        }
+
+        .mockup-btn {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .mockup-elements {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+            justify-content: center;
+        }
+
+        .mockup-element {
+            width: 60px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Selling Points */
+        .selling-points {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .selling-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: var(--light);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .selling-point:hover {
+            background: var(--white);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.1);
+            transform: translateX(5px);
+        }
+
+        .selling-point-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .selling-point-text h4 {
+            color: var(--dark);
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .selling-point-text p {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Process Steps */
+        .web-design-process {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--light);
+            border-radius: 16px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            background: var(--white);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .process-step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 auto 1.25rem;
+        }
+
+        .process-step h4 {
+            color: var(--dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .process-connector {
+            display: none;
+        }
+
+        /* Web Design CTA */
+        .web-design-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .web-design-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .web-design-cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .web-design-cta h3 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .web-design-cta p {
+            font-size: 1.1rem;
+            opacity: 0.92;
+            max-width: 550px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.6;
+        }
+
+        .web-design-cta .button {
+            font-size: 1.05rem;
+            padding: 1rem 2.5rem;
+        }
+
+        .web-design-cta .button:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .web-design-price-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
         /* Media queries para responsividad */
         @media (max-width: 768px) {
             .nav-links {
@@ -1398,8 +1751,30 @@
                 grid-template-columns: 1fr;
             }
 
-            .skills h2, .recognition h2, .leadership h2 {
+            .skills h2, .recognition h2, .leadership h2, .web-design-header h2 {
                 font-size: 2rem;
+            }
+
+            .web-design-showcase {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .web-design-process {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .web-design-cta {
+                padding: 2rem 1.5rem;
+            }
+
+            .web-design-cta h3 {
+                font-size: 1.5rem;
+            }
+
+            .selling-point:hover {
+                transform: none;
             }
         }
 
@@ -1433,6 +1808,7 @@
                 <a href="proyectos.html">Proyectos</a>
                 <a href="habilidades.html">Habilidades</a>
                 <a href="publicaciones.html">Publicaciones</a>
+                <a href="#web-design">Diseño Web</a>
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle">Utilidades <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-menu">
@@ -1468,6 +1844,7 @@
             <a href="proyectos.html"><i class="fas fa-project-diagram"></i> Proyectos</a>
             <a href="habilidades.html"><i class="fas fa-chart-bar"></i> Habilidades</a>
             <a href="publicaciones.html"><i class="fas fa-newspaper"></i> Publicaciones</a>
+            <a href="#web-design"><i class="fas fa-palette"></i> Diseño Web</a>
             <div class="mobile-menu-section">
                 <span class="mobile-menu-section-title"><i class="fas fa-tools"></i> Utilidades</span>
                 <a href="herramientas/ean8-calculator-html.html" class="mobile-menu-subitem"><i class="fas fa-barcode"></i> Generación EAN8</a>
@@ -1633,6 +2010,105 @@
                 y mantener un enfoque claro en los resultados. La gestión de equipos diversos y complejos me ha enseñado que 
                 el éxito se construye combinando talento, tecnología y una visión compartida.
             </p>
+        </div>
+    </section>
+
+    <section id="web-design" class="web-design">
+        <div class="web-design-content">
+            <div class="web-design-header">
+                <span class="web-design-label"><i class="fas fa-palette"></i> Nuevo Servicio</span>
+                <h2>Tu Landing Page Profesional <span>al Mejor Precio</span></h2>
+                <p>Creo landing pages que convierten visitantes en clientes. Dise&ntilde;o atractivo, carga ultrarrápida y optimizadas para generar resultados reales.</p>
+            </div>
+
+            <div class="web-design-showcase">
+                <div class="browser-mockup">
+                    <div class="browser-bar">
+                        <span class="browser-dot red"></span>
+                        <span class="browser-dot yellow"></span>
+                        <span class="browser-dot green"></span>
+                        <div class="browser-url"><i class="fas fa-lock" style="color: #28c840; margin-right: 4px;"></i> tuempresa.com</div>
+                    </div>
+                    <div class="browser-body">
+                        <div class="browser-body-content">
+                            <div class="mockup-title">Tu Marca Aquí</div>
+                            <div class="mockup-subtitle">Una landing page que impulsa tu negocio</div>
+                            <span class="mockup-btn"><i class="fas fa-mouse-pointer" style="margin-right: 4px;"></i> Llamada a la acción</span>
+                            <div class="mockup-elements">
+                                <div class="mockup-element"></div>
+                                <div class="mockup-element"></div>
+                                <div class="mockup-element"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="selling-points">
+                    <div class="selling-point">
+                        <div class="selling-point-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="selling-point-text">
+                            <h4>Carga Ultrarrápida</h4>
+                            <p>Páginas optimizadas que cargan en menos de 2 segundos. Mejor experiencia, mejor posicionamiento en Google.</p>
+                        </div>
+                    </div>
+                    <div class="selling-point">
+                        <div class="selling-point-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="selling-point-text">
+                            <h4>100% Responsive</h4>
+                            <p>Perfecta en móvil, tablet y escritorio. Tu landing se adapta a cualquier dispositivo sin perder impacto.</p>
+                        </div>
+                    </div>
+                    <div class="selling-point">
+                        <div class="selling-point-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="selling-point-text">
+                            <h4>Enfocada en Conversión</h4>
+                            <p>Cada elemento estratégicamente diseñado para guiar al visitante hacia la acción que necesitas.</p>
+                        </div>
+                    </div>
+                    <div class="selling-point">
+                        <div class="selling-point-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="selling-point-text">
+                            <h4>El Mejor Precio del Mercado</h4>
+                            <p>Calidad profesional sin sorpresas. Precios competitivos adaptados a autónomos y pymes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="web-design-process">
+                <div class="process-step">
+                    <div class="process-step-number">1</div>
+                    <h4>Hablamos</h4>
+                    <p>Cuéntame tu idea y los objetivos de tu negocio. Analizamos juntos qué necesita tu landing page.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">2</div>
+                    <h4>Diseño y Desarrollo</h4>
+                    <p>Creo tu landing page con un diseño profesional, optimizada para SEO y preparada para convertir.</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-number">3</div>
+                    <h4>Lanzamiento</h4>
+                    <p>Tu página lista y funcionando. Empieza a captar clientes desde el primer día con una web que impacta.</p>
+                </div>
+            </div>
+
+            <div class="web-design-cta">
+                <div class="web-design-cta-content">
+                    <span class="web-design-price-tag"><i class="fas fa-star" style="margin-right: 4px;"></i> Presupuesto sin compromiso</span>
+                    <h3>¿Necesitas una Landing Page?</h3>
+                    <p>Consigue una página web profesional que trabaje por ti las 24 horas. Cuéntame tu proyecto y te preparo una propuesta personalizada.</p>
+                    <a href="contacto.html" class="button">Solicitar Presupuesto Gratis <i class="fas fa-arrow-right" style="margin-left: 6px;"></i></a>
+                </div>
+            </div>
         </div>
     </section>
 
