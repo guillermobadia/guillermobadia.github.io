@@ -160,6 +160,27 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Store -->
+  <url>
+    <loc>https://guillermobadia.com/es/tienda/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://guillermobadia.com/es/tienda/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guillermobadia.com/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guillermobadia.com/es/tienda/"/>
+    <lastmod>2026-06-09T10:00:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://guillermobadia.com/en/store/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://guillermobadia.com/es/tienda/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://guillermobadia.com/en/store/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://guillermobadia.com/es/tienda/"/>
+    <lastmod>2026-06-09T10:00:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Blog Articles for SEO (Future content) -->
   <url>
     <loc>https://guillermobadia.com/blog/liderar-equipos-remotos-20-personas-2025</loc>

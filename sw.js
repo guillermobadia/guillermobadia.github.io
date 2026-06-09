@@ -1,4 +1,4 @@
-const CACHE_NAME = 'guillermobadia-cache-v1';
+const CACHE_NAME = 'guillermobadia-cache-v2';
 const OFFLINE_URL = '/offline.html';
 
 const STATIC_RESOURCES = [
@@ -10,8 +10,13 @@ const STATIC_RESOURCES = [
   '/es/publicaciones.html',
   '/en/projects.html',
   '/en/publications.html',
+  '/es/tienda/index.html',
+  '/en/store/index.html',
   '/css/styles.css',
+  '/css/tienda.css',
   '/js/main.js',
+  '/js/tienda.js',
+  '/products.json',
   '/images/favicon.ico',
   '/images/logo.png',
   '/images/profile.jpg',

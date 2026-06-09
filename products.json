@@ -1,0 +1,90 @@
+{
+  "_comment": "Fuente única del catálogo de la tienda (ES/EN). Para activar el cobro real: crea cada producto en Lemon Squeezy (Merchant of Record) y sustituye el valor REPLACE-ME de 'checkoutUrl' por la URL de checkout del producto (https://TUSTORE.lemonsqueezy.com/buy/UUID). Mientras 'checkoutUrl' contenga 'REPLACE-ME' el botón aparecerá como 'Próximamente' y no romperá la web. Alternativa Gumroad: usa la URL del producto de Gumroad como 'checkoutUrl'.",
+  "products": [
+    {
+      "id": "plantilla-brd",
+      "type": "template",
+      "price": 29,
+      "currency": "EUR",
+      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
+      "icon": "fa-file-lines",
+      "featured": true,
+      "es": {
+        "name": "Plantilla de BRD (Business Requirement Document)",
+        "desc": "Plantilla profesional v6 para documentar requisitos de negocio en comités de proyectos. Incluye estructura, ejemplos y checklist de validación."
+      },
+      "en": {
+        "name": "BRD Template (Business Requirement Document)",
+        "desc": "Professional v6 template to document business requirements for project committees. Includes structure, examples and a validation checklist."
+      }
+    },
+    {
+      "id": "pack-plantillas-pmo",
+      "type": "template",
+      "price": 49,
+      "currency": "EUR",
+      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
+      "icon": "fa-folder-open",
+      "featured": false,
+      "es": {
+        "name": "Pack de plantillas PMO",
+        "desc": "Conjunto de plantillas (Excel y Word) para gestión de proyectos: acta de constitución, plan de riesgos, seguimiento de hitos y cierre."
+      },
+      "en": {
+        "name": "PMO Templates Pack",
+        "desc": "Set of templates (Excel and Word) for project management: project charter, risk plan, milestone tracking and closure."
+      }
+    },
+    {
+      "id": "skill-arquitectura-hexagonal",
+      "type": "skill",
+      "price": 39,
+      "currency": "EUR",
+      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
+      "icon": "fa-cubes",
+      "featured": true,
+      "es": {
+        "name": "Skill: Validador de arquitectura hexagonal",
+        "desc": "Paquete con reglas, prompts y plantilla para auditar proyectos Java/Spring Boot contra una arquitectura hexagonal de referencia. Entrega ZIP + clave de licencia."
+      },
+      "en": {
+        "name": "Skill: Hexagonal architecture validator",
+        "desc": "Package with rules, prompts and a template to audit Java/Spring Boot projects against a reference hexagonal architecture. Delivered as ZIP + license key."
+      }
+    },
+    {
+      "id": "curso-liderazgo-remoto",
+      "type": "course",
+      "price": 89,
+      "currency": "EUR",
+      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
+      "icon": "fa-graduation-cap",
+      "featured": false,
+      "es": {
+        "name": "Curso: Liderar equipos remotos",
+        "desc": "Formación en módulos sobre liderazgo de equipos distribuidos de hasta 20 personas: rituales, herramientas, métricas y cultura."
+      },
+      "en": {
+        "name": "Course: Leading remote teams",
+        "desc": "Modular training on leading distributed teams of up to 20 people: rituals, tools, metrics and culture."
+      }
+    },
+    {
+      "id": "servicio-mentoria",
+      "type": "service",
+      "price": 120,
+      "currency": "EUR",
+      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
+      "icon": "fa-comments",
+      "featured": true,
+      "es": {
+        "name": "Sesión de mentoría 1:1 (60 min)",
+        "desc": "Sesión individual sobre transformación digital, gestión de proyectos o ciberseguridad. Tras el pago recibirás el enlace para reservar fecha y hora."
+      },
+      "en": {
+        "name": "1:1 mentoring session (60 min)",
+        "desc": "One-on-one session on digital transformation, project management or cybersecurity. After payment you will receive a link to book a date and time."
+      }
+    }
+  ]
+}
