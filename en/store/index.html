@@ -88,6 +88,102 @@
             .mobile-menu-btn { display: block !important; }
         }
     </style>
+    <!-- BUILD:shop-jsonld:start -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Store",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@type": "Product",
+                "name": "BRD Template (Business Requirement Document)",
+                "description": "Professional v6 template to document business requirements for project committees. Includes structure, examples and a validation checklist.",
+                "category": "template",
+                "offers": {
+                    "@type": "Offer",
+                    "price": 29,
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://guillermobadia.com/en/store/"
+                }
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "@type": "Product",
+                "name": "PMO Templates Pack",
+                "description": "Set of templates (Excel and Word) for project management: project charter, risk plan, milestone tracking and closure.",
+                "category": "template",
+                "offers": {
+                    "@type": "Offer",
+                    "price": 49,
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://guillermobadia.com/en/store/"
+                }
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "@type": "Product",
+                "name": "Skill: Hexagonal architecture validator",
+                "description": "Package with rules, prompts and a template to audit Java/Spring Boot projects against a reference hexagonal architecture. Delivered as ZIP + license key.",
+                "category": "skill",
+                "offers": {
+                    "@type": "Offer",
+                    "price": 39,
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://guillermobadia.com/en/store/"
+                }
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+                "@type": "Product",
+                "name": "Course: Leading remote teams",
+                "description": "Modular training on leading distributed teams of up to 20 people: rituals, tools, metrics and culture.",
+                "category": "course",
+                "offers": {
+                    "@type": "Offer",
+                    "price": 89,
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://guillermobadia.com/en/store/"
+                }
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+                "@type": "Product",
+                "name": "1:1 mentoring session (60 min)",
+                "description": "One-on-one session on digital transformation, project management or cybersecurity. After payment you will receive a link to book a date and time.",
+                "category": "service",
+                "offers": {
+                    "@type": "Offer",
+                    "price": 120,
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://guillermobadia.com/en/store/"
+                }
+            }
+        }
+    ]
+}
+    </script>
+    <!-- BUILD:shop-jsonld:end -->
 </head>
 <body>
     <header class="header">
@@ -157,8 +253,81 @@
     </section>
 
     <main class="shop-main">
-        <div id="shop-filters"></div>
-        <div id="shop-grid" class="shop-grid"></div>
+        <div id="shop-filters">
+        <!-- BUILD:shop-filters:start -->
+        <div class="shop-filters">
+            <button class="shop-filter active" type="button" data-filter="all">All</button>
+            <button class="shop-filter" type="button" data-filter="template">Template</button>
+            <button class="shop-filter" type="button" data-filter="skill">Skill</button>
+            <button class="shop-filter" type="button" data-filter="course">Course</button>
+            <button class="shop-filter" type="button" data-filter="service">Service</button>
+        </div>
+        <!-- BUILD:shop-filters:end -->
+        </div>
+        <div id="shop-grid" class="shop-grid">
+        <!-- BUILD:shop-grid:start -->
+            <div class="shop-card type-template" data-type="template">
+                <div class="shop-card-top">
+                    <div class="shop-card-icon"><i class="fas fa-file-lines"></i></div>
+                    <span class="shop-badge">Template</span>
+                </div>
+                <h2>BRD Template (Business Requirement Document)</h2>
+                <p class="shop-card-desc">Professional v6 template to document business requirements for project committees. Includes structure, examples and a validation checklist.</p>
+                <div class="shop-card-foot">
+                    <div class="shop-price">€29 <small>VAT included</small></div>
+                    <span class="shop-buy is-soon"><i class="fas fa-clock"></i> Coming soon</span>
+                </div>
+            </div>
+            <div class="shop-card type-template" data-type="template">
+                <div class="shop-card-top">
+                    <div class="shop-card-icon"><i class="fas fa-folder-open"></i></div>
+                    <span class="shop-badge">Template</span>
+                </div>
+                <h2>PMO Templates Pack</h2>
+                <p class="shop-card-desc">Set of templates (Excel and Word) for project management: project charter, risk plan, milestone tracking and closure.</p>
+                <div class="shop-card-foot">
+                    <div class="shop-price">€49 <small>VAT included</small></div>
+                    <span class="shop-buy is-soon"><i class="fas fa-clock"></i> Coming soon</span>
+                </div>
+            </div>
+            <div class="shop-card type-skill" data-type="skill">
+                <div class="shop-card-top">
+                    <div class="shop-card-icon"><i class="fas fa-cubes"></i></div>
+                    <span class="shop-badge">Skill</span>
+                </div>
+                <h2>Skill: Hexagonal architecture validator</h2>
+                <p class="shop-card-desc">Package with rules, prompts and a template to audit Java/Spring Boot projects against a reference hexagonal architecture. Delivered as ZIP + license key.</p>
+                <div class="shop-card-foot">
+                    <div class="shop-price">€39 <small>VAT included</small></div>
+                    <span class="shop-buy is-soon"><i class="fas fa-clock"></i> Coming soon</span>
+                </div>
+            </div>
+            <div class="shop-card type-course" data-type="course">
+                <div class="shop-card-top">
+                    <div class="shop-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <span class="shop-badge">Course</span>
+                </div>
+                <h2>Course: Leading remote teams</h2>
+                <p class="shop-card-desc">Modular training on leading distributed teams of up to 20 people: rituals, tools, metrics and culture.</p>
+                <div class="shop-card-foot">
+                    <div class="shop-price">€89 <small>VAT included</small></div>
+                    <span class="shop-buy is-soon"><i class="fas fa-clock"></i> Coming soon</span>
+                </div>
+            </div>
+            <div class="shop-card type-service" data-type="service">
+                <div class="shop-card-top">
+                    <div class="shop-card-icon"><i class="fas fa-comments"></i></div>
+                    <span class="shop-badge">Service</span>
+                </div>
+                <h2>1:1 mentoring session (60 min)</h2>
+                <p class="shop-card-desc">One-on-one session on digital transformation, project management or cybersecurity. After payment you will receive a link to book a date and time.</p>
+                <div class="shop-card-foot">
+                    <div class="shop-price">€120 <small>VAT included</small></div>
+                    <span class="shop-buy is-soon"><i class="fas fa-clock"></i> Coming soon</span>
+                </div>
+            </div>
+        <!-- BUILD:shop-grid:end -->
+        </div>
         <p class="shop-note">
             Payment is securely processed by our provider (Merchant of Record), who issues the invoice with the applicable VAT.
             See the <a href="terms.html">terms of sale</a> and the <a href="refunds.html">refund policy</a>.

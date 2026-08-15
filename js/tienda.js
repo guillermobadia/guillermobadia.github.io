@@ -187,7 +187,12 @@
             var grid = document.querySelector(gridSel);
             if (!grid) return;
 
-            grid.innerHTML = '<p class="shop-loading">' + t.loading + '</p>';
+            // El HTML puede venir ya pre-renderizado (scripts/build-tienda.py). En ese
+            // caso no lo pisamos con el "cargando" para no provocar un parpadeo.
+            var prerendered = !!grid.querySelector('.shop-card');
+            if (!prerendered) {
+                grid.innerHTML = '<p class="shop-loading">' + t.loading + '</p>';
+            }
 
             fetch(config.productsUrl || '../../products.json', { cache: 'no-cache' })
                 .then(function (res) {
@@ -221,18 +226,22 @@
 
                     var filtersHost = document.querySelector(filtersSel);
                     if (filtersHost && types.length > 1) {
+                        filtersHost.innerHTML = '';
                         filtersHost.appendChild(buildFilters(types, lang, t, render));
                     }
 
                     render('all');
-                    injectStructuredData(products, lang,
+                    if (!prerendered) injectStructuredData(products, lang,
                         lang === 'en'
                             ? 'https://guillermobadia.com/en/store/'
                             : 'https://guillermobadia.com/es/tienda/');
                     track('view_item_list', { item_list_name: 'shop_' + lang });
                 })
                 .catch(function () {
-                    grid.innerHTML = '<p class="shop-empty">' + t.error + '</p>';
+                    // Con catálogo pre-renderizado el fallo de red no debe vaciar la tienda.
+                    if (!prerendered) {
+                        grid.innerHTML = '<p class="shop-empty">' + t.error + '</p>';
+                    }
                 });
         }
     };

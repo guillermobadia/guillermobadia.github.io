@@ -88,6 +88,102 @@
             .mobile-menu-btn { display: block !important; }
         }
     </style>
+    <!-- BUILD:shop-jsonld:start -->
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Tienda",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@type": "Product",
+                "name": "Plantilla de BRD (Business Requirement Document)",
+                "description": "Plantilla profesional v6 para documentar requisitos de negocio en comités de proyectos. Incluye estructura, ejemplos y checklist de validación.",
+                "category": "template",
+                "offers": {
+                    "@type": "Offer",
+                    "price": 29,
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://guillermobadia.com/es/tienda/"
+                }
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "@type": "Product",
+                "name": "Pack de plantillas PMO",
+                "description": "Conjunto de plantillas (Excel y Word) para gestión de proyectos: acta de constitución, plan de riesgos, seguimiento de hitos y cierre.",
+                "category": "template",
+                "offers": {
+                    "@type": "Offer",
+                    "price": 49,
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://guillermobadia.com/es/tienda/"
+                }
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "@type": "Product",
+                "name": "Skill: Validador de arquitectura hexagonal",
+                "description": "Paquete con reglas, prompts y plantilla para auditar proyectos Java/Spring Boot contra una arquitectura hexagonal de referencia. Entrega ZIP + clave de licencia.",
+                "category": "skill",
+                "offers": {
+                    "@type": "Offer",
+                    "price": 39,
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://guillermobadia.com/es/tienda/"
+                }
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+                "@type": "Product",
+                "name": "Curso: Liderar equipos remotos",
+                "description": "Formación en módulos sobre liderazgo de equipos distribuidos de hasta 20 personas: rituales, herramientas, métricas y cultura.",
+                "category": "course",
+                "offers": {
+                    "@type": "Offer",
+                    "price": 89,
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://guillermobadia.com/es/tienda/"
+                }
+            }
+        },
+        {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+                "@type": "Product",
+                "name": "Sesión de mentoría 1:1 (60 min)",
+                "description": "Sesión individual sobre transformación digital, gestión de proyectos o ciberseguridad. Tras el pago recibirás el enlace para reservar fecha y hora.",
+                "category": "service",
+                "offers": {
+                    "@type": "Offer",
+                    "price": 120,
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://guillermobadia.com/es/tienda/"
+                }
+            }
+        }
+    ]
+}
+    </script>
+    <!-- BUILD:shop-jsonld:end -->
 </head>
 <body>
     <header class="header">
@@ -157,8 +253,81 @@
     </section>
 
     <main class="shop-main">
-        <div id="shop-filters"></div>
-        <div id="shop-grid" class="shop-grid"></div>
+        <div id="shop-filters">
+        <!-- BUILD:shop-filters:start -->
+        <div class="shop-filters">
+            <button class="shop-filter active" type="button" data-filter="all">Todo</button>
+            <button class="shop-filter" type="button" data-filter="template">Plantilla</button>
+            <button class="shop-filter" type="button" data-filter="skill">Skill</button>
+            <button class="shop-filter" type="button" data-filter="course">Curso</button>
+            <button class="shop-filter" type="button" data-filter="service">Servicio</button>
+        </div>
+        <!-- BUILD:shop-filters:end -->
+        </div>
+        <div id="shop-grid" class="shop-grid">
+        <!-- BUILD:shop-grid:start -->
+            <div class="shop-card type-template" data-type="template">
+                <div class="shop-card-top">
+                    <div class="shop-card-icon"><i class="fas fa-file-lines"></i></div>
+                    <span class="shop-badge">Plantilla</span>
+                </div>
+                <h2>Plantilla de BRD (Business Requirement Document)</h2>
+                <p class="shop-card-desc">Plantilla profesional v6 para documentar requisitos de negocio en comités de proyectos. Incluye estructura, ejemplos y checklist de validación.</p>
+                <div class="shop-card-foot">
+                    <div class="shop-price">29 € <small>IVA incluido</small></div>
+                    <span class="shop-buy is-soon"><i class="fas fa-clock"></i> Próximamente</span>
+                </div>
+            </div>
+            <div class="shop-card type-template" data-type="template">
+                <div class="shop-card-top">
+                    <div class="shop-card-icon"><i class="fas fa-folder-open"></i></div>
+                    <span class="shop-badge">Plantilla</span>
+                </div>
+                <h2>Pack de plantillas PMO</h2>
+                <p class="shop-card-desc">Conjunto de plantillas (Excel y Word) para gestión de proyectos: acta de constitución, plan de riesgos, seguimiento de hitos y cierre.</p>
+                <div class="shop-card-foot">
+                    <div class="shop-price">49 € <small>IVA incluido</small></div>
+                    <span class="shop-buy is-soon"><i class="fas fa-clock"></i> Próximamente</span>
+                </div>
+            </div>
+            <div class="shop-card type-skill" data-type="skill">
+                <div class="shop-card-top">
+                    <div class="shop-card-icon"><i class="fas fa-cubes"></i></div>
+                    <span class="shop-badge">Skill</span>
+                </div>
+                <h2>Skill: Validador de arquitectura hexagonal</h2>
+                <p class="shop-card-desc">Paquete con reglas, prompts y plantilla para auditar proyectos Java/Spring Boot contra una arquitectura hexagonal de referencia. Entrega ZIP + clave de licencia.</p>
+                <div class="shop-card-foot">
+                    <div class="shop-price">39 € <small>IVA incluido</small></div>
+                    <span class="shop-buy is-soon"><i class="fas fa-clock"></i> Próximamente</span>
+                </div>
+            </div>
+            <div class="shop-card type-course" data-type="course">
+                <div class="shop-card-top">
+                    <div class="shop-card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <span class="shop-badge">Curso</span>
+                </div>
+                <h2>Curso: Liderar equipos remotos</h2>
+                <p class="shop-card-desc">Formación en módulos sobre liderazgo de equipos distribuidos de hasta 20 personas: rituales, herramientas, métricas y cultura.</p>
+                <div class="shop-card-foot">
+                    <div class="shop-price">89 € <small>IVA incluido</small></div>
+                    <span class="shop-buy is-soon"><i class="fas fa-clock"></i> Próximamente</span>
+                </div>
+            </div>
+            <div class="shop-card type-service" data-type="service">
+                <div class="shop-card-top">
+                    <div class="shop-card-icon"><i class="fas fa-comments"></i></div>
+                    <span class="shop-badge">Servicio</span>
+                </div>
+                <h2>Sesión de mentoría 1:1 (60 min)</h2>
+                <p class="shop-card-desc">Sesión individual sobre transformación digital, gestión de proyectos o ciberseguridad. Tras el pago recibirás el enlace para reservar fecha y hora.</p>
+                <div class="shop-card-foot">
+                    <div class="shop-price">120 € <small>IVA incluido</small></div>
+                    <span class="shop-buy is-soon"><i class="fas fa-clock"></i> Próximamente</span>
+                </div>
+            </div>
+        <!-- BUILD:shop-grid:end -->
+        </div>
         <p class="shop-note">
             Pago gestionado de forma segura por nuestro proveedor (Merchant of Record), que emite la factura con el IVA correspondiente.
             Consulta los <a href="terminos.html">términos de venta</a> y la <a href="reembolsos.html">política de reembolso</a>.
