@@ -68,23 +68,6 @@
         "name": "Course: Leading remote teams",
         "desc": "Modular training on leading distributed teams of up to 20 people: rituals, tools, metrics and culture."
       }
-    },
-    {
-      "id": "servicio-mentoria",
-      "type": "service",
-      "price": 120,
-      "currency": "EUR",
-      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
-      "icon": "fa-comments",
-      "featured": true,
-      "es": {
-        "name": "Sesión de mentoría 1:1 (60 min)",
-        "desc": "Sesión individual sobre transformación digital, gestión de proyectos o ciberseguridad. Tras el pago recibirás el enlace para reservar fecha y hora."
-      },
-      "en": {
-        "name": "1:1 mentoring session (60 min)",
-        "desc": "One-on-one session on digital transformation, project management or cybersecurity. After payment you will receive a link to book a date and time."
-      }
     }
   ]
 }
