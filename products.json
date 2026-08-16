@@ -2,71 +2,54 @@
   "_comment": "Fuente única del catálogo de la tienda (ES/EN). Para activar el cobro real: crea cada producto en Lemon Squeezy (Merchant of Record) y sustituye el valor REPLACE-ME de 'checkoutUrl' por la URL de checkout del producto (https://TUSTORE.lemonsqueezy.com/buy/UUID). Mientras 'checkoutUrl' contenga 'REPLACE-ME' el botón aparecerá como 'Próximamente' y no romperá la web. Alternativa Gumroad: usa la URL del producto de Gumroad como 'checkoutUrl'.",
   "products": [
     {
-      "id": "plantilla-brd",
+      "id": "pack-gestion-proyectos",
       "type": "template",
-      "price": 29,
+      "price": 39,
       "currency": "EUR",
       "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
-      "icon": "fa-file-lines",
+      "icon": "fa-folder-open",
       "featured": true,
       "es": {
-        "name": "Plantilla de BRD (Business Requirement Document)",
-        "desc": "Plantilla profesional v6 para documentar requisitos de negocio en comités de proyectos. Incluye estructura, ejemplos y checklist de validación."
+        "name": "Pack Gestión de Proyectos",
+        "desc": "Seis plantillas Excel para dirigir un proyecto de principio a fin: acta de constitución, plan con Gantt, registro RAID, matriz RACI, informe ejecutivo y lecciones aprendidas. Sin macros."
       },
       "en": {
-        "name": "BRD Template (Business Requirement Document)",
-        "desc": "Professional v6 template to document business requirements for project committees. Includes structure, examples and a validation checklist."
+        "name": "Project Management Pack",
+        "desc": "Six Excel templates to run a project end to end: project charter, Gantt plan, RAID log, RACI matrix, executive status report and lessons learned. Macro-free."
       }
     },
     {
-      "id": "pack-plantillas-pmo",
+      "id": "pack-gobernanza-ti",
       "type": "template",
       "price": 49,
       "currency": "EUR",
       "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
-      "icon": "fa-folder-open",
+      "icon": "fa-sitemap",
       "featured": false,
       "es": {
-        "name": "Pack de plantillas PMO",
-        "desc": "Conjunto de plantillas (Excel y Word) para gestión de proyectos: acta de constitución, plan de riesgos, seguimiento de hitos y cierre."
+        "name": "Pack Gobernanza TI",
+        "desc": "Cinco plantillas Excel de gobierno de TI y gestión de cartera: acta de comité, cuadro de mando de cartera, priorización de iniciativas, gestión de cambios y plan de comunicación."
       },
       "en": {
-        "name": "PMO Templates Pack",
-        "desc": "Set of templates (Excel and Word) for project management: project charter, risk plan, milestone tracking and closure."
+        "name": "IT Governance Pack",
+        "desc": "Five Excel templates for IT governance and portfolio management: committee minutes, portfolio dashboard, initiative scoring, change management and communication plan."
       }
     },
     {
-      "id": "skill-arquitectura-hexagonal",
-      "type": "skill",
-      "price": 39,
+      "id": "suite-completa",
+      "type": "template",
+      "price": 69,
       "currency": "EUR",
       "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
-      "icon": "fa-cubes",
+      "icon": "fa-layer-group",
       "featured": true,
       "es": {
-        "name": "Skill: Validador de arquitectura hexagonal",
-        "desc": "Paquete con reglas, prompts y plantilla para auditar proyectos Java/Spring Boot contra una arquitectura hexagonal de referencia. Entrega ZIP + clave de licencia."
+        "name": "Suite completa",
+        "desc": "Las once plantillas Excel: el pack de dirección de proyectos y el de gobierno de TI juntos, con descuento frente a comprarlos por separado."
       },
       "en": {
-        "name": "Skill: Hexagonal architecture validator",
-        "desc": "Package with rules, prompts and a template to audit Java/Spring Boot projects against a reference hexagonal architecture. Delivered as ZIP + license key."
-      }
-    },
-    {
-      "id": "curso-liderazgo-remoto",
-      "type": "course",
-      "price": 89,
-      "currency": "EUR",
-      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
-      "icon": "fa-graduation-cap",
-      "featured": false,
-      "es": {
-        "name": "Curso: Liderar equipos remotos",
-        "desc": "Formación en módulos sobre liderazgo de equipos distribuidos de hasta 20 personas: rituales, herramientas, métricas y cultura."
-      },
-      "en": {
-        "name": "Course: Leading remote teams",
-        "desc": "Modular training on leading distributed teams of up to 20 people: rituals, tools, metrics and culture."
+        "name": "Complete Suite",
+        "desc": "All eleven Excel templates: the project management pack and the IT governance pack together, at a discount over buying them separately."
       }
     }
   ]
