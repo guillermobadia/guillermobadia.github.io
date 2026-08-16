@@ -90,6 +90,10 @@ def card_html(p, lang, t):
 
 
 def filters_html(types, t):
+    # Con una sola categoría el filtro no filtra nada: js/tienda.js tampoco lo
+    # monta en ese caso, así que pre-renderizarlo dejaría botones sin listener.
+    if len(types) < 2:
+        return "        "
     buttons = [('all', t["all"])] + [(ty, t["types"].get(ty, ty)) for ty in types]
     out = ['        <div class="shop-filters">']
     for i, (value, label) in enumerate(buttons):

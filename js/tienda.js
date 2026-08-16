@@ -224,10 +224,15 @@
                         }
                     }
 
+                    // Se vacía siempre antes de decidir: si el HTML viene
+                    // pre-renderizado con una barra de filtros, sus botones no
+                    // tienen listener y quedarían muertos al pulsarlos.
                     var filtersHost = document.querySelector(filtersSel);
-                    if (filtersHost && types.length > 1) {
+                    if (filtersHost) {
                         filtersHost.innerHTML = '';
-                        filtersHost.appendChild(buildFilters(types, lang, t, render));
+                        if (types.length > 1) {
+                            filtersHost.appendChild(buildFilters(types, lang, t, render));
+                        }
                     }
 
                     render('all');
