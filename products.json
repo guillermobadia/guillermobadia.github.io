@@ -6,7 +6,7 @@
       "type": "template",
       "price": 39,
       "currency": "EUR",
-      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
+      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/checkout/buy/a4afa58f-f348-4e0c-8123-bb02ec35bc77",
       "icon": "fa-folder-open",
       "featured": true,
       "es": {
@@ -23,7 +23,7 @@
       "type": "template",
       "price": 49,
       "currency": "EUR",
-      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
+      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/checkout/buy/2feda965-7df9-4392-acf4-e0ea5be44fee",
       "icon": "fa-sitemap",
       "featured": false,
       "es": {
@@ -40,7 +40,7 @@
       "type": "template",
       "price": 69,
       "currency": "EUR",
-      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/buy/REPLACE-ME",
+      "checkoutUrl": "https://guillermobadia.lemonsqueezy.com/checkout/buy/e4dad1e7-411c-4339-a5a8-528574b5342c",
       "icon": "fa-layer-group",
       "featured": true,
       "es": {
