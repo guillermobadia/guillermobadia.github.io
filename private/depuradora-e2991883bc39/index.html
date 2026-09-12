@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Depuradora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+  :root{
+    color-scheme:light only;
+    --primary:#2563eb; --primary-dark:#1d4ed8; --accent:#3b82f6;
+    --dark:#1e293b; --text:#1f2937; --muted:#4b5563; --soft:#64748b;
+    --light:#f8fafc; --white:#fff; --line:#e2e8f0;
+    --success:#10b981; --warning:#f59e0b; --error:#ef4444;
+    --radius:12px; --shadow:0 2px 10px rgba(0,0,0,.06); --shadow-lg:0 4px 20px rgba(37,99,235,.15);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%;background:var(--light);color:var(--text);
+    font-family:'Poppins',-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6}
+
+  header{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:#fff;
+    padding:20px 20px 16px;position:relative;overflow:hidden}
+  header::before{content:'';position:absolute;inset:0;opacity:.1;
+    background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.35'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+  .hwrap{position:relative;max-width:720px;margin:0 auto}
+  header h1{font-size:1.6rem;font-weight:700;letter-spacing:-.4px;display:flex;align-items:center;gap:10px}
+  header h1 i{font-size:1.3rem;opacity:.9}
+  header .date{opacity:.85;font-size:.92rem;margin-top:2px}
+  header .date::first-letter{text-transform:uppercase}
+  header .why{font-size:.85rem;opacity:.85;margin-top:10px;min-height:20px}
+  .seasons{display:flex;gap:6px;margin-top:12px}
+  .seasons button{flex:1 1 0;min-width:0;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;
+    border-radius:999px;padding:8px 2px;font-size:.78rem;font-family:inherit;font-weight:500;cursor:pointer;
+    transition:all .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .seasons button.on{background:#fff;color:var(--primary-dark);border-color:#fff;font-weight:600}
+
+  main{padding:20px 16px 100px;max-width:720px;margin:0 auto}
+  .view{display:none}.view.on{display:block}
+  h2{font-size:.82rem;font-weight:600;color:var(--soft);margin:22px 0 10px;
+    text-transform:uppercase;letter-spacing:.6px}
+  h2:first-child{margin-top:0}
+
+  .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:4px 18px;margin-bottom:4px}
+
+  .task{display:flex;align-items:center;gap:9px;padding:15px 0;border-bottom:1px solid var(--line)}
+  .task:last-child{border-bottom:0}
+  .task .name{font-weight:600;font-size:.95rem;overflow-wrap:anywhere}
+  .task .meta{font-size:.79rem;color:var(--soft)}
+  .task .grow{flex:1 1 auto;min-width:0}
+  .pill{font-size:.72rem;font-weight:600;padding:4px 8px;border-radius:999px;white-space:nowrap;flex:0 0 auto}
+  .pill.due{background:#fee2e2;color:#b91c1c}
+  .pill.today{background:#fef3c7;color:#b45309}
+  .pill.ok{background:#d1fae5;color:#047857}
+  .task button{border:0;background:var(--primary);color:#fff;border-radius:8px;padding:9px 13px;
+    font-size:.85rem;font-weight:600;font-family:inherit;cursor:pointer;transition:background .2s;flex:0 0 auto}
+  .task button:hover{background:var(--primary-dark)}
+
+  .big{width:100%;border:0;background:var(--primary);color:#fff;border-radius:var(--radius);padding:15px;
+    font-size:1rem;font-weight:600;font-family:inherit;margin-top:16px;cursor:pointer;
+    box-shadow:var(--shadow-lg);transition:all .2s}
+  .big:hover{background:var(--primary-dark);transform:translateY(-1px)}
+  .ghost{width:100%;border:1px solid var(--line);background:#fff;color:var(--text);border-radius:var(--radius);
+    padding:13px;font-size:.94rem;font-family:inherit;margin-top:10px;cursor:pointer;transition:all .2s}
+  .ghost:hover{border-color:var(--primary);color:var(--primary)}
+  .empty{padding:22px 0;color:var(--soft);font-size:.92rem}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:5px;font-weight:500}
+  input,textarea{width:100%;font-family:inherit;font-size:1rem;padding:0 13px;height:48px;
+    border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--text);
+    -webkit-appearance:none;appearance:none;display:block}
+  input[type=date]{line-height:46px;text-align:left}
+  input[type=date]::-webkit-date-and-time-value{text-align:left;height:46px;line-height:46px}
+  textarea{height:auto;padding:12px 13px;line-height:1.5}
+  input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+  .range{font-size:.74rem;color:var(--soft);font-weight:400}
+  .hint{font-size:.84rem;color:var(--soft);margin-top:6px;line-height:1.55}
+
+  .reading{padding:15px 0;border-bottom:1px solid var(--line)}
+  .reading:last-child{border-bottom:0}
+  .reading .top{display:flex;justify-content:space-between;align-items:baseline}
+  .reading .d{font-weight:600;font-size:.94rem}
+  .reading .del{background:none;border:0;color:var(--soft);font-size:.82rem;padding:4px;
+    cursor:pointer;font-family:inherit}
+  .reading .del:hover{color:var(--error)}
+  .vals{display:flex;flex-wrap:wrap;gap:6px 8px;margin-top:8px}
+  .v{font-size:.86rem;padding:4px 10px;border-radius:8px;background:var(--light);color:var(--muted)}
+  .v.lo,.v.hi{background:#fee2e2;color:#b91c1c}
+  .v.ok{background:#d1fae5;color:#047857}
+  .act{font-size:.88rem;color:var(--muted);margin-top:8px;font-style:italic}
+
+  .chart{margin:6px 0 16px}
+  .chart .t{display:flex;justify-content:space-between;font-size:.84rem;color:var(--soft);margin-bottom:4px}
+  .chart .t b{color:var(--text);font-weight:600}
+  svg{width:100%;height:64px;display:block}
+
+  nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:#fff;
+    border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);
+    box-shadow:0 -2px 10px rgba(0,0,0,.04);z-index:50}
+  nav button{flex:1;border:0;background:none;padding:11px 0 9px;font-size:.76rem;color:var(--soft);
+    font-weight:600;font-family:inherit;cursor:pointer;transition:color .2s;
+    display:flex;flex-direction:column;align-items:center;gap:3px}
+  nav button.on{color:var(--primary)}
+  nav i{font-size:1.1rem;line-height:1}
+
+  .toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:var(--dark);color:#fff;
+    padding:11px 20px;border-radius:999px;font-size:.9rem;opacity:0;transition:opacity .2s;
+    pointer-events:none;z-index:60;box-shadow:var(--shadow-lg)}
+  .toast.show{opacity:1}
+
+  .setrow{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:8px;align-items:center;
+    padding:10px 0;border-bottom:1px solid var(--line);font-size:.92rem}
+  .setrow:last-child{border-bottom:0}
+  .sethead{font-size:.72rem;color:var(--soft);text-transform:uppercase;letter-spacing:.4px;font-weight:600}
+  .setrow input{padding:0 4px;height:42px;text-align:center;font-size:.94rem}
+
+  .alert{background:#fef3c7;border-left:4px solid var(--warning);padding:12px 14px;
+    border-radius:8px;font-size:.9rem;margin-bottom:10px;color:#78350f}
+
+  footer{text-align:center;font-size:.78rem;color:var(--soft);padding:24px 16px 0}
+  @media (prefers-reduced-motion:reduce){.toast,.big,.task button{transition:none}}
+  @media(min-width:600px){header h1{font-size:1.85rem}}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <h1><i class="fas fa-water"></i> Depuradora</h1>
+    <div class="date" id="today"></div>
+    <div class="why" id="why"></div>
+    <div class="seasons" id="seasons"></div>
+  </div>
+</header>
+
+<main>
+  <section class="view on" id="v-hoy">
+    <div id="alerts"></div>
+    <h2>Tareas</h2>
+    <div class="card" id="tasks"></div>
+    <button class="big" onclick="doneAll()">Marcar todo hecho hoy</button>
+  </section>
+
+  <section class="view" id="v-lect">
+    <h2>Nueva lectura</h2>
+    <div class="card" style="padding:18px">
+      <div class="grid">
+        <div><label>Fecha</label><input type="date" id="f-date"></div>
+        <div><label>Cloro <span class="range">ppm · 1–3</span></label><input type="number" step="0.1" inputmode="decimal" id="f-cl" placeholder="2,0"></div>
+        <div><label>pH <span class="range">7,2–7,6</span></label><input type="number" step="0.1" inputmode="decimal" id="f-ph" placeholder="7,4"></div>
+        <div><label>Alcalinidad <span class="range">ppm · 80–120</span></label><input type="number" step="1" inputmode="decimal" id="f-alc" placeholder="100"></div>
+        <div><label>Sal <span class="range">g/L · 3–6</span></label><input type="number" step="0.1" inputmode="decimal" id="f-sal" placeholder="4,5"></div>
+        <div><label>Producción clorador <span class="range">%</span></label><input type="number" step="5" inputmode="numeric" id="f-prod" placeholder="60"></div>
+        <div><label>Temp. agua <span class="range">°C</span></label><input type="number" step="0.5" inputmode="decimal" id="f-tw" placeholder="26"></div>
+      </div>
+      <label style="margin-top:12px">Acción tomada (producto y cantidad)</label>
+      <textarea id="f-act" rows="2" placeholder="Ej.: 1 kg bicarbonato; producción del 80 % al 60 %"></textarea>
+    </div>
+    <button class="big" onclick="saveReading()">Guardar lectura</button>
+
+    <h2>Tendencia</h2>
+    <div class="card" style="padding:16px 18px" id="charts"></div>
+
+    <h2>Historial</h2>
+    <div class="card" id="readings"></div>
+  </section>
+
+  <section class="view" id="v-ajustes">
+    <h2>Frecuencia de cada tarea (días)</h2>
+    <div class="card" style="padding:14px 18px">
+      <div class="setrow sethead"><span></span><span>Verano</span><span>Entre</span><span>Invierno</span></div>
+      <div id="settings"></div>
+    </div>
+
+    <h2>Cómo se decide la estación</h2>
+    <div class="card" style="padding:16px 18px">
+      <p class="hint" style="margin:0">Verano si la temperatura de referencia es ≥ 24 °C, invierno si es &lt; 15 °C,
+      entretiempo en medio. La referencia es, por este orden: temperatura del agua de una lectura de los últimos
+      7 días; si no, media de las máximas de los últimos 7 días en Vinalesa (Open-Meteo); si no hay conexión, el mes.
+      Forzarla a mano anula todo lo anterior.</p>
+    </div>
+
+    <h2>Datos</h2>
+    <div class="card" style="padding:16px 18px">
+      <p class="hint" style="margin:0 0 6px">Todo se guarda en este navegador y en este dispositivo. No se envía a
+      ningún servidor. Si cambias de móvil o borras los datos del navegador, se pierde: exporta antes y pega el
+      texto en el otro dispositivo.</p>
+    </div>
+    <button class="ghost" onclick="exportData()">Copiar mis datos</button>
+    <button class="ghost" onclick="importData()">Importar datos</button>
+    <button class="ghost" onclick="resetTasks()">Reiniciar fechas de tareas</button>
+    <footer>Uso privado · guillermobadia.com</footer>
+  </section>
+</main>
+
+<nav>
+  <button class="on" data-v="hoy" onclick="go('hoy')"><i class="fas fa-list-check"></i>Hoy</button>
+  <button data-v="lect" onclick="go('lect')"><i class="fas fa-flask"></i>Lecturas</button>
+  <button data-v="ajustes" onclick="go('ajustes')"><i class="fas fa-gear"></i>Ajustes</button>
+</nav>
+<div class="toast" id="toast"></div>
+
+<script>
+const KEY='depuradora-v1';
+const LAT=39.54,LON=-0.36; // Vinalesa, 46114
+const SEASONS=[['auto','Auto'],['verano','Verano'],['entre','Entretiempo'],['invierno','Invierno']];
+const NAME={verano:'Verano',entre:'Entretiempo',invierno:'Invierno'};
+const DEFAULT_TASKS=[
+  {id:'fd',name:'Filtro depuradora',freq:{verano:3,entre:3,invierno:3}},
+  {id:'fc',name:'Filtro cascada',freq:{verano:3,entre:3,invierno:3}},
+  {id:'fs',name:'Filtro skimmer',freq:{verano:3,entre:3,invierno:3}},
+  {id:'rev',name:'Revisión cloro y pH',freq:{verano:3,entre:30,invierno:30}},
+  {id:'lav',name:'Lavado depuradora',freq:{verano:7,entre:7,invierno:30}},
+  {id:'cal',name:'Calibrado pH',freq:{verano:90,entre:90,invierno:90}},
+  {id:'foto',name:'Lavado fotocélula',freq:{verano:90,entre:90,invierno:90}},
+];
+const RANGES={cl:[1,3],ph:[7.2,7.6],alc:[80,120],sal:[3,6]};
+const LABELS={cl:'Cloro',ph:'pH',alc:'Alcalinidad',sal:'Sal',prod:'Producción',tw:'Agua'};
+const UNITS={cl:' ppm',ph:'',alc:' ppm',sal:' g/L',prod:' %',tw:' °C'};
+
+let S={tasks:DEFAULT_TASKS.map(t=>({...t,last:null})),readings:[],seasonOverride:null};
+let weather=null;
+
+const iso=d=>d.toISOString().slice(0,10);
+const todayISO=()=>iso(new Date());
+const days=(a,b)=>Math.round((new Date(b)-new Date(a))/86400000);
+const fmt=s=>new Date(s+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'short',year:'2-digit'});
+const num=v=>v.toString().replace('.',',');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function byTemp(t){return t>=24?'verano':t<15?'invierno':'entre';}
+function byMonth(){const m=new Date().getMonth()+1;if(m>=6&&m<=9)return'verano';if(m>=12||m<=3)return'invierno';return'entre';}
+function seasonInfo(){
+  if(S.seasonOverride)return{k:S.seasonOverride,why:'Forzada a mano'};
+  const recent=S.readings.find(r=>r.tw!=null&&days(r.date,todayISO())<=7);
+  if(recent)return{k:byTemp(recent.tw),why:`Agua a ${num(recent.tw)} °C (${fmt(recent.date)})`};
+  if(weather&&weather.ok)return{k:byTemp(weather.temp),why:`Vinalesa: máximas de ${num(weather.temp)} °C de media, últimos 7 días`};
+  return{k:byMonth(),why:weather?'Sin conexión con el tiempo; estación por mes':'Consultando el tiempo…'};
+}
+const season=()=>seasonInfo().k;
+
+async function fetchWeather(){
+  try{
+    const u=`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&daily=temperature_2m_max&past_days=7&forecast_days=1&timezone=Europe%2FMadrid`;
+    const r=await fetch(u);const j=await r.json();
+    const v=j.daily.temperature_2m_max.slice(0,7).filter(x=>x!=null);
+    weather={ok:v.length>0,temp:Math.round(v.reduce((a,b)=>a+b,0)/v.length*10)/10};
+  }catch(e){weather={ok:false};}
+  render();
+}
+
+function load(){
+  try{
+    const raw=localStorage.getItem(KEY);
+    if(raw){
+      const d=JSON.parse(raw);
+      S={...S,...d};
+      DEFAULT_TASKS.forEach(t=>{if(!S.tasks.find(x=>x.id===t.id))S.tasks.push({...t,last:null});});
+    }
+  }catch(e){}
+  render();fetchWeather();
+}
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify(S));}
+  catch(e){toast('No se pudo guardar');}
+}
+
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600);}
+function go(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));window.scrollTo(0,0);}
+
+function render(){
+  const si=seasonInfo();
+  document.getElementById('today').textContent=new Date().toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+  document.getElementById('why').textContent=`${NAME[si.k]} · ${si.why}`;
+  document.getElementById('seasons').innerHTML=SEASONS.map(([k,l])=>{
+    const on=k==='auto'?!S.seasonOverride:S.seasonOverride===k;
+    return`<button class="${on?'on':''}" onclick="setSeason('${k}')">${l}</button>`;}).join('');
+  renderTasks();renderAlerts();renderReadings();renderCharts();renderSettings();
+  if(!document.getElementById('f-date').value)document.getElementById('f-date').value=todayISO();
+}
+function setSeason(k){S.seasonOverride=k==='auto'?null:k;save();render();}
+
+function taskState(t){
+  const f=t.freq[season()];
+  if(!t.last)return{n:null,cls:'due',txt:'Sin registro'};
+  const n=f-days(t.last,todayISO());
+  if(n<0)return{n,cls:'due',txt:`Vencida hace ${-n} d`};
+  if(n===0)return{n,cls:'today',txt:'Toca hoy'};
+  return{n,cls:'ok',txt:`En ${n} d`};
+}
+function renderTasks(){
+  const list=S.tasks.map(t=>({t,s:taskState(t)})).sort((a,b)=>(a.s.n??-999)-(b.s.n??-999));
+  document.getElementById('tasks').innerHTML=list.map(({t,s})=>`
+    <div class="task"><div class="grow"><div class="name">${esc(t.name)}</div>
+    <div class="meta">${t.last?'Última: '+fmt(t.last):'Nunca marcada'} · cada ${t.freq[season()]} d</div></div>
+    <span class="pill ${s.cls}">${s.txt}</span><button onclick="done('${t.id}')">Hecho</button></div>`).join('');
+}
+function done(id){const t=S.tasks.find(x=>x.id===id);t.last=todayISO();save();render();toast(t.name+': hecho');}
+function doneAll(){S.tasks.forEach(t=>t.last=todayISO());save();render();toast('Todas marcadas hoy');}
+function resetTasks(){if(confirm('¿Borrar las fechas de última ejecución?')){S.tasks.forEach(t=>t.last=null);save();render();}}
+
+function cls(k,v){if(v==null||v===''||!RANGES[k])return'';const[a,b]=RANGES[k];return v<a?'lo':v>b?'hi':'ok';}
+function renderAlerts(){
+  const rs=S.readings.slice(0,4);const out=[];
+  if(rs.length>=3&&rs.every(r=>r.cl>3))out.push('El cloro lleva alto en las últimas '+rs.length+' lecturas. Baja la producción del clorador.');
+  if(rs.length>=2&&rs[0].alc>120&&rs[1].alc<80)out.push('La alcalinidad ha pasado de baja a alta: la dosis de bicarbonato fue excesiva. Apunta la cantidad para ajustar.');
+  const rev=S.tasks.find(t=>t.id==='rev');
+  if(rs[0]&&days(rs[0].date,todayISO())>rev.freq[season()])out.push('Última lectura hace '+days(rs[0].date,todayISO())+' días.');
+  document.getElementById('alerts').innerHTML=out.map(a=>`<div class="alert">${esc(a)}</div>`).join('');
+}
+function saveReading(){
+  const g=id=>{const v=document.getElementById(id).value;return v===''?null:parseFloat(v);};
+  const r={date:document.getElementById('f-date').value||todayISO(),cl:g('f-cl'),ph:g('f-ph'),alc:g('f-alc'),sal:g('f-sal'),prod:g('f-prod'),tw:g('f-tw'),act:document.getElementById('f-act').value.trim()};
+  if(r.cl==null&&r.ph==null&&r.alc==null&&r.sal==null&&r.tw==null){toast('Introduce al menos un valor');return;}
+  S.readings.push(r);S.readings.sort((a,b)=>b.date.localeCompare(a.date));
+  const rev=S.tasks.find(t=>t.id==='rev');if((r.cl!=null||r.ph!=null)&&(!rev.last||r.date>rev.last))rev.last=r.date;
+  ['f-cl','f-ph','f-alc','f-sal','f-prod','f-tw','f-act'].forEach(i=>document.getElementById(i).value='');
+  save();render();toast('Lectura guardada');go('hoy');
+}
+function delReading(i){if(confirm('¿Borrar esta lectura?')){S.readings.splice(i,1);save();render();}}
+function renderReadings(){
+  const el=document.getElementById('readings');
+  if(!S.readings.length){el.innerHTML='<div class="empty" style="padding:22px 18px">Sin lecturas todavía. Guarda la primera arriba.</div>';return;}
+  el.innerHTML=S.readings.map((r,i)=>`<div class="reading"><div class="top"><span class="d">${fmt(r.date)}</span><button class="del" onclick="delReading(${i})">Borrar</button></div>
+    <div class="vals">${['cl','ph','alc','sal','prod','tw'].filter(k=>r[k]!=null).map(k=>`<span class="v ${cls(k,r[k])}">${LABELS[k]} ${num(r[k])}${UNITS[k]}</span>`).join('')}</div>
+    ${r.act?`<div class="act">${esc(r.act)}</div>`:''}</div>`).join('');
+}
+function renderCharts(){
+  const el=document.getElementById('charts');const rs=[...S.readings].reverse();
+  if(rs.length<2){el.innerHTML='<div class="empty">Con dos o más lecturas verás la evolución.</div>';return;}
+  el.innerHTML=['cl','ph','alc','sal'].map(k=>{
+    const pts=rs.map((r,i)=>[i,r[k]]).filter(p=>p[1]!=null);if(pts.length<2)return'';
+    const[lo,hi]=RANGES[k];const ys=pts.map(p=>p[1]);const mn=Math.min(lo,...ys),mx=Math.max(hi,...ys),sp=(mx-mn)||1;
+    const W=300,H=64,x=i=>4+i*(W-8)/Math.max(1,rs.length-1),y=v=>H-4-(v-mn)*(H-8)/sp;
+    const band=`<rect x="0" y="${y(hi)}" width="${W}" height="${y(lo)-y(hi)}" fill="#d1fae5"/>`;
+    const line=`<polyline fill="none" stroke="#2563eb" stroke-width="2" points="${pts.map(p=>x(p[0])+','+y(p[1])).join(' ')}"/>`;
+    const dots=pts.map(p=>`<circle cx="${x(p[0])}" cy="${y(p[1])}" r="3" fill="${cls(k,p[1])==='ok'?'#10b981':'#ef4444'}"/>`).join('');
+    const last=pts[pts.length-1][1];
+    return`<div class="chart"><div class="t"><span><b>${LABELS[k]}</b></span><span>${num(last)}${UNITS[k]} · objetivo ${num(lo)}–${num(hi)}</span></div><svg viewBox="0 0 ${W} ${H}">${band}${line}${dots}</svg></div>`;
+  }).join('');
+}
+function renderSettings(){
+  document.getElementById('settings').innerHTML=S.tasks.map(t=>`<div class="setrow"><span>${esc(t.name)}</span>${['verano','entre','invierno'].map(k=>`<input type="number" inputmode="numeric" value="${t.freq[k]}" onchange="setFreq('${t.id}','${k}',this.value)">`).join('')}</div>`).join('');
+}
+function setFreq(id,k,v){const n=parseInt(v);if(n>0){S.tasks.find(t=>t.id===id).freq[k]=n;save();renderTasks();}}
+
+function exportData(){
+  const txt=JSON.stringify(S,null,1);
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(txt).then(()=>toast('Copiado al portapapeles')).catch(()=>prompt('Copia este texto:',txt));
+  }else{prompt('Copia este texto:',txt);}
+}
+function importData(){
+  const txt=prompt('Pega aquí los datos exportados. Sustituirán a los actuales.');
+  if(!txt)return;
+  try{
+    const d=JSON.parse(txt);
+    if(!d||!Array.isArray(d.tasks)||!Array.isArray(d.readings))throw new Error('formato');
+    if(!confirm('Se sustituirán las tareas y lecturas actuales. ¿Seguir?'))return;
+    S={...S,...d};
+    DEFAULT_TASKS.forEach(t=>{if(!S.tasks.find(x=>x.id===t.id))S.tasks.push({...t,last:null});});
+    save();render();toast('Datos importados');
+  }catch(e){toast('Ese texto no es válido');}
+}
+load();
+</script>
+</body>
+</html>
