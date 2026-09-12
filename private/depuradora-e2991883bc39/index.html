@@ -230,8 +230,8 @@
 // Mientras clientId y backend estén vacíos, la app funciona como siempre: en
 // local, sin login y sin pago. Al rellenarlos aparece la sincronización.
 const NUBE={
-  clientId:'',   // ID de cliente de Google, acabado en .apps.googleusercontent.com
-  backend:'',    // URL del Apps Script, acabada en /exec
+  clientId:'770253270561-if4qk38b07g2j5q5avv2js885fu8qa55.apps.googleusercontent.com', // ID de cliente de Google, acabado en .apps.googleusercontent.com
+  backend:'https://script.google.com/macros/s/AKfycbyzeeBlzlmy76cxPy-PxekR6U7Nh0tlXlYnKXK2JtcXmJ3INL5YNyYgoPrMstEkqsYn/exec', // URL del Apps Script, acabada en /exec
   enlacePago:''  // enlace de pago de Stripe
 };
 const nubeLista=()=>Boolean(NUBE.clientId&&NUBE.backend);
