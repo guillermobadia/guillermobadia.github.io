@@ -188,6 +188,14 @@
       Forzarla a mano anula todo lo anterior.</p>
     </div>
 
+    <section id="bloque-nube" style="display:none">
+      <h2>Copia en la nube</h2>
+      <div class="card" style="padding:16px 18px">
+        <div id="nube-estado"></div>
+        <div id="nube-acciones"></div>
+      </div>
+    </section>
+
     <h2>Este dispositivo</h2>
     <div class="card" style="padding:16px 18px">
       <label for="f-profile">Nombre con el que se firman tus apuntes</label>
@@ -218,6 +226,16 @@
 <div class="toast" id="toast"></div>
 
 <script>
+// --- Configuración de la nube ---------------------------------------------
+// Mientras clientId y backend estén vacíos, la app funciona como siempre: en
+// local, sin login y sin pago. Al rellenarlos aparece la sincronización.
+const NUBE={
+  clientId:'',   // ID de cliente de Google, acabado en .apps.googleusercontent.com
+  backend:'',    // URL del Apps Script, acabada en /exec
+  enlacePago:''  // enlace de pago de Stripe
+};
+const nubeLista=()=>Boolean(NUBE.clientId&&NUBE.backend);
+
 const KEY='depuradora-v1';
 const LAT=39.54,LON=-0.36; // Vinalesa, 46114
 const SEASONS=[['auto','Auto'],['verano','Verano'],['entre','Entretiempo'],['invierno','Invierno']];
@@ -236,8 +254,11 @@ const LABELS={cl:'Cloro',ph:'pH',alc:'Alcalinidad',sal:'Sal',prod:'Producción',
 const UNITS={cl:' ppm',ph:'',alc:' ppm',sal:' g/L',prod:' %',tw:' °C'};
 
 let S={tasks:DEFAULT_TASKS.map(t=>({...t,last:null})),readings:[],seasonOverride:null,
-       profile:null,lastBackup:null};
+       profile:null,lastBackup:null,ultimaSync:null};
 let weather=null;
+// Estado de la sesión en la nube. Se declara aquí, antes del primer render,
+// porque renderAlerts lo consulta para decidir si avisa de la copia manual.
+let sesion={idToken:null,correo:null,acceso:false,motivo:null};
 
 // --- Perfil del dispositivo ---
 // Identifica quién apunta cada cosa cuando la app la usa más de una persona.
@@ -353,8 +374,8 @@ function renderTasks(){
     <div class="meta">${t.last?'Última: '+fmt(t.last)+(varios&&t.by?' · '+esc(t.by):''):'Nunca marcada'} · cada ${t.freq[season()]} d</div></div>
     <span class="pill ${s.cls}">${s.txt}</span><button onclick="done('${t.id}')">Hecho</button></div>`).join('');
 }
-function done(id){const t=S.tasks.find(x=>x.id===id);t.last=todayISO();t.by=who();save();render();toast(t.name+': hecho');}
-function doneAll(){S.tasks.forEach(t=>{t.last=todayISO();t.by=who();});save();render();toast('Todas marcadas hoy');}
+function done(id){const t=S.tasks.find(x=>x.id===id);t.last=todayISO();t.by=who();save();render();toast(t.name+': hecho');sincronizar(false);}
+function doneAll(){S.tasks.forEach(t=>{t.last=todayISO();t.by=who();});save();render();toast('Todas marcadas hoy');sincronizar(false);}
 function resetTasks(){if(confirm('¿Borrar las fechas de última ejecución?')){S.tasks.forEach(t=>t.last=null);save();render();}}
 
 function cls(k,v){if(v==null||v===''||!RANGES[k])return'';const[a,b]=RANGES[k];return v<a?'lo':v>b?'hi':'ok';}
@@ -365,7 +386,8 @@ function renderAlerts(){
   const rev=S.tasks.find(t=>t.id==='rev');
   if(rs[0]&&days(rs[0].date,todayISO())>rev.freq[season()])out.push('Última lectura hace '+days(rs[0].date,todayISO())+' días.');
   // Los datos viven solo en este navegador: recordar la copia de seguridad.
-  if(S.readings.length){
+  // Si la nube está activa y con acceso, la copia se hace sola y no hace falta avisar.
+  if(S.readings.length&&!sesion.acceso){
     const d=S.lastBackup?days(S.lastBackup,todayISO()):null;
     if(d===null)out.push('Aún no has hecho ninguna copia. Los datos están solo en este dispositivo: en Ajustes, «Copiar mis datos».');
     else if(d>=30)out.push('Hace '+d+' días de la última copia. En Ajustes, «Copiar mis datos».');
@@ -380,7 +402,7 @@ function saveReading(){
   S.readings.push(r);S.readings.sort((a,b)=>b.date.localeCompare(a.date));
   const rev=S.tasks.find(t=>t.id==='rev');if((r.cl!=null||r.ph!=null)&&(!rev.last||r.date>rev.last))rev.last=r.date;
   ['f-cl','f-ph','f-alc','f-sal','f-prod','f-tw','f-act'].forEach(i=>document.getElementById(i).value='');
-  save();render();toast('Lectura guardada');go('hoy');
+  save();render();toast('Lectura guardada');go('hoy');sincronizar(false);
 }
 function delReading(i){if(confirm('¿Borrar esta lectura?')){S.readings.splice(i,1);save();render();}}
 function renderReadings(){
@@ -431,7 +453,147 @@ function importData(){
     ensureProfile();save();render();toast('Datos importados');
   }catch(e){toast('Ese texto no es válido');}
 }
+// ===========================================================================
+//  Nube: identidad, acceso y copia remota.
+//  Todo lo de aquí es opcional. Si NUBE no está configurada, no se activa
+//  nada y la app se comporta exactamente igual que antes.
+// ===========================================================================
+let sincronizando=false, pendiente=false;
+
+function pintarNube(){
+  const bloque=document.getElementById('bloque-nube');
+  if(!bloque)return;
+  if(!nubeLista()){bloque.style.display='none';return;}
+  bloque.style.display='';
+
+  const est=document.getElementById('nube-estado');
+  const act=document.getElementById('nube-acciones');
+
+  if(!sesion.correo){
+    est.innerHTML='<p class="hint" style="margin:0">Entra con tu cuenta para que los registros '+
+      'se guarden fuera de este móvil y no se pierdan.</p>';
+    act.innerHTML='<button class="big" onclick="entrar()">Entrar con Google</button>';
+    return;
+  }
+
+  if(sesion.acceso){
+    const fecha=S.ultimaSync?fmt(S.ultimaSync):'todavía no';
+    const extra=sesion.motivo==='invitado'?' Acceso de invitado.':'';
+    est.innerHTML='<p class="hint" style="margin:0"><b>'+esc(sesion.correo)+'</b>.'+extra+
+      '<br>Última copia: '+fecha+'.</p>';
+    act.innerHTML='<button class="big" onclick="sincronizar(true)">Guardar copia ahora</button>'+
+      '<button class="ghost" onclick="restaurar()">Restaurar desde la nube</button>'+
+      '<button class="ghost" onclick="salir()">Cerrar sesión</button>';
+    return;
+  }
+
+  est.innerHTML='<p class="hint" style="margin:0"><b>'+esc(sesion.correo)+'</b> no tiene acceso. '+
+    'La app sigue funcionando en este móvil; lo que no se guarda es la copia en la nube.</p>';
+  act.innerHTML=(NUBE.enlacePago?
+      '<button class="big" onclick="pagar()">Conseguir acceso</button>':'')+
+    '<button class="ghost" onclick="comprobar()">Ya he pagado, comprobar</button>'+
+    '<button class="ghost" onclick="salir()">Cerrar sesión</button>';
+}
+
+function entrar(){
+  if(!window.google||!google.accounts||!google.accounts.id){
+    toast('No se ha podido cargar el acceso de Google');return;
+  }
+  google.accounts.id.prompt();
+}
+function salir(){
+  sesion={idToken:null,correo:null,acceso:false,motivo:null};
+  try{google.accounts.id.disableAutoSelect();}catch(e){}
+  pintarNube();toast('Sesión cerrada');
+}
+function pagar(){ if(NUBE.enlacePago)window.open(NUBE.enlacePago,'_blank','noopener'); }
+function comprobar(){ if(sesion.idToken)consultarEstado(sesion.idToken); }
+
+function alIdentificarse(respuesta){
+  if(!respuesta||!respuesta.credential)return;
+  consultarEstado(respuesta.credential);
+}
+
+async function llamar(cuerpo){
+  const r=await fetch(NUBE.backend,{
+    method:'POST',
+    // Texto plano evita la petición previa de CORS, que Apps Script no responde.
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify(cuerpo)
+  });
+  return r.json();
+}
+
+async function consultarEstado(idToken){
+  try{
+    const d=await llamar({accion:'estado',idToken});
+    if(!d.ok){toast('No se ha podido verificar la cuenta');return;}
+    sesion={idToken,correo:d.correo,acceso:d.acceso,motivo:d.motivo};
+    if(d.enlacePago&&!NUBE.enlacePago)NUBE.enlacePago=d.enlacePago;
+    pintarNube();
+    if(sesion.acceso)sincronizar(false);
+  }catch(e){toast('Sin conexión con el servidor');}
+}
+
+async function sincronizar(avisar){
+  if(!nubeLista()||!sesion.acceso||!sesion.idToken)return;
+  if(sincronizando){pendiente=true;return;}
+  sincronizando=true;
+  try{
+    const d=await llamar({accion:'guardar',idToken:sesion.idToken,
+      perfil:who(),lecturas:S.readings,estado:S});
+    if(d.ok){
+      S.ultimaSync=todayISO();S.lastBackup=todayISO();save();
+      if(avisar)toast('Copia guardada');
+      pintarNube();renderAlerts();
+    }else if(d.error==='sin-acceso'){
+      sesion.acceso=false;sesion.motivo=d.motivo;pintarNube();
+    }else if(avisar)toast('No se ha podido guardar');
+  }catch(e){
+    if(avisar)toast('Sin conexión: se reintentará');
+  }finally{
+    sincronizando=false;
+    if(pendiente){pendiente=false;sincronizar(false);}
+  }
+}
+
+async function restaurar(){
+  if(!sesion.acceso)return;
+  try{
+    const d=await llamar({accion:'recuperar',idToken:sesion.idToken});
+    if(!d.ok||!d.datos||!d.datos.estado||!Array.isArray(d.datos.estado.readings)){
+      toast('No hay copia guardada todavía');return;
+    }
+    if(!confirm('Se sustituirán las tareas y lecturas de este móvil por las de la nube. ¿Seguir?'))return;
+    const mio=S.profile;
+    S={...S,...d.datos.estado,profile:mio};
+    DEFAULT_TASKS.forEach(t=>{if(!S.tasks.find(x=>x.id===t.id))S.tasks.push({...t,last:null});});
+    ensureProfile();save();render();toast('Restaurado desde la nube');
+  }catch(e){toast('Sin conexión con el servidor');}
+}
+
+function iniciarNube(){
+  if(!nubeLista()){pintarNube();return;}
+  const s=document.createElement('script');
+  s.src='https://accounts.google.com/gsi/client';
+  s.async=true;s.defer=true;
+  s.onload=()=>{
+    try{
+      google.accounts.id.initialize({client_id:NUBE.clientId,callback:alIdentificarse,
+        auto_select:true,cancel_on_tap_outside:false});
+      google.accounts.id.prompt();
+    }catch(e){}
+    pintarNube();
+  };
+  s.onerror=()=>{pintarNube();toast('No se ha podido cargar el acceso de Google');};
+  document.head.appendChild(s);
+  pintarNube();
+  // Reintento al recuperar la conexión.
+  window.addEventListener('online',()=>sincronizar(false));
+}
+
 load();
+iniciarNube();
 </script>
 </body>
 </html>
