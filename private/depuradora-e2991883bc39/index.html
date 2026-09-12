@@ -506,7 +506,20 @@ function salir(){
   try{google.accounts.id.disableAutoSelect();}catch(e){}
   pintarNube();toast('Sesión cerrada');
 }
-function pagar(){ if(NUBE.enlacePago)window.open(NUBE.enlacePago,'_blank','noopener'); }
+function pagar(){
+  if(!NUBE.enlacePago)return;
+  // El acceso se reconoce por el correo, así que hay que pagar con el mismo
+  // con el que se ha entrado. Se avisa antes de salir a la pasarela.
+  if(sesion.correo&&!confirm('Vas a pagar con la cuenta '+sesion.correo+
+      '.\n\nUsa ese mismo correo en la pasarela. Si pagas con otro, la app no te '+
+      'reconocerá el acceso.\n\n¿Continuar?'))return;
+  let url=NUBE.enlacePago;
+  if(sesion.correo){
+    // Si Stripe no admite el parámetro, lo descarta sin romper el enlace.
+    url+=(url.indexOf('?')<0?'?':'&')+'prefilled_email='+encodeURIComponent(sesion.correo);
+  }
+  window.open(url,'_blank','noopener');
+}
 function comprobar(){ if(sesion.idToken)consultarEstado(sesion.idToken); }
 
 function alIdentificarse(respuesta){
