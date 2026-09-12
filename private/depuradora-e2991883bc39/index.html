@@ -87,6 +87,8 @@
   .reading:last-child{border-bottom:0}
   .reading .top{display:flex;justify-content:space-between;align-items:baseline}
   .reading .d{font-weight:600;font-size:.94rem}
+  .reading .by{font-weight:500;font-size:.76rem;color:var(--soft);background:var(--light);
+    padding:2px 8px;border-radius:999px;margin-left:4px;white-space:nowrap}
   .reading .del{background:none;border:0;color:var(--soft);font-size:.82rem;padding:4px;
     cursor:pointer;font-family:inherit}
   .reading .del:hover{color:var(--error)}
@@ -186,9 +188,18 @@
       Forzarla a mano anula todo lo anterior.</p>
     </div>
 
+    <h2>Este dispositivo</h2>
+    <div class="card" style="padding:16px 18px">
+      <label for="f-profile">Nombre con el que se firman tus apuntes</label>
+      <input id="f-profile" type="text" maxlength="24" placeholder="Guillermo" onchange="setProfile(this.value)">
+      <p class="hint">Cada lectura y cada tarea que marques queda firmada con este nombre. Si la usa alguien más
+      desde otro móvil, cada uno pone el suyo y en el historial se ve quién apuntó qué. Identificador interno:
+      <b id="pid"></b>.</p>
+    </div>
+
     <h2>Datos</h2>
     <div class="card" style="padding:16px 18px">
-      <p class="hint" style="margin:0 0 6px">Todo se guarda en este navegador y en este dispositivo. No se envía a
+      <p class="hint" style="margin:0">Todo se guarda en este navegador y en este dispositivo. No se envía a
       ningún servidor. Si cambias de móvil o borras los datos del navegador, se pierde: exporta antes y pega el
       texto en el otro dispositivo.</p>
     </div>
@@ -224,8 +235,38 @@ const RANGES={cl:[1,3],ph:[7.2,7.6],alc:[80,120],sal:[3,6]};
 const LABELS={cl:'Cloro',ph:'pH',alc:'Alcalinidad',sal:'Sal',prod:'Producción',tw:'Agua'};
 const UNITS={cl:' ppm',ph:'',alc:' ppm',sal:' g/L',prod:' %',tw:' °C'};
 
-let S={tasks:DEFAULT_TASKS.map(t=>({...t,last:null})),readings:[],seasonOverride:null};
+let S={tasks:DEFAULT_TASKS.map(t=>({...t,last:null})),readings:[],seasonOverride:null,
+       profile:null,lastBackup:null};
 let weather=null;
+
+// --- Perfil del dispositivo ---
+// Identifica quién apunta cada cosa cuando la app la usa más de una persona.
+// El id es fijo por navegador; el nombre se puede cambiar en Ajustes.
+function newId(){
+  const a=new Uint8Array(4);
+  (crypto&&crypto.getRandomValues)?crypto.getRandomValues(a):a.forEach((_,i)=>a[i]=Math.random()*256);
+  return [...a].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function ensureProfile(){
+  if(!S.profile||!S.profile.id)S.profile={id:newId(),name:guessName()};
+  return S.profile;
+}
+function guessName(){
+  const ua=navigator.userAgent;
+  if(/iPhone/.test(ua))return'iPhone';
+  if(/iPad/.test(ua))return'iPad';
+  if(/Android/.test(ua))return'Android';
+  if(/Macintosh/.test(ua))return'Mac';
+  if(/Windows/.test(ua))return'PC';
+  return'Dispositivo';
+}
+const who=()=>S.profile?S.profile.name:'';
+// Perfiles distintos vistos en los datos: si hay más de uno, se muestra la autoría.
+function manyProfiles(){
+  const s=new Set(S.readings.filter(r=>r.by).map(r=>r.by));
+  if(S.profile)s.add(S.profile.name);
+  return s.size>1;
+}
 
 const iso=d=>d.toISOString().slice(0,10);
 const todayISO=()=>iso(new Date());
@@ -264,6 +305,7 @@ function load(){
       DEFAULT_TASKS.forEach(t=>{if(!S.tasks.find(x=>x.id===t.id))S.tasks.push({...t,last:null});});
     }
   }catch(e){}
+  ensureProfile();save();
   render();fetchWeather();
 }
 function save(){
@@ -282,7 +324,16 @@ function render(){
     const on=k==='auto'?!S.seasonOverride:S.seasonOverride===k;
     return`<button class="${on?'on':''}" onclick="setSeason('${k}')">${l}</button>`;}).join('');
   renderTasks();renderAlerts();renderReadings();renderCharts();renderSettings();
+  const p=document.getElementById('f-profile');
+  if(p&&document.activeElement!==p)p.value=S.profile?S.profile.name:'';
+  const pid=document.getElementById('pid');
+  if(pid)pid.textContent=S.profile?S.profile.id:'';
   if(!document.getElementById('f-date').value)document.getElementById('f-date').value=todayISO();
+}
+function setProfile(v){
+  const n=(v||'').trim().slice(0,24);
+  if(!n){toast('El nombre no puede quedar vacío');render();return;}
+  ensureProfile();S.profile.name=n;save();render();toast('Ahora firmas como '+n);
 }
 function setSeason(k){S.seasonOverride=k==='auto'?null:k;save();render();}
 
@@ -296,13 +347,14 @@ function taskState(t){
 }
 function renderTasks(){
   const list=S.tasks.map(t=>({t,s:taskState(t)})).sort((a,b)=>(a.s.n??-999)-(b.s.n??-999));
+  const varios=manyProfiles();
   document.getElementById('tasks').innerHTML=list.map(({t,s})=>`
     <div class="task"><div class="grow"><div class="name">${esc(t.name)}</div>
-    <div class="meta">${t.last?'Última: '+fmt(t.last):'Nunca marcada'} · cada ${t.freq[season()]} d</div></div>
+    <div class="meta">${t.last?'Última: '+fmt(t.last)+(varios&&t.by?' · '+esc(t.by):''):'Nunca marcada'} · cada ${t.freq[season()]} d</div></div>
     <span class="pill ${s.cls}">${s.txt}</span><button onclick="done('${t.id}')">Hecho</button></div>`).join('');
 }
-function done(id){const t=S.tasks.find(x=>x.id===id);t.last=todayISO();save();render();toast(t.name+': hecho');}
-function doneAll(){S.tasks.forEach(t=>t.last=todayISO());save();render();toast('Todas marcadas hoy');}
+function done(id){const t=S.tasks.find(x=>x.id===id);t.last=todayISO();t.by=who();save();render();toast(t.name+': hecho');}
+function doneAll(){S.tasks.forEach(t=>{t.last=todayISO();t.by=who();});save();render();toast('Todas marcadas hoy');}
 function resetTasks(){if(confirm('¿Borrar las fechas de última ejecución?')){S.tasks.forEach(t=>t.last=null);save();render();}}
 
 function cls(k,v){if(v==null||v===''||!RANGES[k])return'';const[a,b]=RANGES[k];return v<a?'lo':v>b?'hi':'ok';}
@@ -312,11 +364,18 @@ function renderAlerts(){
   if(rs.length>=2&&rs[0].alc>120&&rs[1].alc<80)out.push('La alcalinidad ha pasado de baja a alta: la dosis de bicarbonato fue excesiva. Apunta la cantidad para ajustar.');
   const rev=S.tasks.find(t=>t.id==='rev');
   if(rs[0]&&days(rs[0].date,todayISO())>rev.freq[season()])out.push('Última lectura hace '+days(rs[0].date,todayISO())+' días.');
+  // Los datos viven solo en este navegador: recordar la copia de seguridad.
+  if(S.readings.length){
+    const d=S.lastBackup?days(S.lastBackup,todayISO()):null;
+    if(d===null)out.push('Aún no has hecho ninguna copia. Los datos están solo en este dispositivo: en Ajustes, «Copiar mis datos».');
+    else if(d>=30)out.push('Hace '+d+' días de la última copia. En Ajustes, «Copiar mis datos».');
+  }
   document.getElementById('alerts').innerHTML=out.map(a=>`<div class="alert">${esc(a)}</div>`).join('');
 }
 function saveReading(){
   const g=id=>{const v=document.getElementById(id).value;return v===''?null:parseFloat(v);};
-  const r={date:document.getElementById('f-date').value||todayISO(),cl:g('f-cl'),ph:g('f-ph'),alc:g('f-alc'),sal:g('f-sal'),prod:g('f-prod'),tw:g('f-tw'),act:document.getElementById('f-act').value.trim()};
+  const r={date:document.getElementById('f-date').value||todayISO(),cl:g('f-cl'),ph:g('f-ph'),alc:g('f-alc'),sal:g('f-sal'),prod:g('f-prod'),tw:g('f-tw'),act:document.getElementById('f-act').value.trim(),
+           by:who(),byId:S.profile?S.profile.id:'',at:new Date().toISOString()};
   if(r.cl==null&&r.ph==null&&r.alc==null&&r.sal==null&&r.tw==null){toast('Introduce al menos un valor');return;}
   S.readings.push(r);S.readings.sort((a,b)=>b.date.localeCompare(a.date));
   const rev=S.tasks.find(t=>t.id==='rev');if((r.cl!=null||r.ph!=null)&&(!rev.last||r.date>rev.last))rev.last=r.date;
@@ -327,7 +386,8 @@ function delReading(i){if(confirm('¿Borrar esta lectura?')){S.readings.splice(i
 function renderReadings(){
   const el=document.getElementById('readings');
   if(!S.readings.length){el.innerHTML='<div class="empty" style="padding:22px 18px">Sin lecturas todavía. Guarda la primera arriba.</div>';return;}
-  el.innerHTML=S.readings.map((r,i)=>`<div class="reading"><div class="top"><span class="d">${fmt(r.date)}</span><button class="del" onclick="delReading(${i})">Borrar</button></div>
+  const varios=manyProfiles();
+  el.innerHTML=S.readings.map((r,i)=>`<div class="reading"><div class="top"><span class="d">${fmt(r.date)}${varios&&r.by?` <span class="by">${esc(r.by)}</span>`:''}</span><button class="del" onclick="delReading(${i})">Borrar</button></div>
     <div class="vals">${['cl','ph','alc','sal','prod','tw'].filter(k=>r[k]!=null).map(k=>`<span class="v ${cls(k,r[k])}">${LABELS[k]} ${num(r[k])}${UNITS[k]}</span>`).join('')}</div>
     ${r.act?`<div class="act">${esc(r.act)}</div>`:''}</div>`).join('');
 }
@@ -352,9 +412,11 @@ function setFreq(id,k,v){const n=parseInt(v);if(n>0){S.tasks.find(t=>t.id===id).
 
 function exportData(){
   const txt=JSON.stringify(S,null,1);
+  const hecho=()=>{S.lastBackup=todayISO();save();render();};
   if(navigator.clipboard&&window.isSecureContext){
-    navigator.clipboard.writeText(txt).then(()=>toast('Copiado al portapapeles')).catch(()=>prompt('Copia este texto:',txt));
-  }else{prompt('Copia este texto:',txt);}
+    navigator.clipboard.writeText(txt).then(()=>{hecho();toast('Copiado al portapapeles');})
+      .catch(()=>{prompt('Copia este texto:',txt);hecho();});
+  }else{prompt('Copia este texto:',txt);hecho();}
 }
 function importData(){
   const txt=prompt('Pega aquí los datos exportados. Sustituirán a los actuales.');
@@ -363,9 +425,10 @@ function importData(){
     const d=JSON.parse(txt);
     if(!d||!Array.isArray(d.tasks)||!Array.isArray(d.readings))throw new Error('formato');
     if(!confirm('Se sustituirán las tareas y lecturas actuales. ¿Seguir?'))return;
-    S={...S,...d};
+    const mio=S.profile;            // el perfil es de este dispositivo, no viaja con los datos
+    S={...S,...d,profile:mio};
     DEFAULT_TASKS.forEach(t=>{if(!S.tasks.find(x=>x.id===t.id))S.tasks.push({...t,last:null});});
-    save();render();toast('Datos importados');
+    ensureProfile();save();render();toast('Datos importados');
   }catch(e){toast('Ese texto no es válido');}
 }
 load();
