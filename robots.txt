@@ -8,7 +8,6 @@ Disallow: /private/
 Disallow: /temp/
 Disallow: /backup/
 Disallow: /*.json$
-Disallow: /*?*
 Disallow: /search
 Disallow: /404.html
 Disallow: /*.pdf$
@@ -363,8 +362,6 @@ Disallow: /
 
 # Sitemap locations
 Sitemap: https://guillermobadia.com/sitemap.xml
-Sitemap: https://guillermobadia.com/sitemap-images.xml
-Sitemap: https://guillermobadia.com/sitemap-news.xml
 
 # Host directive
 Host: guillermobadia.com
