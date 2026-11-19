@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Tratamiento de Llana | Guillermo Badia</title>
+    <meta name="description" content="Pauta del veterinario: 7 días de tratamiento.">
+
+    <!-- Página privada: no se enlaza desde ningún menú, no entra en el sitemap
+         y se pide explícitamente que no se indexe ni se siga. Solo por URL. -->
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Llana">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --dark: #1e293b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+            --success: #22c55e;
+            --warning: #eab308;
+            --error: #ef4444;
+            --line: #e2e8f0;
+            --givet: #0891b2;
+            --metro: #d97706;
+            --forti: #16a34a;
+            --mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+            --font-main: 'Segoe UI', system-ui, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); line-height: 1.6; color: var(--dark); background: var(--light); }
+        button, select { font-family: inherit; }
+        :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+        /* Cabecera mínima: solo la marca, sin menú */
+        .header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header-inner { max-width: 900px; margin: 0 auto; padding: 1rem; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); display: inline-flex; align-items: center; gap: .5rem; }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white); padding: 3rem 1rem 4.5rem; text-align: center;
+        }
+        .eyebrow { font-size: .85rem; letter-spacing: .18em; text-transform: uppercase; opacity: .9; font-weight: 500; }
+        .hero h1 { font-size: 3rem; margin: .5rem 0 .75rem; line-height: 1.1; }
+        .hero p { font-size: 1.15rem; opacity: .95; }
+        .chips { display: flex; gap: .5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.25rem; }
+        .chip { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: .3rem .9rem; font-size: .9rem; }
+        .chip b { font-weight: 700; }
+
+        main { max-width: 900px; margin: -2.5rem auto 0; padding: 0 1rem 3rem; position: relative; }
+        .card { background: var(--white); border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.08); padding: 1.5rem; margin-bottom: 1.25rem; }
+        .card h2 { font-size: 1.35rem; margin-bottom: .35rem; }
+        .card h3 { font-size: 1.05rem; margin: 1rem 0 .5rem; }
+        .sub { color: var(--secondary); margin-bottom: 1rem; }
+        .label { font-family: var(--mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--secondary); }
+
+        .hour-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .hour-row label { font-weight: 600; }
+        .hour-row select { font-size: 1.1rem; padding: .45rem .7rem; border: 2px solid var(--primary); border-radius: 10px; background: var(--white); color: var(--dark); }
+        .hour-row span { color: var(--secondary); }
+
+        .start { background: var(--dark); color: var(--white); }
+        .start h2 { color: var(--white); }
+        .start p { opacity: .95; }
+        .start a { color: #93c5fd; }
+
+        .moments { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 700px) { .moments { grid-template-columns: 1fr; } .hero h1 { font-size: 2.2rem; } }
+        .moment { border: 1px solid var(--line); border-radius: 12px; padding: 1rem; }
+        .moment h3 { margin-top: 0; display: flex; align-items: center; gap: .5rem; }
+        .step { display: flex; gap: .75rem; padding: .6rem 0; border-top: 1px dashed var(--line); }
+        .step:first-of-type { border-top: 0; }
+        .step time { font-family: var(--mono); font-weight: 700; min-width: 3.2rem; color: var(--primary); }
+        .step .wait { color: var(--secondary); font-style: italic; }
+        .step small { display: block; color: var(--secondary); }
+        .with { font-size: .7rem; font-weight: 700; letter-spacing: .1em; color: var(--secondary); margin: .3rem 0 .1rem; }
+        .dot { display: inline-block; width: .65rem; height: .65rem; border-radius: 50%; margin-right: .35rem; vertical-align: middle; }
+        .d-givet { background: var(--givet); } .d-metro { background: var(--metro); } .d-forti { background: var(--forti); } .d-diet { background: var(--secondary); }
+
+        .dur { display: grid; gap: .9rem; }
+        .dur-row { display: grid; grid-template-columns: 11rem 1fr; gap: .75rem; align-items: center; }
+        @media (max-width: 600px) { .dur-row { grid-template-columns: 1fr; gap: .25rem; } }
+        .dur-row small { display: block; color: var(--secondary); }
+        .bar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+        .bar div { height: 1.6rem; border-radius: 6px; background: var(--light); display: flex; align-items: center; justify-content: center; gap: 3px; }
+        .bar i.p { width: .45rem; height: .45rem; border-radius: 50%; display: inline-block; }
+        .bar-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; font-family: var(--mono); font-size: .7rem; color: var(--secondary); text-align: center; }
+
+        .food { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 700px) { .food { grid-template-columns: 1fr; } }
+        .food > div { background: var(--light); border-radius: 12px; padding: 1rem; }
+
+        .note { border-left: 4px solid var(--primary); background: var(--light); border-radius: 8px; padding: .8rem 1rem; margin: .75rem 0; }
+        .note.warn { border-color: var(--warning); }
+        .note.danger { border-color: var(--error); }
+
+        .flow { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin: .5rem 0; }
+        .flow span { background: var(--light); border-radius: 8px; padding: .4rem .7rem; font-weight: 600; }
+        .flow i { color: var(--secondary); }
+
+        .stock { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        @media (max-width: 700px) { .stock { grid-template-columns: 1fr; } }
+        .stock > div { border: 1px solid var(--line); border-radius: 12px; padding: 1rem; }
+        .stock b { font-size: 1.8rem; color: var(--primary); display: block; line-height: 1.1; }
+
+        .pill { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+        .pill ol { padding-left: 1.2rem; flex: 1; min-width: 240px; }
+        .pill li { margin: .3rem 0; }
+
+        ul.alarm { padding-left: 1.2rem; }
+        ul.alarm li { margin: .35rem 0; }
+        .phone { display: inline-flex; align-items: center; gap: .5rem; background: var(--primary); color: var(--white); text-decoration: none; padding: .6rem 1rem; border-radius: 10px; font-weight: 700; margin-top: .5rem; }
+
+        .progress-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+        .progress { height: 10px; border-radius: 99px; background: var(--light); overflow: hidden; margin: .5rem 0 1rem; }
+        .progress div { height: 100%; background: var(--success); width: 0; transition: width .3s; }
+        .day { border: 1px solid var(--line); border-radius: 12px; padding: .9rem 1rem; margin-bottom: .75rem; }
+        .day.today { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(37,99,235,.15); }
+        .day-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: .5rem; }
+        .day-head b { font-size: 1rem; } .day-head span { font-family: var(--mono); font-size: .8rem; color: var(--secondary); }
+        .doses { display: grid; grid-template-columns: 8rem 1fr 1fr; gap: .4rem .6rem; align-items: center; }
+        .doses .h { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--secondary); }
+        .doses .n small { color: var(--secondary); display: block; font-size: .75rem; }
+        .dose { border: 1.5px solid var(--line); background: var(--white); border-radius: 8px; padding: .45rem; font-family: var(--mono); font-weight: 600; cursor: pointer; color: var(--dark); font-size: .9rem; }
+        .dose.on { background: var(--success); border-color: var(--success); color: var(--white); }
+        .dose.on::before { content: "\2713  "; }
+        .reset { margin-top: .5rem; background: none; border: 0; color: var(--secondary); text-decoration: underline; cursor: pointer; font-size: .85rem; }
+
+        .footer { background: var(--dark); color: var(--white); padding: 2rem 1rem; text-align: center; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <span class="logo"><i class="fas fa-code"></i> GB</span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="eyebrow">Pauta del veterinario</div>
+        <h1>Tratamiento de Llana</h1>
+        <p>7 días: del viernes 20 al jueves 26 de noviembre</p>
+        <div class="chips">
+            <span class="chip"><b>Givet</b> protector digestivo</span>
+            <span class="chip"><b>Metrobactin</b> antibiótico</span>
+            <span class="chip"><b>FortiFlora</b> probiótico</span>
+        </div>
+    </section>
+
+    <main>
+        <div class="card">
+            <div class="hour-row">
+                <label for="hour">Hora del desayuno</label>
+                <select id="hour"></select>
+                <span>Cena a las <b id="dinnerTxt">19:30</b>, 12 horas después</span>
+            </div>
+        </div>
+
+        <div class="card start" id="startCard">
+            <h2 id="startTitle">Empieza el viernes 20</h2>
+            <p>Primera toma: <b>Givet a las <span class="t-gm"></span></b>, en ayunas. A las <span class="t-bk"></span>, desayuno con Metrobactin y FortiFlora.</p>
+            <p style="margin-top:.5rem"><a href="#antes">Antes de empezar: comprueba que tienes de todo</a></p>
+        </div>
+
+        <div class="card">
+            <h2>Cada día, dos momentos</h2>
+            <p class="sub">Givet siempre 30 minutos antes de comer, en ayunas. Lo demás, con la comida.</p>
+            <div class="moments">
+                <div class="moment">
+                    <h3><i class="fas fa-sun" style="color:var(--warning)"></i> Mañana</h3>
+                    <div class="step"><time class="t-gm"></time><div><span class="dot d-givet"></span><b>Givet, 5 ml</b><small>Directo a la boca. Agita el frasco antes.</small></div></div>
+                    <div class="step"><time></time><div class="wait">Espera 30 minutos</div></div>
+                    <div class="step"><time class="t-bk"></time><div><b>Desayuno</b> · dieta blanda
+                        <div class="with">CON</div>
+                        <div><span class="dot d-metro"></span><b>Metrobactin, 3/4 de comprimido</b><small>Escóndelo en un poco de su comida.</small></div>
+                        <div style="margin-top:.35rem"><span class="dot d-forti"></span><b>FortiFlora, 1 sobre</b><small>Mezclado con la comida.</small></div>
+                    </div></div>
+                </div>
+                <div class="moment">
+                    <h3><i class="fas fa-moon" style="color:var(--primary)"></i> Noche</h3>
+                    <div class="step"><time class="t-gn"></time><div><span class="dot d-givet"></span><b>Givet, 5 ml</b><small>Directo a la boca. Agita el frasco antes.</small></div></div>
+                    <div class="step"><time></time><div class="wait">Espera 30 minutos</div></div>
+                    <div class="step"><time class="t-dn"></time><div><b>Cena</b> · dieta blanda
+                        <div class="with">CON</div>
+                        <div><span class="dot d-metro"></span><b>Metrobactin, 3/4 de comprimido</b><small>Escóndelo en un poco de su comida.</small></div>
+                    </div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Hasta cuándo dura cada uno</h2>
+            <p class="sub">Cada punto es una toma.</p>
+            <div class="dur" id="dur"></div>
+        </div>
+
+        <div class="card">
+            <h2>Qué come</h2>
+            <p class="sub">Solo esto, en todas las comidas. Nada de premios ni sobras.</p>
+            <div class="food">
+                <div>
+                    <div class="label">Opción A</div>
+                    <h3 style="margin-top:.25rem">Comida veterinaria gastrointestinal baja en grasa</h3>
+                    <p>Pienso o lata <i>low fat</i>.</p>
+                </div>
+                <div>
+                    <div class="label">Opción B · casera</div>
+                    <p style="margin-top:.5rem"><b>Carne:</b> pollo, conejo o pavo, sin piel ni grasa.</p>
+                    <p><b>Con:</b> patata, zanahoria o judías verdes.</p>
+                </div>
+            </div>
+            <div class="note">Todo hervido, sin aceite y sin sal.</div>
+        </div>
+
+        <div class="card" id="antes">
+            <h2>Antes de empezar</h2>
+            <h3>Arranque, una sola vez</h3>
+            <div class="flow">
+                <span>4 h sin comer ni beber</span><i class="fas fa-arrow-right"></i>
+                <span>Agua</span><i class="fas fa-arrow-right"></i>
+                <span>Si la tolera, 2 h después</span><i class="fas fa-arrow-right"></i>
+                <span>Primera comida</span>
+            </div>
+            <p class="sub">Es el inicio del tratamiento; no se repite cada día.</p>
+            <div class="note warn">Si este arranque coincide con la primera mañana, la primera comida no puede ser a la hora del desayuno: confírmalo con la clínica.</div>
+
+            <h3>Comprueba que tienes suficiente</h3>
+            <div class="stock">
+                <div><b>60 ml</b>de Givet<small style="display:block;color:var(--secondary)">12 tomas de 5 ml. Si tu frasco es de 60 ml, va justo.</small></div>
+                <div><b>8</b>comprimidos de Metrobactin 500 mg<small style="display:block;color:var(--secondary)">10 tomas de 3/4 suman 7,5.</small></div>
+                <div><b>7</b>sobres de FortiFlora<small style="display:block;color:var(--secondary)">Uno al día.</small></div>
+            </div>
+
+            <h3>Cómo sacar 3/4 de Metrobactin</h3>
+            <div class="pill">
+                <svg width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="Comprimido partido en cuatro: tres cuartos para la toma y uno para la siguiente">
+                    <path d="M60 60 L60 10 A50 50 0 0 1 110 60 Z" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+                    <path d="M60 60 L110 60 A50 50 0 0 1 60 110 Z" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+                    <path d="M60 60 L60 110 A50 50 0 0 1 10 60 Z" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+                    <path d="M54 54 L4 54 A50 50 0 0 1 54 4 Z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3"/>
+                    <text x="85" y="90" font-size="13" text-anchor="middle" fill="#92400e" font-weight="700">3/4</text>
+                    <text x="34" y="38" font-size="10" text-anchor="middle" fill="#64748b">guardar</text>
+                </svg>
+                <ol>
+                    <li>Ponlo en una superficie plana, con la ranura hacia arriba.</li>
+                    <li>Presiona el centro con el pulgar: se parte en 4.</li>
+                    <li>Dale 3 trozos. El que sobra vuelve al blíster y va en la siguiente toma.</li>
+                    <li>Lávate las manos después.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Llama a la clínica si:</h2>
+            <ul class="alarm">
+                <li>Vomita, sobre todo si devuelve la medicación.</li>
+                <li>La diarrea o la sangre en las heces van a peor.</li>
+                <li>No come, no bebe o está muy decaída.</li>
+                <li>Se tambalea, tiembla o parece desorientada. En ese caso, <b>no le des más Metrobactin</b> hasta hablar con la clínica.</li>
+            </ul>
+            <p style="margin-top:.75rem">AniCura Sant Antoni</p>
+            <a class="phone" href="tel:+34961420090"><i class="fas fa-phone"></i> 961 42 00 90</a>
+            <div class="note">Si se te olvida una toma, no la dupliques: pregunta en la clínica.</div>
+            <div class="note">Pregúntales también cuánto dura la dieta y cómo volver a su comida habitual: el informe no lo dice.</div>
+        </div>
+
+        <div class="card">
+            <div class="progress-head">
+                <h2>Registro de tomas</h2>
+                <span class="label"><b id="doneN">0</b> de <b id="totN">29</b> tomas</span>
+            </div>
+            <div class="progress"><div id="progBar"></div></div>
+            <p class="sub">Toca cada toma cuando se la des. Las marcas se guardan solo en este dispositivo.</p>
+            <div id="log"></div>
+            <button class="reset" id="reset">Borrar todas las marcas</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Guillermo Badia.</p>
+    </footer>
+
+    <script>
+    (function () {
+        var DAYS = ['viernes 20', 'sábado 21', 'domingo 22', 'lunes 23', 'martes 24', 'miércoles 25', 'jueves 26'];
+        var START = new Date(2026, 10, 20);
+        // Días (índice 0-6) en que se da cada medicamento
+        var MEDS = [
+            { id: 'givet', name: 'Givet', dose: '5 ml', cls: 'd-givet', color: 'var(--givet)', days: 6, slots: ['m', 'n'], pre: true,
+              desc: '5 ml cada 12 h', last: 'Último: miércoles 25, por la noche' },
+            { id: 'metro', name: 'Metrobactin', dose: '3/4 comp.', cls: 'd-metro', color: 'var(--metro)', days: 5, slots: ['m', 'n'], pre: false,
+              desc: '3/4 de comprimido cada 12 h', last: 'Último: martes 24, por la noche' },
+            { id: 'forti', name: 'FortiFlora', dose: '1 sobre', cls: 'd-forti', color: 'var(--forti)', days: 7, slots: ['m'], pre: false,
+              desc: '1 sobre al día, en el desayuno', last: 'Último: jueves 26' }
+        ];
+        var KEY = 'llana-tratamiento-v1';
+        var state = {};
+        try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
+        var marks = state.marks || {};
+        var breakfast = state.breakfast || 450; // minutos: 07:30
+
+        function hhmm(min) { min = (min + 1440) % 1440; return String(Math.floor(min / 60)).padStart(2, '0') + ':' + String(min % 60).padStart(2, '0'); }
+        function save() { try { localStorage.setItem(KEY, JSON.stringify({ marks: marks, breakfast: breakfast })); } catch (e) {} }
+        function times() { return { gm: breakfast - 30, bk: breakfast, gn: breakfast + 690, dn: breakfast + 720 }; }
+
+        var sel = document.getElementById('hour');
+        for (var m = 360; m <= 600; m += 30) {
+            var o = document.createElement('option'); o.value = m; o.textContent = hhmm(m);
+            if (m === breakfast) o.selected = true; sel.appendChild(o);
+        }
+        sel.addEventListener('change', function () { breakfast = +sel.value; save(); paint(); });
+
+        function setAll(cls, txt) { document.querySelectorAll('.' + cls).forEach(function (el) { el.textContent = txt; }); }
+
+        function todayIndex() {
+            var now = new Date(); now.setHours(0, 0, 0, 0);
+            return Math.round((now - START) / 86400000);
+        }
+
+        function paintStart() {
+            var i = todayIndex(), title = document.getElementById('startTitle'), card = document.getElementById('startCard');
+            if (i === -1) title.textContent = 'Empieza mañana, viernes 20';
+            else if (i < -1) title.textContent = 'Empieza el viernes 20';
+            else if (i >= 0 && i < 7) title.textContent = 'Hoy es el día ' + (i + 1) + ' de 7 (' + DAYS[i] + ')';
+            else { title.textContent = 'Tratamiento terminado'; }
+            if (i >= 0) card.querySelector('p').style.display = 'none';
+        }
+
+        function paintDur() {
+            var box = document.getElementById('dur'), html = '';
+            MEDS.forEach(function (md) {
+                html += '<div class="dur-row"><div><span class="dot ' + md.cls + '"></span><b>' + md.name + '</b><small>' + md.desc + '</small><small>' + md.last + '</small></div><div><div class="bar">';
+                for (var d = 0; d < 7; d++) {
+                    html += '<div>';
+                    if (d < md.days) md.slots.forEach(function () { html += '<i class="p" style="background:' + md.color + '"></i>'; });
+                    html += '</div>';
+                }
+                html += '</div></div></div>';
+            });
+            html += '<div class="dur-row"><div><span class="dot d-diet"></span><b>Dieta blanda</b><small>En todas las comidas</small><small>Sin fecha de fin en el informe</small></div><div><div class="bar">';
+            for (var d = 0; d < 7; d++) html += '<div style="background:#cbd5e1"></div>';
+            html += '</div></div></div>';
+            html += '<div class="dur-row"><div></div><div class="bar-days">' + DAYS.map(function (s) { return '<span>' + s.split(' ')[0].slice(0, 3) + ' ' + s.split(' ')[1] + '</span>'; }).join('') + '</div></div>';
+            box.innerHTML = html;
+        }
+
+        function paintLog() {
+            var t = times(), ti = todayIndex(), box = document.getElementById('log'), html = '', total = 0, done = 0;
+            for (var d = 0; d < 7; d++) {
+                var dayTot = 0, dayDone = 0, rows = '';
+                MEDS.forEach(function (md) {
+                    if (d >= md.days) return;
+                    rows += '<div class="n"><span class="dot ' + md.cls + '"></span>' + md.name + '<small>' + md.dose + '</small></div>';
+                    ['m', 'n'].forEach(function (s) {
+                        if (md.slots.indexOf(s) < 0) { rows += '<div></div>'; return; }
+                        var k = d + '-' + md.id + '-' + s, on = !!marks[k];
+                        var tm = md.pre ? (s === 'm' ? t.gm : t.gn) : (s === 'm' ? t.bk : t.dn);
+                        rows += '<button class="dose' + (on ? ' on' : '') + '" data-k="' + k + '" aria-pressed="' + on + '" aria-label="' + md.name + ', ' + (s === 'm' ? 'mañana' : 'noche') + ', ' + hhmm(tm) + '">' + hhmm(tm) + '</button>';
+                        dayTot++; if (on) dayDone++;
+                    });
+                });
+                total += dayTot; done += dayDone;
+                html += '<div class="day' + (d === ti ? ' today' : '') + '"><div class="day-head"><b>Día ' + (d + 1) + ' · ' + DAYS[d] + '</b><span>' + dayDone + '/' + dayTot + '</span></div>' +
+                    '<div class="doses"><div></div><div class="h">Mañana</div><div class="h">Noche</div>' + rows + '</div></div>';
+            }
+            box.innerHTML = html;
+            document.getElementById('doneN').textContent = done;
+            document.getElementById('totN').textContent = total;
+            document.getElementById('progBar').style.width = (100 * done / total) + '%';
+        }
+
+        document.getElementById('log').addEventListener('click', function (e) {
+            var b = e.target.closest('.dose'); if (!b) return;
+            var k = b.getAttribute('data-k');
+            if (marks[k]) delete marks[k]; else marks[k] = Date.now();
+            save(); paintLog();
+        });
+        document.getElementById('reset').addEventListener('click', function () {
+            if (confirm('¿Borrar todas las marcas del registro?')) { marks = {}; save(); paintLog(); }
+        });
+
+        function paint() {
+            var t = times();
+            setAll('t-gm', hhmm(t.gm)); setAll('t-bk', hhmm(t.bk)); setAll('t-gn', hhmm(t.gn)); setAll('t-dn', hhmm(t.dn));
+            document.getElementById('dinnerTxt').textContent = hhmm(t.dn);
+            paintStart(); paintDur(); paintLog();
+        }
+        paint();
+    })();
+    </script>
+</body>
+</html>
